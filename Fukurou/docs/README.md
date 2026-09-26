@@ -25,6 +25,8 @@ npx --yes serve Fukurou/docs -l 4175
 | `index.html` | Documentation page + interactive component examples |
 | `styles.css` | Layout, Light/Dark Theme CSS variables, Figma-matched preview styles |
 | `script.js` | Theme toggle (`localStorage`), sidebar nav, component interactions |
+| `assets/logo_B.png` | Fukurou owl logo (sidebar brand mark) |
+| `favicon-*.png`, `favicon.ico`, `apple-touch-icon.png` | Browser tab and home-screen icons |
 
 ## Features
 
