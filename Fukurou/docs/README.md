@@ -31,7 +31,7 @@ npx --yes serve Fukurou/docs -l 4175
 ## Features
 
 - **Foundation / Color** — full live Figma palette docs: brand anchors, Primary/Secondary/Neutral/Amber/Red/Green/Blue ramps with token names + hex + swatches, status mapping, and usage guidance
-- **Foundation / Typography** — Lora + Poppins families, all 18 text styles with size/weight/line-height/tracking, specimens, usage + accessibility guidance
+- **Foundation / Typography** — Lora + Poppins families, all 18 text styles with size/weight/line-height/tracking, specimens, usage + accessibility guidance. The Type scale was redesigned (2026-10-05) from a cramped 8-column table into grouped specimen rows (preview beside a compact metadata list) with role-specific short preview strings; values re-checked against the live Figma text styles and preserved (the two `text-button/underline/lg|sm` rows now correctly show SemiBold); stacks on narrow viewports; Light/Dark verified
 - **Figma-matched previews** — sizes, radius, type, and colors aligned to live Figma components / Theme tokens
 - **Interactive examples** — real controls for Button, Text Field, Search (clear), Checkbox, Radio, Switch, Dropdown, Date Picker, Jumbo Select, Pagination, Snackbar, Alert, Modal, Tooltip, Progress Bar
 - **Date Picker popover** — calendar dropdown is anchored to the trigger and sits about `2px` below it in Light and Dark (2026-10-05)
