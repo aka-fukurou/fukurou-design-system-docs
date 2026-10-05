@@ -390,6 +390,8 @@ Built on the **Icon Button** foundation — the button container, bell icon, sta
 | Dot vs page | ✅ Pass ≥3:1 (3.16–6.37:1, non-text) |
 | Bell icon / focus ring (via Icon Button) | ✅ Pass (see Icon Button) |
 
+**Verification note (2026-10-05, HTML docs Notification Button reconciliation):** live `color/notification-button/badge/background` and `dot/background` now alias **`brand/primary/500` (`#d33f55`)** in both modes, not `red/600`. Computed: count text `#ffffff` vs `#d33f55` **4.55:1** (passes 1.4.3 for the 12px Regular count, but not the 6.65:1 recorded above); badge/dot vs `surface/page` **4.36:1** Light · **4.61:1** Dark (≥3:1 non-text passes). Disabled variant keeps full opacity — bell `content/disabled` (`#78716c` 4.59:1 vs page Light), badge unchanged; **Exempt / Disabled state**. The full audit was not re-run; **Needs verification** whether the `red/600 → primary/500` alias change is intentional.
+
 Audit totals after Snackbar + Notification Button: **6 non-exempt failures (unchanged baseline), 26 disabled/exempt (FAIL*), 208 pairs.** No regressions to existing components.
 
 ## Overlay components — Alert, Tooltip, Modal, Switch (WCAG audit 2026-06-15)

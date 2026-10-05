@@ -798,6 +798,8 @@ Component tokens: `color/icon-button/background/*`, `color/icon-button/content/*
 
 **Scripts:** `scripts/figma-notification-button.js` · `figma-notification-button-examples.js` · tokens in `figma-feedback-tokens.js`
 
+**HTML docs reconciliation (2026-10-05):** the docs example now matches the live set (`391:211`) — 32px Icon Button body with a **20px filled** Material `notifications` bell (was a 16px outline), dot 8px at top 0 / right 0, count badge h16 · min-w 16 · padding 0 6 · Poppins Regular 12/16 at top −2 / right 0, both with a **2px outside `surface/page` stroke** (rendered as `box-shadow`, so the badge never shifts the body). Badge/dot fill currently aliases **`brand/primary/500` (`#d33f55`)** in both modes — the `red/600` / 6.65:1 note above predates this; see `ACCESSIBILITY_AUDIT.md`. The Figma **Disabled** variant keeps full opacity (bell → `content/disabled`, badge unchanged), so the docs override the Icon Button's 60% opacity for `.fk-notif-btn:disabled`. Examples: None · Dot · Count · 99+ · Focus (static) · Disabled, each with an `aria-label` carrying the count.
+
 ### Snackbar
 
 **Snackbar** is **short, temporary feedback** after a user or system action ("Changes saved.", "Link copied."). It is lightweight and dismissible — **not** a replacement for persistent or critical alerts.
