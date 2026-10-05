@@ -661,6 +661,8 @@ Component tokens: `color/icon-button/background/*`, `color/icon-button/content/*
 
 **Documentation:** Figma section **`Component/Date Picker`** (Light + Dark examples) · HTML docs interactive example. The docs calendar popover is anchored to the trigger and opens about **2px** below it (corrected 2026-10-05; Light/Dark verified).
 
+**Docs example reconciliation (2026-10-05):** HTML calendar now matches Figma Day Cell + Calendar Popover — 36px **circular** cells (`radius/full`), circular Hover (`#fafaf9` / `#000`) and Selected (`#d33f55` + white / `#fff` + `#231f20`) fills, **Today** 2px outline (`#000` / `#fff`), 2px focus outline, Disabled/Outside text tokens, popover `#fff` / `#1c1917` with `elevation/Popover` shadow, 16px Regular month label, 12px two-letter weekdays, no footer divider. Figma file unchanged.
+
 **Accessibility:** Visible label or accessible name; placeholder/icon are not labels; Focus Visible unclipped; keyboard open/navigate/select/close; disabled dates exempt for contrast; announce selected date in product code.
 
 ### Textarea

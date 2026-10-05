@@ -23,6 +23,8 @@ Static site at [`docs/index.html`](./docs/index.html) — **not** a rebuild of t
 
 **Note:** HTML docs Date Picker example (2026-10-05) — the calendar popover was opening below the helper text. It is now anchored to the trigger with about a **2px** gap. Light/Dark verified. Published to GitHub Pages. Figma components and tokens were not changed.
 
+**Note:** HTML docs Date Picker calendar reconciled with Figma (2026-10-05) — inspected `.Base / Calendar / Day Cell` (`743:1955`), `Calendar Popover` (`743:1973`), and the Light/Dark open examples (`770:5180`, `770:5325`). Day cells were square (`radius/4`) with a black Selected fill and a 1px Today border tied to the real date; they now use `radius/full` circles, `color/calendar/day/background/selected` (`#d33f55` Light / `#fff` Dark), Hover `#fafaf9` / `#000`, Today 2px `#000` / `#fff` outline, 2px focus outline, popover `#fff` / `#1c1917` + `elevation/Popover`. Demo Today is fixed to **Jul 26, 2026** (Disabled Jul 28, Unavailable Jun 30) to mirror the Figma example. Day cells use `aria-selected` + `aria-current="date"`. Figma file unchanged.
+
 **Note:** Foundation / Color documentation was updated to more closely match the live Figma Foundation color section, including brand colors, palette ramps, token names, swatches, and usage guidance.
 
 **Note:** Foundation / Typography documentation was updated to more closely match the live Figma Typography section, including font families, type scale, style names, specimen previews, and usage guidance.

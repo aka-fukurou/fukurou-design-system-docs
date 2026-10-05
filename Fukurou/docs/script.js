@@ -337,6 +337,10 @@
     const clearBtn = root.querySelector("[data-datepicker-clear]");
     if (!trigger || !calendar || !grid) return;
 
+    // Static demo dates mirror the Figma Calendar Popover example (July 2026).
+    const demoToday = new Date(2026, 6, 26);
+    const demoDisabled = [new Date(2026, 6, 28)];
+    const demoUnavailable = [new Date(2026, 5, 30)];
     let view = new Date(2026, 6, 1);
     let selected = null;
 
@@ -351,6 +355,10 @@
 
     function sameDay(a, b) {
       return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+    }
+
+    function inList(list, d) {
+      return list.some(function (x) { return sameDay(x, d); });
     }
 
     function close() {
@@ -373,11 +381,10 @@
       const startPad = first.getDay();
       const daysInMonth = new Date(year, month + 1, 0).getDate();
       const prevDays = new Date(year, month, 0).getDate();
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
+      const today = demoToday;
 
       grid.innerHTML = "";
-      const total = 42;
+      const total = Math.ceil((startPad + daysInMonth) / 7) * 7;
       for (let i = 0; i < total; i++) {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -405,13 +412,19 @@
         btn.setAttribute("aria-label", formatDisplay(cellDate));
 
         if (outside) btn.classList.add("is-outside");
-        if (sameDay(cellDate, today)) btn.classList.add("is-today");
-
-        if (sameDay(cellDate, selected)) {
-          btn.setAttribute("aria-pressed", "true");
-        } else {
-          btn.setAttribute("aria-pressed", "false");
+        if (sameDay(cellDate, today)) {
+          btn.classList.add("is-today");
+          btn.setAttribute("aria-current", "date");
         }
+        if (inList(demoUnavailable, cellDate)) {
+          btn.classList.add("is-unavailable");
+          btn.disabled = true;
+        }
+        if (inList(demoDisabled, cellDate)) {
+          btn.disabled = true;
+        }
+
+        btn.setAttribute("aria-selected", sameDay(cellDate, selected) ? "true" : "false");
 
         btn.addEventListener("click", function () {
           selected = cellDate;
@@ -446,8 +459,7 @@
     }
     if (todayBtn) {
       todayBtn.addEventListener("click", function () {
-        const t = new Date();
-        t.setHours(0, 0, 0, 0);
+        const t = demoToday;
         selected = t;
         view = new Date(t.getFullYear(), t.getMonth(), 1);
         if (valueEl) {

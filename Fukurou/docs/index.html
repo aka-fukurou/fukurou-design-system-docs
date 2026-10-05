@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -1611,7 +1611,7 @@
                     </button>
                   </div>
                   <div class="fk-calendar__weekdays" aria-hidden="true">
-                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
                   </div>
                   <div class="fk-calendar__grid" data-datepicker-grid role="grid" aria-labelledby="demo-dp-month"></div>
                   <div class="fk-calendar__footer">
@@ -1628,7 +1628,9 @@
             <h4>Calendar day states</h4>
             <ul>
               <li>Default · Hover · Focus Visible · Selected · Today · Disabled · Outside month</li>
-              <li>Selected uses fill + inverse text (not color alone). Today uses a distinct border/marker.</li>
+              <li>Day cells are 36px circles (<code>radius/full</code>). Hover and Selected are circular fills; Today is a 2px circular outline; Focus Visible is a 2px <code>color/calendar/day/focus-ring</code> outline.</li>
+              <li>Selected uses <code>color/calendar/day/background/selected</code> + inverse text (not color alone). Today keeps default text with a distinct border.</li>
+              <li>Demo dates mirror the Figma example: Today = Jul 26 · Disabled = Jul 28 · Unavailable (outside, struck through) = Jun 30.</li>
             </ul>
 
             <h4>Calendar navigation</h4>
@@ -2096,6 +2098,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
