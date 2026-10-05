@@ -148,6 +148,7 @@ button-body (fill + label + icons)
 - **`button-body`** keeps normal padding, height, label, and icon layout — the ring does not push content out of alignment.
 - Focus is intentionally **more visible** than hover or pressed.
 - **Text Button** keeps its own simpler 2px focus ring (unchanged).
+- **HTML docs (2026-10-05):** the Button example implements this ring on `:focus-visible` as `box-shadow: 0 0 0 2px gap, 0 0 0 4px ring` with `outline: none`, so keyboard focus shows the gap + ring outside the pill in Light and Dark. Live `color/border/focus` currently resolves to `#d33f55` (Light) / `#ffffff` (Dark) — see the 2026-10-05 verification note under **Button → Focus** in `ACCESSIBILITY_AUDIT.md`.
 
 Do not rely on color alone for focus in product UI — this treatment adds separation via the surface gap.
 

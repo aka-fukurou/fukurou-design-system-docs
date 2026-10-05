@@ -36,6 +36,7 @@ npx --yes serve Fukurou/docs -l 4175
 - **Interactive examples** — real controls for Button, Text Field, Search (clear), Checkbox, Radio, Switch, Dropdown, Date Picker, Jumbo Select, Pagination, Snackbar, Alert, Modal, Tooltip, Progress Bar
 - **Date Picker popover** — calendar dropdown is anchored to the trigger and sits about `2px` below it in Light and Dark (2026-10-05)
 - **Date Picker calendar states** — reconciled with Figma `.Base / Calendar / Day Cell` + `Calendar Popover` (2026-10-05): 36px circular day cells, circular Hover/Selected fills, 2px Today outline, 2px focus outline, `color/calendar/*` values as CSS variables for Light and Dark. Demo dates fixed to the Figma example (Today Jul 26 · Disabled Jul 28 · Unavailable Jun 30).
+- **Button states** — reconciled with the Figma `Button` set (2026-10-05): Action/Secondary/Ghost Default · Hover · Pressed · Focus · Disabled use `color/button/*` values resolved for Light and Dark; Ghost is transparent with a 2px stroke; Disabled is 60% opacity; keyboard focus (`:focus-visible`) shows the 2px gap + 2px ring outside the pill; static Focus and icon examples included
 - **Light / Dark theme toggle** — `data-theme="light|dark"` on `<html>`, defaults to Light, persists in `localStorage`
 - **Not current** — Textarea, Tabs, Tag/Chip, Multi-Select Dropdown, and Date Range Picker are listed as absent (not demoed as current)
 

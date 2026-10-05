@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -1372,12 +1372,22 @@
                 <button type="button" class="fk-btn fk-btn--action" disabled>Disabled</button>
               </div>
               <div class="preview-row">
+                <button type="button" class="fk-btn fk-btn--secondary" disabled>Disabled</button>
+                <button type="button" class="fk-btn fk-btn--ghost" disabled>Disabled</button>
+                <button type="button" class="fk-btn fk-btn--action is-focus-demo" aria-label="Action button, focus state preview">Focus (static)</button>
+                <button type="button" class="fk-btn fk-btn--ghost is-focus-demo" aria-label="Ghost button, focus state preview">Focus (static)</button>
+              </div>
+              <div class="preview-row">
                 <button type="button" class="fk-btn fk-btn--action fk-btn--sm">Small</button>
                 <button type="button" class="fk-btn fk-btn--action">Medium</button>
                 <button type="button" class="fk-btn fk-btn--action fk-btn--lg">Large</button>
+                <button type="button" class="fk-btn fk-btn--secondary">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  With icon
+                </button>
               </div>
             </div>
-            <p class="a11y-note"><strong>Tokens:</strong> <code>color/button/*</code>. <strong>A11y:</strong> Focus uses offset ring (gap + ring). Disabled is exempt from full contrast.</p>
+            <p class="a11y-note"><strong>Tokens:</strong> <code>color/button/*</code> (Action aliases <code>color/action/primary/*</code>; Secondary/Ghost alias <code>color/action/secondary/*</code>; Ghost border 2px). <strong>Focus Visible:</strong> keyboard focus (<code>:focus-visible</code>) shows the Figma focus-ring wrapper — 2px gap (<code>color/button/focus/gap</code> = <code>surface/page</code>) + 2px ring (<code>color/button/focus/ring</code> = <code>border/focus</code>) outside the body. Tab to any button to see it live; the "Focus (static)" examples pin it for reference. <strong>Disabled:</strong> native <code>disabled</code> attribute, 60% opacity per Figma; exempt from contrast.</p>
           </article>
 
           <article class="component" id="text-button">
@@ -2098,6 +2108,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

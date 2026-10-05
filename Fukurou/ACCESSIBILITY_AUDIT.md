@@ -171,6 +171,7 @@ Normal text needs ≥4.5:1, large text/non-text needs ≥3:1. `*` = WCAG-exempt 
 - **Text Button** (separate component) — per-state fill tokens restored; hover underline on label layer.
 - **Disabled** — all types rely on a 0.6 opacity + muted color; contrast is low but exempt. Add a non-color cue.
 - **Focus** — Focus variants use a **`focus-ring` wrapper**: 2px `color/button/focus/gap` (surface) + 2px OUTSIDE `color/button/focus/ring` (`brand/primary/700` Light · `primary/300` Dark). Ring vs gap passes **8.42 / 10.00** (Light/Dark). Content (`button-body`) layout unchanged; ring sits outside the fill.
+  - **Verification note (2026-10-05, HTML docs Button reconciliation):** the live file's `color/border/focus` (and therefore `color/button/focus/ring`) currently resolves to **`#d33f55`** Light / **`#ffffff`** Dark, not `brand/primary/700`. Computed ring-vs-gap (`#fafaf9` / `#000000`) is **4.36 / 21.00** — still ≥ 3:1 for SC 1.4.11 / 2.4.11, but the **8.42** Light figure above no longer reflects the live alias. The full Button audit has not been re-run; **Needs verification** whether the alias drift is intentional. The docs site renders the ring on `:focus-visible` with the same gap + ring values in both modes.
 - **Target size** — Small/Medium/Large = 32/40/48 (Comfortable), 28/36/44 (Compact), 36/44/52 (Spacious). All ≥24px (AA pass). Compact Small (28) is tight for touch.
 
 ### Card
