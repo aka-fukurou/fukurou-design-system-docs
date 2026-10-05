@@ -21,6 +21,8 @@ Static site at [`docs/index.html`](./docs/index.html) — **not** a rebuild of t
 | Foundation / Typography docs | Yes — font families, 18 text styles with size/weight/line-height/tracking, specimens, usage + a11y guidance (*updated to match live Figma `Foundations / Typography` `23:2`*) |
 | Not shown as current | Textarea · Tabs · Tag/Chip · Multi-Select Dropdown · **Date Range Picker** |
 
+**Note:** HTML docs Date Picker example (2026-10-05) — the calendar popover was opening below the helper text. It is now anchored to the trigger with about a **2px** gap. Light/Dark verified. Published to GitHub Pages. Figma components and tokens were not changed.
+
 **Note:** Foundation / Color documentation was updated to more closely match the live Figma Foundation color section, including brand colors, palette ramps, token names, swatches, and usage guidance.
 
 **Note:** Foundation / Typography documentation was updated to more closely match the live Figma Typography section, including font families, type scale, style names, specimen previews, and usage guidance.

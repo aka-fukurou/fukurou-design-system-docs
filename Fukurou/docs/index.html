@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -1575,34 +1575,32 @@
                     <label id="demo-dp-label" for="demo-dp-trigger">Date</label>
                     <span class="fk-field__required" aria-hidden="true">*</span>
                   </div>
-                  <button
-                    type="button"
-                    id="demo-dp-trigger"
-                    class="fk-datepicker__trigger"
-                    data-datepicker-trigger
-                    aria-haspopup="dialog"
-                    aria-expanded="false"
-                    aria-controls="demo-dp-calendar"
-                    aria-labelledby="demo-dp-label"
-                  >
-                    <span class="fk-datepicker__value is-placeholder" data-datepicker-value>Select date</span>
-                    <svg class="fk-datepicker__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                      <rect x="3.5" y="5.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.75"/>
-                      <path d="M8 3.5v4M16 3.5v4M3.5 10h17" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                    </svg>
-                  </button>
-                  <p class="fk-helper" id="demo-dp-helper">Choose a date from the calendar.</p>
-                </div>
-
-                <div
-                  class="fk-calendar"
-                  id="demo-dp-calendar"
-                  data-datepicker-calendar
-                  role="dialog"
-                  aria-modal="false"
-                  aria-labelledby="demo-dp-month"
-                  hidden
-                >
+                  <div class="fk-datepicker__anchor">
+                    <button
+                      type="button"
+                      id="demo-dp-trigger"
+                      class="fk-datepicker__trigger"
+                      data-datepicker-trigger
+                      aria-haspopup="dialog"
+                      aria-expanded="false"
+                      aria-controls="demo-dp-calendar"
+                      aria-labelledby="demo-dp-label"
+                    >
+                      <span class="fk-datepicker__value is-placeholder" data-datepicker-value>Select date</span>
+                      <svg class="fk-datepicker__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                        <rect x="3.5" y="5.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.75"/>
+                        <path d="M8 3.5v4M16 3.5v4M3.5 10h17" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                      </svg>
+                    </button>
+                    <div
+                      class="fk-calendar"
+                      id="demo-dp-calendar"
+                      data-datepicker-calendar
+                      role="dialog"
+                      aria-modal="false"
+                      aria-labelledby="demo-dp-month"
+                      hidden
+                    >
                   <div class="fk-calendar__header">
                     <button type="button" class="fk-calendar__nav" data-datepicker-prev aria-label="Previous month">
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1620,6 +1618,9 @@
                     <button type="button" class="fk-calendar__footer-btn" data-datepicker-today>Today</button>
                     <button type="button" class="fk-calendar__footer-btn" data-datepicker-clear>Clear</button>
                   </div>
+                    </div>
+                  </div>
+                  <p class="fk-helper" id="demo-dp-helper">Choose a date from the calendar.</p>
                 </div>
               </div>
             </div>

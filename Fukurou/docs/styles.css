@@ -1323,6 +1323,10 @@ tr:last-child td {
   width: 100%;
 }
 
+.fk-datepicker__anchor {
+  position: relative;
+}
+
 .fk-datepicker__trigger {
   display: flex;
   align-items: center;
@@ -1372,7 +1376,7 @@ tr:last-child td {
 .fk-calendar {
   position: absolute;
   z-index: 40;
-  top: calc(100% + 8px);
+  top: calc(100% + 2px);
   left: 0;
   width: min(100%, 308px);
   padding: 16px;

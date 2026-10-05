@@ -659,7 +659,7 @@ Component tokens: `color/icon-button/background/*`, `color/icon-button/content/*
 
 **Tokens:** `color/date-picker/*` · `color/calendar/*` · `elevation/calendar/default` · `density/calendar/*`
 
-**Documentation:** Figma section **`Component/Date Picker`** (Light + Dark examples) · HTML docs interactive example.
+**Documentation:** Figma section **`Component/Date Picker`** (Light + Dark examples) · HTML docs interactive example. The docs calendar popover is anchored to the trigger and opens about **2px** below it (corrected 2026-10-05; Light/Dark verified).
 
 **Accessibility:** Visible label or accessible name; placeholder/icon are not labels; Focus Visible unclipped; keyboard open/navigate/select/close; disabled dates exempt for contrast; announce selected date in product code.
 
