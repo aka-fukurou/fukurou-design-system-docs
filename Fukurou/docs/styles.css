@@ -1011,10 +1011,12 @@ tr:last-child td {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  /* typography/text-button/sm — Poppins SemiBold 14/20, tracking 0; weight never changes per state */
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
+  letter-spacing: 0;
   color: var(--color-text-button-content);
   background: transparent;
   border: 0;
@@ -1044,21 +1046,15 @@ tr:last-child td {
   line-height: 28px;
 }
 
+/* Hover = typography/text-button/underline/[size]: same SemiBold weight, underline added */
 .fk-text-btn:hover:not(:disabled) {
   color: var(--color-text-button-content-hover);
   text-decoration: underline;
-  font-weight: 400;
-}
-
-/* Figma's text-button/underline/md style keeps SemiBold */
-.fk-text-btn--md:hover:not(:disabled) {
-  font-weight: 600;
 }
 
 .fk-text-btn:active:not(:disabled) {
   color: var(--color-text-button-content-pressed);
   text-decoration: none;
-  font-weight: 600;
 }
 
 .fk-text-btn:focus-visible,
