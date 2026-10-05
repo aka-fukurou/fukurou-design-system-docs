@@ -80,6 +80,20 @@
   --color-button-ghost-border-pressed: #161414;
   --color-button-ghost-border-disabled: #78716c;
 
+  /* Text Button (color/text-button/* → color/action/tertiary/*) */
+  --color-text-button-content: #d33f55;
+  --color-text-button-content-hover: #ad3446;
+  --color-text-button-content-pressed: #872836;
+  --color-text-button-content-disabled: #d6d3d1;
+
+  /* Icon Button (color/icon-button/*) */
+  --color-icon-button-bg-hover: #fafaf9;
+  --color-icon-button-bg-pressed: #000000;
+  --color-icon-button-content: #d33f55;
+  --color-icon-button-content-hover: #ad3446;
+  --color-icon-button-content-pressed: #ffffff;
+  --color-icon-button-content-disabled: #78716c;
+
   /* Calendar (color/calendar/* from live Figma) */
   --color-calendar-bg: #ffffff;
   --color-calendar-border: #78716c;
@@ -191,6 +205,18 @@
   --color-button-ghost-border-hover: #e7e5e4;
   --color-button-ghost-border-pressed: #d6d3d1;
   --color-button-ghost-border-disabled: #a8a29e;
+
+  --color-text-button-content: #ffffff;
+  --color-text-button-content-hover: #e7e5e4;
+  --color-text-button-content-pressed: #d6d3d1;
+  --color-text-button-content-disabled: #44403c;
+
+  --color-icon-button-bg-hover: #1c1917;
+  --color-icon-button-bg-pressed: #ffffff;
+  --color-icon-button-content: #ffffff;
+  --color-icon-button-content-hover: #e7e5e4;
+  --color-icon-button-content-pressed: #231f20;
+  --color-icon-button-content-disabled: #a8a29e;
 
   --color-calendar-bg: #1c1917;
   --color-calendar-border: #a8a29e;
@@ -966,7 +992,8 @@ tr:last-child td {
   color: var(--color-text-disabled);
 }
 
-/* Text Button — underline, pad 2×4, gap 4 */
+/* Text Button — Figma 452:2338: transparent, radius 0, pad 2×4, gap 4, 24px icons.
+   Underline on hover only; Focus = plain 2px OUTSIDE stroke (no gap). */
 .fk-text-btn {
   display: inline-flex;
   align-items: center;
@@ -975,31 +1002,67 @@ tr:last-child td {
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
-  color: var(--color-brand-primary);
-  background: none;
+  color: var(--color-text-button-content);
+  background: transparent;
   border: 0;
+  border-radius: 0;
   padding: 2px 4px;
   cursor: pointer;
+  text-decoration: none;
+  text-underline-offset: 2px;
+  transition: color 0.12s ease;
+}
+
+.fk-text-btn svg {
+  width: 24px;
+  height: 24px;
+  margin: -2px 0; /* Figma row stays 24px tall with 24px icons */
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.fk-text-btn--md {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.fk-text-btn--lg {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.fk-text-btn:hover:not(:disabled) {
+  color: var(--color-text-button-content-hover);
   text-decoration: underline;
-  text-underline-offset: 3px;
-  border-radius: var(--radius-sm);
+  font-weight: 400;
 }
 
-.fk-text-btn:hover {
-  color: var(--color-brand-primary-700);
+/* Figma's text-button/underline/md style keeps SemiBold */
+.fk-text-btn--md:hover:not(:disabled) {
+  font-weight: 600;
 }
 
-.fk-text-btn:focus-visible {
-  box-shadow: var(--focus-ring);
+.fk-text-btn:active:not(:disabled) {
+  color: var(--color-text-button-content-pressed);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.fk-text-btn:focus-visible,
+.fk-text-btn.is-focus-demo {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 0;
+  box-shadow: none;
 }
 
 .fk-text-btn:disabled {
-  color: var(--color-text-disabled);
+  color: var(--color-text-button-content-disabled);
+  opacity: 0.6;
   cursor: not-allowed;
   text-decoration: none;
 }
 
-/* Icon Button / Notification — 32×32 circle */
+/* Icon Button — Figma 452:2407: 32×32 circle, 16px icon / 12px number, color/icon-button/* */
 .fk-icon-btn {
   position: relative;
   display: inline-flex;
@@ -1011,8 +1074,9 @@ tr:last-child td {
   border: 0;
   border-radius: var(--radius-full);
   background: transparent;
-  color: var(--color-text-default);
+  color: var(--color-icon-button-content);
   cursor: pointer;
+  transition: color 0.12s ease;
 }
 
 .fk-icon-btn__body {
@@ -1024,17 +1088,59 @@ tr:last-child td {
   transition: background-color 0.12s ease;
 }
 
-.fk-icon-btn:hover .fk-icon-btn__body {
-  background: var(--color-surface-subtle);
+.fk-icon-btn:hover:not(:disabled) {
+  color: var(--color-icon-button-content-hover);
 }
 
-.fk-icon-btn:active .fk-icon-btn__body {
-  background: var(--color-surface-subtle);
-  filter: brightness(0.95);
+.fk-icon-btn:hover:not(:disabled) .fk-icon-btn__body {
+  background: var(--color-icon-button-bg-hover);
 }
 
-.fk-icon-btn:focus-visible {
+.fk-icon-btn:active:not(:disabled) {
+  color: var(--color-icon-button-content-pressed);
+}
+
+.fk-icon-btn:active:not(:disabled) .fk-icon-btn__body {
+  background: var(--color-icon-button-bg-pressed);
+}
+
+/* Focus = focus-ring wrapper: 2px gap (icon-button/focus/gap) + 2px ring (icon-button/focus/ring) outside the circle */
+.fk-icon-btn:focus-visible,
+.fk-icon-btn.is-focus-demo {
+  outline: none;
   box-shadow: var(--focus-ring);
+}
+
+.fk-icon-btn:disabled {
+  color: var(--color-icon-button-content-disabled);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fk-icon-btn:disabled .fk-icon-btn__body {
+  background: transparent;
+}
+
+/* Composed components (Snackbar / Alert / Modal close) bind their own close-icon tokens in Figma; keep them on text/default */
+.fk-snackbar .fk-icon-btn,
+.fk-alert .fk-icon-btn,
+.fk-modal .fk-icon-btn,
+.fk-snackbar .fk-icon-btn:hover,
+.fk-alert .fk-icon-btn:hover,
+.fk-modal .fk-icon-btn:hover,
+.fk-snackbar .fk-icon-btn:active,
+.fk-alert .fk-icon-btn:active,
+.fk-modal .fk-icon-btn:active {
+  color: var(--color-text-default);
+}
+
+.fk-snackbar .fk-icon-btn:hover .fk-icon-btn__body,
+.fk-alert .fk-icon-btn:hover .fk-icon-btn__body,
+.fk-modal .fk-icon-btn:hover .fk-icon-btn__body,
+.fk-snackbar .fk-icon-btn:active .fk-icon-btn__body,
+.fk-alert .fk-icon-btn:active .fk-icon-btn__body,
+.fk-modal .fk-icon-btn:active .fk-icon-btn__body {
+  background: var(--color-surface-subtle);
 }
 
 .fk-icon-btn svg {
@@ -1044,6 +1150,7 @@ tr:last-child td {
 }
 
 .fk-icon-btn__num {
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
   line-height: 1;

@@ -543,6 +543,8 @@ Underline styles also exist in the library as `typography/text-button/[size]/und
 
 Examples: Cancel, Back, Edit, Remove, inline “Learn more”
 
+**HTML docs reconciliation (2026-10-05):** the docs Text Button example now matches the live set (`452:2338`) — live default styles are Poppins **SemiBold** 14/20 (S), 16/20 (M), 18/28 (L); the Regular weight appears only in the S/L `underline` (hover) styles, M hover stays SemiBold. No underline by default; hover = underline + `content/hover`; pressed `content/pressed`; Focus = plain **2px outside stroke** `color/text-button/border/focus` (no gap, radius 0); disabled `content/disabled` at 60% opacity; padding 2×4, gap 4, 24px icons; transparent in every state. Light `#d33f55 / #ad3446 / #872836 / #d6d3d1`, Dark `#fff / #e7e5e4 / #d6d3d1 / #44403c`. The size table above predates these values — **Needs verification** whether it should be updated to the live SemiBold defaults.
+
 > Ghost Button = button shape without fill · Text Button = text action without container · **Icon Button** = circular icon-only or number-only compact action
 
 Component tokens: `color/text-button/text/*`, `color/text-button/background/*` → transparent, `color/text-button/border/focus`, `spacing/text-button/*`
@@ -573,6 +575,8 @@ Component tokens: `color/icon-button/background/*`, `color/icon-button/content/*
 **Theme:** Light/Dark via `2. Theme` mode on parent frames — no duplicate components.
 
 **Examples:** `Icon Button / Examples` on the Button page (Light + Dark demo grids).
+
+**HTML docs reconciliation (2026-10-05):** the docs Icon Button example now binds `color/icon-button/*` as resolved from the live file — content `action/tertiary/default|hover` (`#d33f55` / `#ad3446` Light · `#fff` / `#e7e5e4` Dark), hover fill `action/primary/subtle` (`#fafaf9` / `#1c1917`), pressed fill `action/primary/default` (`#000` / `#fff`) with `text/inverse` content, disabled `text/disabled` at 60% opacity, 2px gap + 2px ring focus on `:focus-visible`. Every example carries an `aria-label`. Snackbar / Alert / Modal close controls in the docs keep their previous `text/default` icon colour because those composed components bind their own close-icon tokens.
 
 ### Text Field
 
