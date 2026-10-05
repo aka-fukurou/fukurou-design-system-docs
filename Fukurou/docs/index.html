@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -1519,18 +1519,77 @@
               <h3>Card</h3>
               <span class="badge badge--ok">Public</span>
             </div>
-            <p>Groups related content. ~340×180 default content padding 24, gap 16, radius 12. Title uses Lora SemiBold 20.</p>
+            <p>Flexible container for grouped content and actions. 340 wide, radius 12, 1px border, padding 0 on the root; content area padding 24, gap 16. Title <code>heading/sm</code> (Lora SemiBold 20/28), body <code>body/md</code> (Poppins Regular 16/24), footer holds a Small Text Button.</p>
+            <h4>Variants &amp; states</h4>
+            <ul>
+              <li><strong>Media:</strong> None · Image (160px flush media) · Icon (48px container inside the content)</li>
+              <li><strong>Status:</strong> Default (<code>elevation/Surface</code>) · Hover (<code>elevation/Raised</code>)</li>
+              <li><strong>Booleans:</strong> Show title · Show body · Show footer — hidden sections collapse</li>
+            </ul>
             <div class="preview-panel">
-              <div class="fk-card">
-                <div class="fk-card__content">
-                  <h4 class="fk-card__title">Card title</h4>
-                  <p class="fk-card__body">Use this card to group related content and actions.</p>
-                  <div class="fk-card__footer">
-                    <button type="button" class="fk-text-btn">Learn more</button>
+              <div class="preview-label">Interactive preview</div>
+              <div class="preview-row" style="align-items:flex-start;">
+                <div class="fk-card">
+                  <div class="fk-card__content">
+                    <h4 class="fk-card__title">Card title</h4>
+                    <p class="fk-card__body">Use this card to group related content and actions.</p>
+                    <div class="fk-card__footer">
+                      <button type="button" class="fk-text-btn">Learn more</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="fk-card">
+                  <div class="fk-card__media" aria-hidden="true"></div>
+                  <div class="fk-card__content">
+                    <h4 class="fk-card__title">Card title</h4>
+                    <p class="fk-card__body">Use this card to group related content and actions.</p>
+                    <div class="fk-card__footer">
+                      <button type="button" class="fk-text-btn">Learn more</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="fk-card">
+                  <div class="fk-card__content">
+                    <span class="fk-card__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </span>
+                    <h4 class="fk-card__title">Card title</h4>
+                    <p class="fk-card__body">Use this card to group related content and actions.</p>
+                    <div class="fk-card__footer">
+                      <button type="button" class="fk-text-btn">Learn more</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-row" style="align-items:flex-start;">
+                <div class="fk-card">
+                  <div class="fk-card__content">
+                    <h4 class="fk-card__title">Card title</h4>
+                    <div class="fk-card__footer">
+                      <button type="button" class="fk-text-btn">Learn more</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="fk-card">
+                  <div class="fk-card__content">
+                    <p class="fk-card__body">Use this card to group related content and actions.</p>
+                    <div class="fk-card__footer">
+                      <button type="button" class="fk-text-btn">Learn more</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="fk-card">
+                  <div class="fk-card__media" aria-hidden="true"></div>
+                  <div class="fk-card__content">
+                    <h4 class="fk-card__title">Card title</h4>
+                    <div class="fk-card__footer">
+                      <button type="button" class="fk-text-btn">Learn more</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <p class="a11y-note"><strong>Tokens:</strong> <code>color/card/background|border|title|body</code> (→ <code>surface/card</code>, <code>border/default</code>, <code>text/default</code>, <code>text/subtle</code>), <code>density/card/padding</code> 24 · <code>gap</code> 16, <code>radius/12</code>, <code>border/width/sm</code>; image placeholder <code>surface/subtle</code>, icon container <code>action/primary/subtle</code> with a <code>text/subtle</code> glyph. <strong>Elevation:</strong> Default <code>elevation/Surface</code>, hover <code>elevation/Raised</code> — the same values in Dark (Figma defines no dark alternative). <strong>Media:</strong> the image bleeds flush to the top/left/right and is clipped by the card radius; the icon sits inside the padded content. Hidden title/body/footer are simply omitted so no empty gap remains. <strong>A11y:</strong> the card is not clickable as a whole — the action is the real <code>&lt;button&gt;</code> in the footer (keyboard focus shows the Text Button's 2px stroke); placeholder media and the decorative icon are <code>aria-hidden</code>; use a real <code>&lt;img alt="…"&gt;</code> inside <code>.fk-card__media</code> for meaningful images, or <code>alt=""</code> when decorative.</p>
           </article>
 
           <article class="component" id="text-field">
@@ -2169,6 +2228,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

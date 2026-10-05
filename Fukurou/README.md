@@ -396,6 +396,8 @@ and `density/card/gap`) holds the icon, text and footer.
   (`color/text/action`) **inside** the normal content padding, so it reads as part of the content.
 - **Never use Image and Icon together** — the `Media` variant enforces this.
 
+**HTML docs reconciliation (2026-10-05):** the docs Card examples now match the live set (`87:12`) — radius 12, 1px `color/card/border/default` stroke, `color/card/background/default` fill, content padding 24 / gap 16, title `heading/sm` (Lora SemiBold 20/28, `color/card/title`), body `body/md` (Poppins Regular 16/24, `color/card/body` → `text/subtle`, was `text/default`), footer gap 8 with a **Small Text Button**; image media is a flush 160px `surface/subtle` block clipped by the card radius; the icon container is 48×48 `action/primary/subtle` radius 12 with a 20px glyph. Elevation follows `elevation/card/default` (Surface) and `elevation/card/hover` (Raised) instead of the heavier `shadow/raised`; the same values apply in Dark. Default · Image · Icon · Title only · Body only · Image + title examples are shown; hidden sections collapse. **Needs verification:** the glyph colour above says `color/text/action`, but the live `.Base/ Icon / Placeholder / Star` glyph is bound to `color/text/subtle`; in Dark the icon container (`neutral/900`) is the same colour as the card surface, so the container disappears — confirm whether that is intended.
+
 ### Text visibility
 
 - `Show title` / `Show body` turn each text layer on/off. Auto-layout **collapses the spacing
