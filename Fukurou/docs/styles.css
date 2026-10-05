@@ -868,6 +868,12 @@ tr:last-child td {
   margin-bottom: 0;
 }
 
+/* Wider horizontal spacing for small controls whose badges overhang (e.g. Notification Button) */
+.preview-row--spacious {
+  column-gap: var(--space-16);
+  row-gap: var(--space-3);
+}
+
 .preview-stack {
   display: flex;
   flex-direction: column;
