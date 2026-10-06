@@ -1458,7 +1458,7 @@ tr:last-child td {
   align-items: center;
   gap: 8px;
   height: 48px;
-  padding: 0 calc(var(--fk-shell-pad) - 1px);
+  padding: 0 var(--fk-shell-pad);
   border: 1px solid var(--color-text-field-border);
   border-radius: var(--radius-md);
   background: var(--color-text-field-bg);
@@ -1480,7 +1480,6 @@ tr:last-child td {
 .fk-input-shell.is-active-demo:not(.is-disabled) {
   border-color: var(--color-text-field-border-hover);
   border-width: 2px;
-  padding: 0 calc(var(--fk-shell-pad) - 2px);
 }
 
 /* Focus Visible: keyboard only — 2px ring outside a 2px gap (radius 8 + 2 = 10) */
