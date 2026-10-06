@@ -1515,7 +1515,15 @@ tr:last-child td {
   letter-spacing: 0;
   color: var(--color-text-field-text);
   outline: none;
+  box-shadow: none;
   padding: 0;
+}
+
+/* Shell owns Focus Visible. Kill the global :focus-visible ring on the inner input. */
+.fk-input-shell input:focus,
+.fk-input-shell input:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .fk-input-shell--sm input {
