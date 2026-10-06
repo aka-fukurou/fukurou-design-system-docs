@@ -112,6 +112,19 @@
   --shadow-card: 0 1px 2px rgba(35, 31, 32, 0.06);                                    /* elevation/card/default → Surface */
   --shadow-card-hover: 0 1px 3px rgba(35, 31, 32, 0.08), 0 1px 2px rgba(35, 31, 32, 0.04); /* elevation/card/hover → Raised */
 
+  /* Elevation scale (elevation/* → effect/shadow/* from the live Figma file; identical in Dark) */
+  --elevation-none: none;
+  --elevation-surface: 0 1px 2px rgba(35, 31, 32, 0.06);                                        /* effect/shadow/50 */
+  --elevation-raised: 0 1px 3px rgba(35, 31, 32, 0.08), 0 1px 2px rgba(35, 31, 32, 0.04);       /* effect/shadow/100 */
+  --elevation-floating: 0 4px 8px rgba(35, 31, 32, 0.08), 0 2px 4px rgba(35, 31, 32, 0.04);     /* effect/shadow/200 */
+  --elevation-popover: 0 8px 16px rgba(35, 31, 32, 0.1), 0 4px 8px rgba(35, 31, 32, 0.06);      /* effect/shadow/300 */
+  --elevation-modal: 0 16px 32px rgba(35, 31, 32, 0.12), 0 8px 16px rgba(35, 31, 32, 0.08);     /* effect/shadow/400 */
+  --elevation-overlay: 0 24px 48px rgba(35, 31, 32, 0.14), 0 12px 24px rgba(35, 31, 32, 0.1);   /* effect/shadow/500 */
+  /* Dark-mode elevation companions named in the Figma frame */
+  --color-surface-floating: #ffffff;      /* color/surface/floating → neutral/0 */
+  --color-border-elevated: #e7e5e4;       /* color/border/elevated → neutral/200 */
+  --color-surface-overlay: rgba(0, 0, 0, 0.55); /* color/surface/overlay */
+
   /* Calendar (color/calendar/* from live Figma) */
   --color-calendar-bg: #ffffff;
   --color-calendar-border: #78716c;
@@ -252,6 +265,11 @@
   /* elevation/card/* resolve to the same Surface/Raised values in Dark (no dark alternative in Figma) */
   --shadow-card: 0 1px 2px rgba(35, 31, 32, 0.06);
   --shadow-card-hover: 0 1px 3px rgba(35, 31, 32, 0.08), 0 1px 2px rgba(35, 31, 32, 0.04);
+
+  /* elevation/* have no Dark values in Figma — same shadows, paired with elevated surfaces + borders */
+  --color-surface-floating: #44403c;      /* neutral/700 */
+  --color-border-elevated: #57534e;       /* neutral/600 */
+  --color-surface-overlay: rgba(255, 255, 255, 0.5);
 
   --color-calendar-bg: #1c1917;
   --color-calendar-border: #a8a29e;
@@ -2649,6 +2667,203 @@ body.modal-open {
 .typography-section__header p {
   max-width: 46rem;
   color: var(--color-text-subtle);
+}
+
+/* Foundation — Elevation & Shadow (Figma 255:1944) */
+.elevation-section {
+  margin: var(--space-6) 0 var(--space-10);
+}
+
+.elevation-section__header h3 {
+  margin-top: 0;
+  font-size: 1.35rem;
+}
+
+.elevation-section__header p {
+  max-width: 46rem;
+  color: var(--color-text-subtle);
+}
+
+.elevation-group {
+  margin: var(--space-8) 0;
+}
+
+.elevation-group__header {
+  margin-bottom: var(--space-4);
+}
+
+.elevation-group__header h4 {
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.elevation-group__subtitle {
+  margin: 0;
+  max-width: 46rem;
+  font-size: 0.875rem;
+  color: var(--color-text-subtle);
+}
+
+.elevation-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.elevation-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Neutral stage: page colour so the shadow reads against the same backdrop as in Figma */
+.elevation-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) var(--space-5);
+  background: var(--color-surface-page);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* 160×80, radius 12, surface/card fill, 1px border/subtle — same as the Figma preview */
+.elevation-preview {
+  width: 160px;
+  height: 80px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.elevation-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.elevation-meta h5 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.elevation-tokens {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.shadow-token {
+  display: inline-block;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  background: var(--color-surface-subtle);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  color: var(--color-text-default);
+}
+
+.shadow-style {
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+}
+
+.shadow-style code {
+  font-size: 0.95em;
+}
+
+.shadow-value {
+  margin: 2px 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-default);
+  font-variant-numeric: tabular-nums;
+}
+
+.shadow-usage {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-subtle);
+}
+
+.elevation-table code {
+  white-space: nowrap;
+}
+
+.elevation-companions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.elevation-companion {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  padding: var(--space-4);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+/* Light | Dark swatch pair */
+.elevation-companion__swatches {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.elevation-companion__swatches span {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(28, 25, 23, 0.12);
+  background-image: linear-gradient(45deg, rgba(120, 113, 108, 0.25) 25%, transparent 25%, transparent 75%, rgba(120, 113, 108, 0.25) 75%),
+    linear-gradient(45deg, rgba(120, 113, 108, 0.25) 25%, transparent 25%, transparent 75%, rgba(120, 113, 108, 0.25) 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+
+.elevation-dark-demo {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: center;
+  margin-top: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-surface-page);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.elevation-dark-demo__panel {
+  height: 96px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-floating);
+  border: 1px solid var(--color-border-elevated);
+  box-shadow: var(--elevation-floating);
+}
+
+@media (max-width: 720px) {
+  .elevation-dark-demo {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .type-group {

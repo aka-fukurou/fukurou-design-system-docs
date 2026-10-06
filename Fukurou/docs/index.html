@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=12" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -38,6 +38,7 @@
             <ul class="nav-list nav-sub">
               <li><a href="#foundation-color">Color</a></li>
               <li><a href="#foundation-typography">Typography</a></li>
+              <li><a href="#foundation-elevation">Elevation &amp; Shadow</a></li>
             </ul>
           </li>
           <li><a href="#tokens">Tokens</a></li>
@@ -1262,6 +1263,160 @@
             </div>
           </section>
 
+          <section id="foundation-elevation" class="elevation-section" aria-labelledby="foundation-elevation-title">
+            <header class="elevation-section__header">
+              <p class="eyebrow">Foundation</p>
+              <h3 id="foundation-elevation-title">Elevation &amp; Shadow</h3>
+              <p>Inspired by the restrained depth of Vercel, the practical elevation hierarchy of Atlassian, and the tokenized component mapping approach of Polaris — adapted to Fukurou.</p>
+              <p>Use subtle shadows for everyday surfaces. Stronger shadows only for floating UI. In Dark mode, combine shadow with surface elevation color and border contrast.</p>
+            </header>
+
+            <section class="elevation-group" aria-labelledby="elevation-scale-title">
+              <div class="elevation-group__header">
+                <h4 id="elevation-scale-title">Elevation scale</h4>
+                <p class="elevation-group__subtitle">Seven semantic levels in <code>2. Theme</code> (<code>elevation/*</code>) alias the <code>effect/shadow/*</code> primitives in <code>1. Foundation</code>; each has a matching <code>Elevation / *</code> effect style. Every layer is offset <code>x 0</code>, spread <code>0</code>, colour <code>#231F20</code> (<code>brand/secondary/500</code>).</p>
+              </div>
+              <ol class="elevation-grid">
+                <li class="elevation-card">
+                  <div class="elevation-stage"><div class="elevation-preview" style="box-shadow: var(--elevation-none);" aria-hidden="true"></div></div>
+                  <div class="elevation-meta">
+                    <h5>None</h5>
+                    <div class="elevation-tokens"><code class="shadow-token">elevation/none</code><span class="shadow-style">Elevation / None · <code>effect/shadow/none</code></span></div>
+                    <p class="shadow-value">none</p>
+                    <p class="shadow-usage">Buttons, Text Fields, Icon Buttons and other flat controls.</p>
+                  </div>
+                </li>
+                <li class="elevation-card">
+                  <div class="elevation-stage"><div class="elevation-preview" style="box-shadow: var(--elevation-surface);" aria-hidden="true"></div></div>
+                  <div class="elevation-meta">
+                    <h5>Surface</h5>
+                    <div class="elevation-tokens"><code class="shadow-token">elevation/surface</code><span class="shadow-style">Elevation / Surface · <code>effect/shadow/50</code></span></div>
+                    <p class="shadow-value">0 1px 2px rgba(35, 31, 32, 0.06)</p>
+                    <p class="shadow-usage">Resting cards and everyday surfaces — one layer, barely lifted.</p>
+                  </div>
+                </li>
+                <li class="elevation-card">
+                  <div class="elevation-stage"><div class="elevation-preview" style="box-shadow: var(--elevation-raised);" aria-hidden="true"></div></div>
+                  <div class="elevation-meta">
+                    <h5>Raised</h5>
+                    <div class="elevation-tokens"><code class="shadow-token">elevation/raised</code><span class="shadow-style">Elevation / Raised · <code>effect/shadow/100</code></span></div>
+                    <p class="shadow-value">0 1px 3px rgba(35, 31, 32, 0.08),<br>0 1px 2px rgba(35, 31, 32, 0.04)</p>
+                    <p class="shadow-usage">Card hover — a slightly stronger lift without leaving the page plane.</p>
+                  </div>
+                </li>
+                <li class="elevation-card">
+                  <div class="elevation-stage"><div class="elevation-preview" style="box-shadow: var(--elevation-floating);" aria-hidden="true"></div></div>
+                  <div class="elevation-meta">
+                    <h5>Floating</h5>
+                    <div class="elevation-tokens"><code class="shadow-token">elevation/floating</code><span class="shadow-style">Elevation / Floating · <code>effect/shadow/200</code></span></div>
+                    <p class="shadow-value">0 4px 8px rgba(35, 31, 32, 0.08),<br>0 2px 4px rgba(35, 31, 32, 0.04)</p>
+                    <p class="shadow-usage">Toasts, snackbars, tooltips and selected cards.</p>
+                  </div>
+                </li>
+                <li class="elevation-card">
+                  <div class="elevation-stage"><div class="elevation-preview" style="box-shadow: var(--elevation-popover);" aria-hidden="true"></div></div>
+                  <div class="elevation-meta">
+                    <h5>Popover</h5>
+                    <div class="elevation-tokens"><code class="shadow-token">elevation/popover</code><span class="shadow-style">Elevation / Popover · <code>effect/shadow/300</code></span></div>
+                    <p class="shadow-value">0 8px 16px rgba(35, 31, 32, 0.10),<br>0 4px 8px rgba(35, 31, 32, 0.06)</p>
+                    <p class="shadow-usage">Dropdowns, popovers and the calendar.</p>
+                  </div>
+                </li>
+                <li class="elevation-card">
+                  <div class="elevation-stage"><div class="elevation-preview" style="box-shadow: var(--elevation-modal);" aria-hidden="true"></div></div>
+                  <div class="elevation-meta">
+                    <h5>Modal</h5>
+                    <div class="elevation-tokens"><code class="shadow-token">elevation/modal</code><span class="shadow-style">Elevation / Modal · <code>effect/shadow/400</code></span></div>
+                    <p class="shadow-value">0 16px 32px rgba(35, 31, 32, 0.12),<br>0 8px 16px rgba(35, 31, 32, 0.08)</p>
+                    <p class="shadow-usage">Modal dialogs over a scrim.</p>
+                  </div>
+                </li>
+                <li class="elevation-card">
+                  <div class="elevation-stage"><div class="elevation-preview" style="box-shadow: var(--elevation-overlay);" aria-hidden="true"></div></div>
+                  <div class="elevation-meta">
+                    <h5>Overlay</h5>
+                    <div class="elevation-tokens"><code class="shadow-token">elevation/overlay</code><span class="shadow-style">Elevation / Overlay · <code>effect/shadow/500</code></span></div>
+                    <p class="shadow-value">0 24px 48px rgba(35, 31, 32, 0.14),<br>0 12px 24px rgba(35, 31, 32, 0.10)</p>
+                    <p class="shadow-usage">Reserved for the highest temporary layers; no component alias uses it yet.</p>
+                  </div>
+                </li>
+              </ol>
+            </section>
+
+            <section class="elevation-group" aria-labelledby="elevation-mapping-title">
+              <div class="elevation-group__header">
+                <h4 id="elevation-mapping-title">Component mapping</h4>
+                <p class="elevation-group__subtitle">Component tokens in <code>3. Component</code> alias one semantic level each, so a component never picks a raw shadow.</p>
+              </div>
+              <div class="table-wrap">
+                <table class="elevation-table">
+                  <thead>
+                    <tr><th scope="col">Component</th><th scope="col">Component token</th><th scope="col">Elevation</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Card default</td><td><code>elevation/card/default</code></td><td><code>elevation/surface</code></td></tr>
+                    <tr><td>Card hover</td><td><code>elevation/card/hover</code></td><td><code>elevation/raised</code></td></tr>
+                    <tr><td>Card selected</td><td><code>elevation/card/selected</code></td><td><code>elevation/floating</code></td></tr>
+                    <tr><td>Dropdown / Popover / Calendar</td><td><code>elevation/dropdown|popover|calendar/default</code></td><td><code>elevation/popover</code></td></tr>
+                    <tr><td>Modal</td><td><code>elevation/modal/default</code></td><td><code>elevation/modal</code></td></tr>
+                    <tr><td>Toast / Snackbar / Tooltip</td><td><code>elevation/toast|snackbar|tooltip/default</code></td><td><code>elevation/floating</code></td></tr>
+                    <tr><td>Button / Text Field / Icon Button</td><td><code>elevation/button/*</code> · <code>elevation/text-field/*</code></td><td><code>elevation/none</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="elevation-group" aria-labelledby="elevation-dark-title">
+              <div class="elevation-group__header">
+                <h4 id="elevation-dark-title">Dark mode</h4>
+                <p class="elevation-group__subtitle">The <code>elevation/*</code> tokens resolve to the same shadows in Light and Dark — Figma defines no dark variants. Shadows alone are insufficient on dark surfaces, so pair them with these Theme colours.</p>
+              </div>
+              <div class="elevation-companions">
+                <div class="elevation-companion">
+                  <div class="elevation-companion__swatches" aria-hidden="true"><span style="background:#ffffff"></span><span style="background:#44403c"></span></div>
+                  <code class="shadow-token">color/surface/floating</code>
+                  <span class="shadow-style">#FFFFFF · #44403C — floating panels</span>
+                </div>
+                <div class="elevation-companion">
+                  <div class="elevation-companion__swatches" aria-hidden="true"><span style="background:#ffffff"></span><span style="background:#292524"></span></div>
+                  <code class="shadow-token">color/surface/elevated</code>
+                  <span class="shadow-style">#FFFFFF · #292524 — raised surfaces</span>
+                </div>
+                <div class="elevation-companion">
+                  <div class="elevation-companion__swatches" aria-hidden="true"><span style="background:#e7e5e4"></span><span style="background:#57534e"></span></div>
+                  <code class="shadow-token">color/border/elevated</code>
+                  <span class="shadow-style">#E7E5E4 · #57534E — edge contrast</span>
+                </div>
+                <div class="elevation-companion">
+                  <div class="elevation-companion__swatches" aria-hidden="true"><span style="background:rgba(0,0,0,.55)"></span><span style="background:rgba(255,255,255,.5)"></span></div>
+                  <code class="shadow-token">color/surface/overlay</code>
+                  <span class="shadow-style">#000 55% · #FFF 50% — scrim</span>
+                </div>
+              </div>
+              <div class="elevation-dark-demo">
+                <div class="elevation-dark-demo__panel" aria-hidden="true"></div>
+                <p class="shadow-usage">Floating panel example: <code>surface/floating</code> fill + 1px <code>border/elevated</code> + <code>elevation/floating</code>. Toggle the theme to compare — in Dark the surface step and border carry the hierarchy while the shadow stays subtle.</p>
+              </div>
+            </section>
+
+            <div class="callout">
+              <p><strong>Usage guidance</strong></p>
+              <ul>
+                <li>Use <code>surface</code> for resting cards and <code>raised</code> for their hover — low elevation separates surfaces without competing with content.</li>
+                <li>Use <code>floating</code> for toasts, snackbars and tooltips; <code>popover</code> for dropdowns, popovers and the calendar.</li>
+                <li>Reserve <code>modal</code> and <code>overlay</code> for temporary layers above a scrim; use them sparingly.</li>
+                <li>Keep elevation consistent per component by aliasing the component token, never a raw <code>effect/shadow/*</code> value.</li>
+                <li>In Dark mode, lean on <code>surface/elevated</code>, <code>surface/floating</code> and <code>border/elevated</code>; keep the shadow styles subtle.</li>
+              </ul>
+            </div>
+            <div class="callout callout--note">
+              <p><strong>Accessibility:</strong> do not rely on shadow alone for interactivity or hierarchy — use focus rings, layout, and labels. Every preview above is labelled with its level name and token.</p>
+            </div>
+            <div class="callout callout--warn">
+              <p><strong>Needs verification:</strong> the docs-site chrome and several component examples still use the older <code>--shadow-raised / --shadow-floating / --shadow-modal / --shadow-popover</code> variables, whose values (and heavier Dark variants) predate this scale. Card already uses <code>elevation/card/*</code>; the rest should be reconciled component by component.</p>
+            </div>
+          </section>
+
           <h3>Spacing, radius, elevation</h3>
           <div class="table-wrap">
             <table>
@@ -2272,6 +2427,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>
