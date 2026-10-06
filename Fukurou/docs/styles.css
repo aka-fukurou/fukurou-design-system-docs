@@ -38,6 +38,28 @@
   --color-focus-gap: #fafaf9;
   --color-focus-ring-stroke: #d33f55;
 
+  /* Text Field (Figma color/text-field/*) */
+  --color-text-field-bg: #ffffff;
+  --color-text-field-bg-disabled: #f5f5f4;
+  --color-text-field-border: #78716c;
+  --color-text-field-border-hover: #57534e;
+  --color-text-field-border-error: #dc2626;
+  --color-text-field-border-disabled: #d6d3d1;
+  --color-text-field-text: #231f20;
+  --color-text-field-placeholder: #57534e;
+  --color-text-field-text-disabled: #78716c;
+  --color-text-field-label: #231f20;
+  --color-text-field-label-error: #8d1818;
+  --color-text-field-label-disabled: #78716c;
+  --color-text-field-helper: #57534e;
+  --color-text-field-helper-disabled: #78716c;
+  --color-text-field-error: #8d1818;
+  --color-text-field-icon: #57534e;
+  --color-text-field-icon-error: #8d1818;
+  --color-text-field-icon-disabled: #78716c;
+  --color-text-field-focus-ring: #d33f55;
+  --color-text-field-focus-gap: #fafaf9;
+
   /* Action (live Theme: primary = neutral) */
   --color-action-primary: #000000;
   --color-action-primary-hover: #57534e;
@@ -199,6 +221,27 @@
   --color-border-error: #e55e5e;
   --color-focus-gap: #000000;
   --color-focus-ring-stroke: #ffffff;
+
+  --color-text-field-bg: #1c1917;
+  --color-text-field-bg-disabled: #292524;
+  --color-text-field-border: #a8a29e;
+  --color-text-field-border-hover: #78716c;
+  --color-text-field-border-error: #e55e5e;
+  --color-text-field-border-disabled: #44403c;
+  --color-text-field-text: #ffffff;
+  --color-text-field-placeholder: #d6d3d1;
+  --color-text-field-text-disabled: #a8a29e;
+  --color-text-field-label: #ffffff;
+  --color-text-field-label-error: #f4bebe;
+  --color-text-field-label-disabled: #a8a29e;
+  --color-text-field-helper: #d6d3d1;
+  --color-text-field-helper-disabled: #a8a29e;
+  --color-text-field-error: #f4bebe;
+  --color-text-field-icon: #d6d3d1;
+  --color-text-field-icon-error: #f4bebe;
+  --color-text-field-icon-disabled: #a8a29e;
+  --color-text-field-focus-ring: #ffffff;
+  --color-text-field-focus-gap: #000000;
 
   --color-action-primary: #ffffff;
   --color-action-primary-hover: #d6d3d1;
@@ -1368,57 +1411,96 @@ tr:last-child td {
 
 .fk-field label,
 .fk-field__label {
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--color-text-default);
+  letter-spacing: 0;
+  color: var(--color-text-field-label);
 }
 
 .fk-field__required {
-  color: var(--color-text-error);
+  color: var(--color-text-field-label-error);
   font-size: 12px;
   font-weight: 600;
+  line-height: 20px;
 }
 
+/* Error / Disabled recolour the label (Figma label/error, label/disabled) */
+.fk-field:has(> .fk-input-shell.is-error) label,
+.fk-field:has(> .fk-input-shell.is-error) .fk-field__label {
+  color: var(--color-text-field-label-error);
+}
+
+.fk-field:has(> .fk-input-shell.is-disabled) {
+  opacity: 0.6;
+}
+
+.fk-field:has(> .fk-input-shell.is-disabled) label,
+.fk-field:has(> .fk-input-shell.is-disabled) .fk-field__label,
+.fk-field:has(> .fk-input-shell.is-disabled) .fk-field__required {
+  color: var(--color-text-field-label-disabled);
+}
+
+.fk-field:has(> .fk-input-shell.is-disabled) .fk-helper {
+  color: var(--color-text-field-helper-disabled);
+}
+
+.fk-field:has(> .fk-input-shell.is-disabled) .fk-helper__icon {
+  color: var(--color-text-field-icon-disabled);
+}
+
+/* Input container: Medium h48 / px16, Small h40 / px12, radius 8, 1px border */
 .fk-input-shell {
+  --fk-shell-pad: 16px;
   position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
   height: 48px;
-  padding: 0 16px;
-  border: 1px solid var(--color-field-border);
+  padding: 0 calc(var(--fk-shell-pad) - 1px);
+  border: 1px solid var(--color-text-field-border);
   border-radius: var(--radius-md);
-  background: var(--color-field-bg);
-  transition: border-color 0.12s ease, box-shadow 0.12s ease, border-width 0.12s ease;
+  background: var(--color-text-field-bg);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
 .fk-input-shell--sm {
+  --fk-shell-pad: 12px;
   height: 40px;
 }
 
-.fk-input-shell:hover:not(.is-disabled):not(.is-error) {
-  border-color: var(--color-text-default);
+.fk-input-shell:hover:not(.is-disabled):not(.is-error),
+.fk-input-shell.is-hover-demo:not(.is-disabled):not(.is-error) {
+  border-color: var(--color-text-field-border-hover);
 }
 
-.fk-input-shell:focus-within:not(.is-disabled) {
-  box-shadow: var(--focus-ring);
-  border-color: var(--color-text-subtle);
+/* Active (editing): 2px border/hover, cancel button visible. Mouse or keyboard. */
+.fk-input-shell:focus-within:not(.is-disabled),
+.fk-input-shell.is-active-demo:not(.is-disabled) {
+  border-color: var(--color-text-field-border-hover);
   border-width: 2px;
-  padding: 0 15px;
+  padding: 0 calc(var(--fk-shell-pad) - 2px);
+}
+
+/* Focus Visible: keyboard only — 2px ring outside a 2px gap (radius 8 + 2 = 10) */
+.fk-input-shell:has(> input:focus-visible),
+.fk-input-shell.is-focus-demo {
+  box-shadow: 0 0 0 2px var(--color-text-field-focus-gap), 0 0 0 4px var(--color-text-field-focus-ring);
 }
 
 .fk-input-shell.is-error {
-  border-color: var(--color-border-error);
+  border-color: var(--color-text-field-border-error);
 }
 
-.fk-input-shell.is-error:focus-within {
-  border-color: var(--color-border-error);
+.fk-input-shell.is-error:focus-within,
+.fk-input-shell.is-error.is-active-demo {
+  border-color: var(--color-text-field-border-error);
 }
 
 .fk-input-shell.is-disabled {
-  background: var(--color-surface-disabled);
-  border-color: var(--color-action-primary-disabled);
+  background: var(--color-text-field-bg-disabled);
+  border-color: var(--color-text-field-border-disabled);
   cursor: not-allowed;
 }
 
@@ -1429,18 +1511,26 @@ tr:last-child td {
   background: transparent;
   font-family: var(--font-body);
   font-size: 16px;
+  font-weight: 400;
   line-height: 24px;
-  color: var(--color-text-default);
+  letter-spacing: 0;
+  color: var(--color-text-field-text);
   outline: none;
   padding: 0;
 }
 
+.fk-input-shell--sm input {
+  font-size: 14px;
+  line-height: 20px;
+}
+
 .fk-input-shell input::placeholder {
-  color: var(--color-text-placeholder);
+  color: var(--color-text-field-placeholder);
+  opacity: 1;
 }
 
 .fk-input-shell input:disabled {
-  color: var(--color-text-disabled);
+  color: var(--color-text-field-text-disabled);
   cursor: not-allowed;
 }
 
@@ -1449,24 +1539,97 @@ tr:last-child td {
   flex-shrink: 0;
   width: 16px;
   height: 16px;
-  color: var(--color-text-subtle);
+  color: var(--color-text-field-icon);
+}
+
+.fk-input-shell.is-disabled .fk-leading,
+.fk-input-shell.is-disabled .fk-trailing {
+  color: var(--color-text-field-icon-disabled);
+}
+
+/* Active cancel: 32px Icon Button with 16px cancel glyph (Figma Active / Error Active) */
+.fk-field__cancel {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-field-icon);
+  cursor: pointer;
+}
+
+.fk-field__cancel svg {
+  width: 16px;
+  height: 16px;
+}
+
+.fk-input-shell:focus-within:not(.is-disabled) .fk-field__cancel,
+.fk-input-shell.is-active-demo:not(.is-disabled) .fk-field__cancel {
+  display: inline-flex;
+}
+
+.fk-field__cancel:hover {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-field-text);
+}
+
+.fk-field__cancel:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* Helper / Error rows: gap 4, optional 16px icon, caption 12/16 */
+.fk-helper,
+.fk-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .fk-helper {
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--color-text-subtle);
+  color: var(--color-text-field-helper);
 }
 
 .fk-error {
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--color-error-text);
+  color: var(--color-text-field-error);
+}
+
+.fk-helper__icon,
+.fk-error__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.fk-helper__icon {
+  color: var(--color-text-field-icon);
+}
+
+.fk-error__icon {
+  color: var(--color-text-field-icon-error);
+}
+
+#text-field .fk-field {
+  width: min(100%, 320px);
+}
+
+#text-field .preview-panel {
+  overflow: visible;
 }
 
 /* Search */
 .fk-search .fk-input-shell {
   padding-left: 12px;
+}
+
+.fk-search .fk-input-shell:focus-within {
+  padding-left: 11px;
 }
 
 .fk-search-ico {

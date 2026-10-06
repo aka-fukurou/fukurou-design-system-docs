@@ -112,6 +112,18 @@
     sync();
   });
 
+  /* —— Text Field cancel (Active state) —— */
+  document.querySelectorAll("[data-clearable]").forEach(function (field) {
+    const input = field.querySelector("input");
+    const clear = field.querySelector("[data-clear]");
+    if (!input || !clear) return;
+    clear.addEventListener("click", function () {
+      input.value = "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
+    });
+  });
+
   /* —— Switch —— */
   document.querySelectorAll("[data-switch]").forEach(function (btn) {
     btn.addEventListener("click", function () {
