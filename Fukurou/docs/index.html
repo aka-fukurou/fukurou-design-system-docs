@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=17" />
+  <link rel="stylesheet" href="styles.css?v=18" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -1586,7 +1586,22 @@
                 </button>
               </div>
             </div>
-            <p class="a11y-note"><strong>Tokens:</strong> <code>color/button/*</code> (Action aliases <code>color/action/primary/*</code>; Secondary/Ghost alias <code>color/action/secondary/*</code>; Ghost border 2px). <strong>Focus Visible:</strong> keyboard focus (<code>:focus-visible</code>) shows the Figma focus-ring wrapper — 2px gap (<code>color/button/focus/gap</code> = <code>surface/page</code>) + 2px ring (<code>color/button/focus/ring</code> = <code>border/focus</code>) outside the body. Tab to any button to see it live; the "Focus (static)" examples pin it for reference. <strong>Disabled:</strong> native <code>disabled</code> attribute, 60% opacity per Figma; exempt from contrast.</p>
+            <section class="doc-note" aria-label="Button implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Color:</strong> <code>color/button/*</code>. Action aliases <code>color/action/primary/*</code>; Secondary and Ghost alias <code>color/action/secondary/*</code>.</li>
+                  <li><strong>Ghost:</strong> 2px border.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Focus Visible:</strong> Keyboard focus (<code>:focus-visible</code>) shows the Figma focus-ring wrapper — 2px gap (<code>color/button/focus/gap</code> = <code>surface/page</code>) plus a 2px ring (<code>color/button/focus/ring</code> = <code>border/focus</code>) outside the body. Tab any button to see it live; the “Focus (static)” examples pin it for reference.</li>
+                  <li><strong>Disabled:</strong> Native <code>disabled</code> attribute and 60% opacity per Figma. Exempt from contrast.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="text-button">
@@ -1616,7 +1631,29 @@
                 </button>
               </div>
             </div>
-            <p class="a11y-note"><strong>Tokens:</strong> <code>color/text-button/content/*</code> (aliases <code>color/action/tertiary/*</code>); backgrounds transparent in every state. <strong>Typography:</strong> <code>typography/text-button/sm|md|lg</code> — Poppins SemiBold 600, 14/20 · 16/20 · 18/28, tracking 0; the weight never changes between states. <strong>Hover:</strong> <code>text-button/underline/*</code> — same SemiBold weight plus underline, colour <code>content/hover</code>. <strong>Focus Visible:</strong> <code>:focus-visible</code> draws the Figma 2px outside stroke (<code>color/text-button/border/focus</code> = <code>border/focus</code>) with square corners and no gap. <strong>Disabled:</strong> native <code>disabled</code>, <code>content/disabled</code> at 60% opacity — Exempt / Disabled state. Use <code>&lt;a&gt;</code> instead of <code>&lt;button&gt;</code> when the action navigates.</p>
+            <section class="doc-note" aria-label="Text Button implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Color:</strong> <code>color/text-button/content/*</code> (aliases <code>color/action/tertiary/*</code>). Backgrounds are transparent in every state.</li>
+                  <li><strong>Typography:</strong> <code>typography/text-button/sm|md|lg</code> — Poppins SemiBold 600, 14/20 · 16/20 · 18/28, tracking 0. Weight never changes between states.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Hover:</strong> <code>text-button/underline/*</code> — same SemiBold weight plus underline, colour <code>content/hover</code>.</li>
+                  <li><strong>Focus Visible:</strong> <code>:focus-visible</code> draws a 2px outside stroke (<code>color/text-button/border/focus</code> = <code>border/focus</code>) with square corners and no gap.</li>
+                  <li><strong>Disabled:</strong> Native <code>disabled</code>, <code>content/disabled</code> at 60% opacity. Exempt / Disabled state.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Use <code>&lt;a&gt;</code> instead of <code>&lt;button&gt;</code> when the action navigates.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="icon-button">
@@ -1656,7 +1693,28 @@
                 </button>
               </div>
             </div>
-            <p class="a11y-note"><strong>Tokens:</strong> <code>color/icon-button/*</code> — content <code>action/tertiary/*</code>, hover fill <code>action/primary/subtle</code>, pressed fill <code>action/primary/default</code> with <code>text/inverse</code> content. <strong>Focus Visible:</strong> <code>:focus-visible</code> shows the offset ring — 2px gap (<code>icon-button/focus/gap</code>) + 2px ring (<code>icon-button/focus/ring</code>) outside the circle, not clipped. <strong>A11y:</strong> real <code>&lt;button&gt;</code> with <code>aria-label</code>; icons are <code>aria-hidden</code>; Disabled uses the native attribute at 60% opacity — Exempt / Disabled state. Snackbar / Alert / Modal close controls keep their own composed-component icon colour.</p>
+            <section class="doc-note" aria-label="Icon Button implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Color:</strong> <code>color/icon-button/*</code> — content <code>action/tertiary/*</code>, hover fill <code>action/primary/subtle</code>, pressed fill <code>action/primary/default</code> with <code>text/inverse</code> content.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Focus Visible:</strong> <code>:focus-visible</code> shows the offset ring — 2px gap (<code>icon-button/focus/gap</code>) plus a 2px ring (<code>icon-button/focus/ring</code>) outside the circle, not clipped.</li>
+                  <li><strong>Disabled:</strong> Native <code>disabled</code> at 60% opacity. Exempt / Disabled state.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Use a real <code>&lt;button&gt;</code> with <code>aria-label</code>. Icons are <code>aria-hidden</code>.</li>
+                  <li>Snackbar, Alert, and Modal close controls keep their own composed-component icon colour.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="notification-button">
@@ -1710,7 +1768,38 @@
                 </button>
               </div>
             </div>
-            <p class="a11y-note"><strong>Tokens:</strong> body and bell reuse <code>color/icon-button/*</code>; badge uses <code>color/notification-button/badge/background|border|text</code> and <code>dot/background|border</code> (fill <code>brand/primary/500</code> in both modes, border <code>surface/page</code>), <code>density/notification-button/dot-size</code> 8 · <code>badge-min-height</code> 16 · <code>badge-padding-x</code> 6. <strong>Badge:</strong> absolutely positioned on the 32px body (dot top 0 / right 0; count top −2 / right 0) with a 2px outside page-coloured stroke, so it never shifts layout. Count text is Poppins Regular 12/16 (<code>caption/sm</code>). <strong>Focus Visible:</strong> same 2px gap + 2px ring as Icon Button; badge stays anchored to the body. <strong>Disabled:</strong> native <code>disabled</code>; bell → <code>content/disabled</code>, badge unchanged, no opacity (per the Figma variant) — Exempt / Disabled state. <strong>A11y:</strong> count is conveyed in the <code>aria-label</code> ("Notifications, 3 unread" · "Notifications, 99 plus unread"); badge markup is <code>aria-hidden</code>.</p>
+            <section class="doc-note" aria-label="Notification Button implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Body and bell:</strong> reuse <code>color/icon-button/*</code>.</li>
+                  <li><strong>Badge:</strong> <code>color/notification-button/badge/background</code>, <code>border</code>, <code>text</code> and <code>dot/background</code>, <code>dot/border</code>. Fill is <code>brand/primary/500</code> in both modes; border is <code>surface/page</code>.</li>
+                  <li><strong>Density:</strong> <code>density/notification-button/dot-size</code> 8 · <code>badge-min-height</code> 16 · <code>badge-padding-x</code> 6.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Badge layout</h4>
+                <ul class="doc-note__list">
+                  <li>Absolutely positioned on the 32px body: dot top 0 / right 0; count top −2 / right 0.</li>
+                  <li>2px outside page-coloured stroke, so the badge never shifts layout.</li>
+                  <li>Count text is Poppins Regular 12/16 (<code>caption/sm</code>).</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Focus Visible:</strong> Same 2px gap + 2px ring as Icon Button. The badge stays anchored to the body.</li>
+                  <li><strong>Disabled:</strong> Native <code>disabled</code>. Bell uses <code>content/disabled</code>; badge is unchanged; no opacity (per the Figma variant). Exempt / Disabled state.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Count is conveyed in the <code>aria-label</code> (“Notifications, 3 unread” · “Notifications, 99 plus unread”).</li>
+                  <li>Badge markup is <code>aria-hidden</code>.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="card">
@@ -1788,7 +1877,32 @@
                 </div>
               </div>
             </div>
-            <p class="a11y-note"><strong>Tokens:</strong> <code>color/card/background|border|title|body</code> (→ <code>surface/card</code>, <code>border/default</code>, <code>text/default</code>, <code>text/subtle</code>), <code>density/card/padding</code> 24 · <code>gap</code> 16, <code>radius/12</code>, <code>border/width/sm</code>; image placeholder <code>surface/subtle</code>, icon container <code>action/primary/subtle</code> with a <code>text/subtle</code> glyph. <strong>Elevation:</strong> Default <code>elevation/Surface</code>, hover <code>elevation/Raised</code> — the same values in Dark (Figma defines no dark alternative). <strong>Media:</strong> the image bleeds flush to the top/left/right and is clipped by the card radius; the icon sits inside the padded content. Hidden title/body/footer are simply omitted so no empty gap remains. <strong>A11y:</strong> the card is not clickable as a whole — the action is the real <code>&lt;button&gt;</code> in the footer (keyboard focus shows the Text Button's 2px stroke); placeholder media and the decorative icon are <code>aria-hidden</code>; use a real <code>&lt;img alt="…"&gt;</code> inside <code>.fk-card__media</code> for meaningful images, or <code>alt=""</code> when decorative.</p>
+            <section class="doc-note" aria-label="Card implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Color:</strong> <code>color/card/background</code>, <code>border</code>, <code>title</code>, <code>body</code> → <code>surface/card</code>, <code>border/default</code>, <code>text/default</code>, <code>text/subtle</code>.</li>
+                  <li><strong>Density:</strong> <code>density/card/padding</code> 24 · <code>gap</code> 16. Radius <code>12</code>. Border <code>border/width/sm</code>.</li>
+                  <li><strong>Media:</strong> image placeholder <code>surface/subtle</code>; icon container <code>action/primary/subtle</code> with a <code>text/subtle</code> glyph.</li>
+                  <li><strong>Elevation:</strong> Default <code>elevation/Surface</code>, hover <code>elevation/Raised</code>. Same values in Dark (Figma defines no dark alternative).</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Layout</h4>
+                <ul class="doc-note__list">
+                  <li>The image bleeds flush to the top, left, and right and is clipped by the card radius. The icon sits inside the padded content.</li>
+                  <li>Hidden title, body, or footer are omitted so no empty gap remains.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>The card is not clickable as a whole. The action is the real <code>&lt;button&gt;</code> in the footer (keyboard focus shows the Text Button’s 2px stroke).</li>
+                  <li>Placeholder media and the decorative icon are <code>aria-hidden</code>.</li>
+                  <li>Use a real <code>&lt;img alt="…"&gt;</code> inside <code>.fk-card__media</code> for meaningful images, or <code>alt=""</code> when decorative.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="text-field">
@@ -1985,7 +2099,35 @@
                 <p>Don’t rely on placeholder alone as a label. Don’t treat Active as sufficient keyboard focus indication.</p>
               </article>
             </div>
-            <p class="a11y-note"><strong>Tokens:</strong> <code>color/text-field/background|border|text|label|helper|error|icon|focus/*</code> resolved for Light and Dark; density Small 40/12 · Medium 48/16; radius 8; outer gap <code>spacing/4</code>. <strong>Focus Visible:</strong> <code>:focus-visible</code> draws a 2px ring (<code>color/text-field/focus/ring</code> = <code>border/focus</code>) outside a 2px page-coloured gap; Active is a separate 2px <code>border/hover</code> edit state and is not a focus substitute. <strong>Error:</strong> <code>aria-invalid</code> plus warning icon and message (not colour-only). <strong>Disabled:</strong> native <code>disabled</code>, disabled tokens, and the Figma 60% opacity — Exempt / Disabled state. <strong>A11y:</strong> visible labels via <code>for</code>/<code>id</code>; no-label example uses <code>aria-label</code>; helper and error linked with <code>aria-describedby</code>; required asterisk is visual only (<code>aria-hidden</code>) with the native <code>required</code> attribute on the input.</p>
+            <section class="doc-note" aria-label="Text Field implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Color:</strong> <code>color/text-field/background/*</code>, <code>border/*</code>, <code>text/*</code>, <code>label/*</code>, <code>helper/*</code>, <code>error/*</code>, <code>icon/*</code>, <code>focus/*</code> — resolved for Light and Dark.</li>
+                  <li><strong>Density:</strong> Small uses 40px height with 12px horizontal padding; Medium uses 48px height with 16px padding.</li>
+                  <li><strong>Radius:</strong> 8px.</li>
+                  <li><strong>Outer gap:</strong> <code>spacing/4</code>.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Focus Visible:</strong> <code>:focus-visible</code> draws one 2px ring (<code>color/text-field/focus/ring</code> = <code>border/focus</code>) outside a 2px page-coloured gap.</li>
+                  <li><strong>Active:</strong> A separate 2px <code>border/hover</code> edit state. It is not a focus substitute.</li>
+                  <li><strong>Error:</strong> Uses <code>aria-invalid</code>, a warning icon, and an error message. It should not rely on colour alone.</li>
+                  <li><strong>Disabled:</strong> Native <code>disabled</code>, disabled tokens, and Figma 60% opacity. Exempt / Disabled state.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Visible labels use <code>for</code> and <code>id</code>.</li>
+                  <li>The no-label example uses <code>aria-label</code>.</li>
+                  <li>Helper and error text use <code>aria-describedby</code>.</li>
+                  <li>The required asterisk is visual only (<code>aria-hidden</code>); the input uses the native <code>required</code> attribute.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="search-field">
@@ -2011,7 +2153,15 @@
                 </div>
               </div>
             </div>
-            <p class="a11y-note"><strong>A11y:</strong> Provide an accessible name; label the clear button “Clear search”.</p>
+            <section class="doc-note" aria-label="Search Field implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Provide an accessible name.</li>
+                  <li>Label the clear button “Clear search”.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="date-picker">
@@ -2117,8 +2267,30 @@
               </article>
             </div>
 
-            <p class="a11y-note"><strong>A11y:</strong> Visible label or accessible name required. Associate error text in product code. Focus Visible must stay unclipped. Keyboard users should open the calendar, move between days, select, and close (Escape). Disabled dates are non-interactive (Exempt / Disabled state for contrast). Announce the selected date to assistive technology. Docs example uses semantic buttons for day cells; calendar icon is decorative (<code>aria-hidden</code>).</p>
-            <p class="a11y-note"><strong>Tokens:</strong> <code>color/date-picker/*</code> · <code>color/calendar/*</code> · <code>elevation/calendar/default</code> · <code>density/calendar/*</code>. Internal: <code>.Base / Calendar / Day Cell</code> · <code>.Base / Calendar / Nav Button</code>. Supporting: <code>Calendar Popover</code>.</p>
+            <section class="doc-note" aria-label="Date Picker implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Color:</strong> <code>color/date-picker/*</code>, <code>color/calendar/*</code>.</li>
+                  <li><strong>Elevation:</strong> <code>elevation/calendar/default</code>.</li>
+                  <li><strong>Density:</strong> <code>density/calendar/*</code>.</li>
+                  <li><strong>Internal:</strong> <code>.Base / Calendar / Day Cell</code>, <code>.Base / Calendar / Nav Button</code>.</li>
+                  <li><strong>Supporting:</strong> <code>Calendar Popover</code>.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>A visible label or accessible name is required.</li>
+                  <li>Associate error text in product code.</li>
+                  <li>Focus Visible must stay unclipped.</li>
+                  <li>Keyboard users should open the calendar, move between days, select, and close (Escape).</li>
+                  <li>Disabled dates are non-interactive. Exempt / Disabled state for contrast.</li>
+                  <li>Announce the selected date to assistive technology.</li>
+                  <li>The docs example uses semantic buttons for day cells. The calendar icon is decorative (<code>aria-hidden</code>).</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="dropdown">
@@ -2284,7 +2456,15 @@
                 </button>
               </div>
             </div>
-            <p class="a11y-note"><strong>A11y:</strong> Use radio pattern for single-select. Selected must not rely on color alone (check indicator present).</p>
+            <section class="doc-note" aria-label="Jumbo Select Button implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Use a radio pattern for single-select.</li>
+                  <li>Selected must not rely on color alone — the check indicator is present.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="snackbar">
@@ -2351,7 +2531,14 @@
                 <span class="fk-tooltip" id="tip-1" role="tooltip">More information about this option.</span>
               </div>
             </div>
-            <p class="a11y-note">Never put critical information only in a tooltip.</p>
+            <section class="doc-note" aria-label="Tooltip implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Never put critical information only in a tooltip.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="modal">
@@ -2430,7 +2617,15 @@
                 </div>
               </div>
             </div>
-            <p class="a11y-note"><strong>Tokens:</strong> <code>color/progress-bar/*</code>. Lives on the Navigation page (<code>459:2136</code>) with Pagination.</p>
+            <section class="doc-note" aria-label="Progress Bar implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Color:</strong> <code>color/progress-bar/*</code>.</li>
+                  <li>Lives on the Navigation page (<code>459:2136</code>) with Pagination.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <h3 id="not-current-components">Not current in Figma</h3>
@@ -2568,6 +2763,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>
