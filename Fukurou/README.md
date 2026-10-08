@@ -983,7 +983,7 @@ Inspired by the restrained depth of **Vercel**, the practical elevation hierarch
 
 **Examples:** `Foundations / Elevation and Shadow` frame on the **Foundations** page.
 
-**HTML docs (2026-10-05):** the GitHub docs site now has a **Foundation › Elevation & Shadow** section (nav item + `#foundation-elevation`) built from the live frame (`255:1944`): seven preview cards with the exact `effect/shadow/*` CSS strings (`--elevation-none|surface|raised|floating|popover|modal|overlay`), the component-mapping table, the Dark-mode companion tokens with a floating-panel demo, and the usage/accessibility notes. The semantic tokens have no Dark values, so the docs show the same shadows in both themes paired with elevated surfaces/borders. **Needs verification:** the docs' older `--shadow-raised/floating/modal/popover` variables used by site chrome and some component examples still predate this scale.
+**HTML docs (2026-10-05):** the GitHub docs site now has a **Foundation › Elevation & Shadow** section (nav item + `#foundation-elevation`) built from the live frame (`255:1944`): seven preview cards with the exact `effect/shadow/*` CSS strings (`--elevation-none|surface|raised|floating|popover|modal|overlay`), the component-mapping table, the Dark-mode companion tokens with a floating-panel demo, and the usage/accessibility notes. The semantic tokens have no Dark values, so the docs show the same shadows in both themes paired with elevated surfaces/borders. Docs chrome `--shadow-raised/floating/modal/popover` now aliases `--elevation-*` (foundation audit 2026-10-08).
 
 ### Accessibility (buttons)
 
