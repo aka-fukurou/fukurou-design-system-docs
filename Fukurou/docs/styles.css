@@ -992,10 +992,35 @@ tr:last-child td {
   margin-bottom: 0;
 }
 
-/* Wider horizontal spacing for small controls whose badges overhang (e.g. Notification Button) */
-.preview-row--spacious {
+/*
+ * Wider horizontal spacing between separate component specimens in interactive previews
+ * (Icon Button, Text Button, Button, Notification Button, Card variants).
+ * Uses spacing/16 (64px); row gap stays tighter when rows wrap.
+ */
+.preview-row--spacious,
+#button .preview-panel > .preview-row,
+#text-button .preview-panel > .preview-row,
+#icon-button .preview-panel > .preview-row,
+#card .preview-panel > .preview-row {
   column-gap: var(--space-16);
-  row-gap: var(--space-3);
+  row-gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .preview-row--spacious,
+  #button .preview-panel > .preview-row,
+  #text-button .preview-panel > .preview-row,
+  #icon-button .preview-panel > .preview-row,
+  #card .preview-panel > .preview-row {
+    column-gap: var(--space-8);
+    row-gap: var(--space-4);
+  }
+}
+
+#icon-button .preview-panel,
+#notification-button .preview-panel,
+#button .preview-panel {
+  overflow: visible;
 }
 
 .preview-stack {
