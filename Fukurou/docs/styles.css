@@ -204,6 +204,9 @@
   --text-body-sm-lh: 20px;
   --text-caption-size: 12px;
   --text-caption-lh: 16px;
+  /* Aliases for docs supporting text (Figma caption/md) */
+  --font-size-caption: var(--text-caption-size);
+  --line-height-caption: var(--text-caption-lh);
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -1035,6 +1038,11 @@ tr:last-child td {
   border: 1px solid var(--color-docs-border);
   border-radius: var(--radius-card);
   background: var(--color-surface-card);
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-default);
 }
 
 .doc-note__group {
@@ -1045,10 +1053,11 @@ tr:last-child td {
 .doc-note__title {
   margin: 0;
   font-family: var(--font-body);
-  font-size: var(--text-body-md-size);
-  line-height: var(--text-body-md-lh);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
   font-weight: var(--font-weight-semibold);
   color: var(--color-heading);
+  letter-spacing: 0;
 }
 
 .doc-note__list {
@@ -1058,6 +1067,8 @@ tr:last-child td {
 
 .doc-note__list li {
   margin-bottom: var(--space-2);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
   color: var(--color-text-default);
 }
 
@@ -1066,6 +1077,8 @@ tr:last-child td {
 }
 
 .doc-note code {
+  font-size: 0.95em;
+  line-height: inherit;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
