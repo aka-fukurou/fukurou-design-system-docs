@@ -1882,7 +1882,7 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   color: var(--color-text-subtle);
 }
 
-/* One clear control: Fukurou .fk-clear only — hide native search-input affordances (WebKit/Safari, Chromium). */
+/* One clear control: .fk-field__cancel only — hide native search-input affordances (WebKit/Safari, Chromium). */
 .fk-search input[type="search"]::-webkit-search-cancel-button,
 .fk-search input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -1894,32 +1894,9 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   display: none;
 }
 
-.fk-clear {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-full);
-  background: transparent;
-  color: var(--color-text-subtle);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.fk-clear.is-visible {
+/* Search clear reuses .fk-field__cancel (32px Icon Button). Show when filled or while editing. */
+.fk-search .fk-field__cancel.is-visible {
   display: inline-flex;
-}
-
-.fk-clear:hover {
-  background: var(--color-surface-subtle);
-  color: var(--color-text-default);
-}
-
-.fk-clear:focus-visible {
-  box-shadow: var(--focus-ring);
 }
 
 /* Dropdown */

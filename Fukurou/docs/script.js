@@ -100,7 +100,6 @@
     function sync() {
       const has = input.value.length > 0;
       clear.classList.toggle("is-visible", has);
-      clear.hidden = !has;
     }
 
     input.addEventListener("input", sync);
