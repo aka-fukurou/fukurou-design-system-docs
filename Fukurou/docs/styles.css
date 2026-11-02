@@ -2012,6 +2012,7 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 8px;
   width: 100%;
   height: 48px;
@@ -2093,6 +2094,7 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   flex-shrink: 0;
   width: 24px;
   height: 24px;
+  margin-inline-start: auto;
   color: var(--color-dropdown-icon);
   transition: transform 0.12s ease;
 }
@@ -2137,7 +2139,7 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   outline: none;
 }
 
-/* Option: 40px, 12px padding-x, body/md 16/24, 8px gap before text (checkmark slot) */
+/* Option: 40px, 12px padding-x, body/md 16/24, 8px gap; checkmark trailing on Selected only */
 .fk-dropdown__option {
   display: flex;
   align-items: center;
@@ -2183,7 +2185,7 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   display: none;
 }
 
-/* Figma: checkmark only renders on the Selected option; unselected text starts at the 12px inset. */
+/* Figma: checkmark only on Selected, trailing (24px); unselected rows are text-only at 12px inset. */
 .fk-dropdown__option[aria-selected="true"] .fk-dropdown__check {
   display: block;
 }
