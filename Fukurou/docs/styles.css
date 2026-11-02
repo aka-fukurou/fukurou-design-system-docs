@@ -222,6 +222,28 @@
   --color-calendar-footer-text: #231f20;
   --shadow-popover: 0 8px 16px rgba(35, 31, 32, 0.1), 0 4px 8px rgba(35, 31, 32, 0.06);
 
+  /* Radio Selector (color/radio/* from live Figma 313:796) */
+  --color-radio-bg: #ffffff;
+  --color-radio-bg-hover: #fafaf9;
+  --color-radio-bg-disabled: #f5f5f4;
+  --color-radio-bg-error: #ffffff;
+  --color-radio-border: #78716c;
+  --color-radio-border-hover: #57534e;
+  --color-radio-border-selected: #000000;
+  --color-radio-border-focus: #d33f55;
+  --color-radio-border-disabled: #d6d3d1;
+  --color-radio-border-error: #dc2626;
+  --color-radio-dot-selected: #000000;
+  --color-radio-dot-disabled: #78716c;
+  --color-radio-label: #231f20;
+  --color-radio-label-disabled: #78716c;
+  --color-radio-label-error: #8d1818;
+  --color-radio-desc: #57534e;
+  --color-radio-desc-disabled: #78716c;
+  --color-radio-desc-error: #57534e;
+  --color-radio-focus-ring: #d33f55;
+  --color-radio-focus-gap: #fafaf9;
+
   /* Docs chrome */
   --color-topbar-bg: rgba(250, 250, 249, 0.92);
   --color-heading: #231f20;
@@ -485,6 +507,27 @@
   --color-calendar-nav-icon-disabled: #a8a29e;
   --color-calendar-nav-bg-hover: #292524;
   --color-calendar-footer-text: #ffffff;
+
+  --color-radio-bg: #1c1917;
+  --color-radio-bg-hover: #1c1917;
+  --color-radio-bg-disabled: #292524;
+  --color-radio-bg-error: #1c1917;
+  --color-radio-border: #a8a29e;
+  --color-radio-border-hover: #78716c;
+  --color-radio-border-selected: #ffffff;
+  --color-radio-border-focus: #ffffff;
+  --color-radio-border-disabled: #44403c;
+  --color-radio-border-error: #fae1e1;
+  --color-radio-dot-selected: #ffffff;
+  --color-radio-dot-disabled: #a8a29e;
+  --color-radio-label: #ffffff;
+  --color-radio-label-disabled: #a8a29e;
+  --color-radio-label-error: #f4bebe;
+  --color-radio-desc: #d6d3d1;
+  --color-radio-desc-disabled: #a8a29e;
+  --color-radio-desc-error: #d6d3d1;
+  --color-radio-focus-ring: #ffffff;
+  --color-radio-focus-gap: #000000;
 
   --color-topbar-bg: rgba(0, 0, 0, 0.88);
   --color-heading: #ffffff;
@@ -2710,10 +2753,6 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   border-radius: 4px;
 }
 
-.fk-radio .fk-control__indicator {
-  border-radius: var(--radius-full);
-}
-
 .fk-control__mark {
   display: none;
   width: 12px;
@@ -2721,20 +2760,8 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   color: var(--color-action-primary-text);
 }
 
-.fk-radio .fk-control__mark {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-action-primary);
-}
-
 .fk-control input:checked + .fk-control__indicator {
   background: var(--color-action-primary);
-  border-color: var(--color-action-primary);
-}
-
-.fk-radio input:checked + .fk-control__indicator {
-  background: var(--color-surface-card);
   border-color: var(--color-action-primary);
 }
 
@@ -2776,6 +2803,144 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
 
 .fk-control input:disabled ~ .fk-control__content .fk-control__label {
   cursor: not-allowed;
+}
+
+/* Radio Selector — Figma `Selector / Radio Button` (313:796): 20px circle, 1px inside stroke,
+   8px dot, 12px gap, label body/md + description body/sm, 48px row. Colours = color/radio/*.
+   Scoped to .fk-radio so the shared .fk-control base (Checkbox) is unaffected. */
+#radio .fk-radio,
+#radio .fk-radio-group {
+  width: min(100%, 360px);
+}
+
+.fk-radio {
+  min-height: 48px;
+  cursor: pointer;
+}
+
+.fk-radio .fk-control__indicator {
+  border-radius: var(--radius-full);
+  border-color: var(--color-radio-border);
+  background: var(--color-radio-bg);
+}
+
+.fk-radio .fk-control__mark {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-radio-dot-selected);
+}
+
+.fk-radio .fk-control__label {
+  color: var(--color-radio-label);
+}
+
+.fk-radio .fk-control__desc {
+  color: var(--color-radio-desc);
+}
+
+/* Hover: subtle fill; unselected border darkens, selected border stays border/selected. */
+.fk-radio:hover input:not(:disabled) + .fk-control__indicator {
+  background: var(--color-radio-bg-hover);
+  border-color: var(--color-radio-border-hover);
+}
+
+/* Selected: border/selected + dot/selected on the default background (never a filled circle). */
+.fk-radio input:checked + .fk-control__indicator,
+.fk-radio:hover input:checked:not(:disabled) + .fk-control__indicator {
+  background: var(--color-radio-bg);
+  border-color: var(--color-radio-border-selected);
+}
+
+.fk-radio:hover input:checked:not(:disabled) + .fk-control__indicator {
+  background: var(--color-radio-bg-hover);
+}
+
+/* Focus Visible: keyboard only — focus-ring wrapper = 2px focus/gap + 2px focus/ring outside the
+   circle; the unselected border switches to border/focus (Figma Focus, Selected=False). */
+.fk-radio input:focus-visible + .fk-control__indicator {
+  box-shadow: 0 0 0 2px var(--color-radio-focus-gap), 0 0 0 4px var(--color-radio-focus-ring);
+}
+
+.fk-radio input:focus-visible:not(:checked) + .fk-control__indicator {
+  border-color: var(--color-radio-border-focus);
+}
+
+/* Error: border/error on the circle, label/error text; dot stays dot/selected. */
+.fk-radio.is-error input:not(:disabled) + .fk-control__indicator,
+.fk-radio-group.is-error .fk-radio input:not(:disabled) + .fk-control__indicator {
+  background: var(--color-radio-bg-error);
+  border-color: var(--color-radio-border-error);
+}
+
+.fk-radio.is-error .fk-control__label,
+.fk-radio-group.is-error .fk-radio .fk-control__label {
+  color: var(--color-radio-label-error);
+}
+
+.fk-radio.is-error .fk-control__desc,
+.fk-radio-group.is-error .fk-radio .fk-control__desc {
+  color: var(--color-radio-desc-error);
+}
+
+/* Disabled: the whole row at 60% opacity plus disabled tokens (Figma Disabled variants). */
+.fk-radio:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fk-radio input:disabled + .fk-control__indicator {
+  background: var(--color-radio-bg-disabled);
+  border-color: var(--color-radio-border-disabled);
+}
+
+.fk-radio input:disabled + .fk-control__indicator .fk-control__mark {
+  background: var(--color-radio-dot-disabled);
+}
+
+.fk-radio input:disabled ~ .fk-control__content .fk-control__label {
+  color: var(--color-radio-label-disabled);
+}
+
+.fk-radio input:disabled ~ .fk-control__content .fk-control__desc {
+  color: var(--color-radio-desc-disabled);
+}
+
+/* Radio group: fieldset + legend (Poppins SemiBold 14), 12px between legend, options, and message. */
+.fk-radio-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fk-radio-group__legend {
+  padding: 0;
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--color-radio-label);
+}
+
+.fk-radio-group.is-error .fk-radio-group__legend {
+  color: var(--color-radio-label-error);
+}
+
+.fk-radio-group__options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fk-radio-group > .fk-error,
+.fk-radio-group > .fk-helper {
+  margin-top: 12px;
+}
+
+.fk-radio-group > .fk-error[hidden] {
+  display: none;
 }
 
 /* Switch — track 44×24, thumb 20 */

@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=34" />
+  <link rel="stylesheet" href="styles.css?v=35" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -2909,27 +2909,255 @@
               <h3>Radio Selector</h3>
               <span class="badge badge--ok">Public</span>
             </div>
-            <p>Mutually exclusive choices when all options should stay visible. Indicator 20×20; gap 12; label 16 / description 14.</p>
+            <p><code>Radio Selector</code> presents mutually exclusive choices when every option should stay visible. Each option is a 20px circular control with a 1px stroke, an 8px selected dot, a 12px gap to the content, a body/md label and an optional body/sm description in a 48px row. Selection is shown by the inner dot plus the <code>border/selected</code> stroke — never by colour alone. Use Dropdown for long lists and Checkbox for multi-select.</p>
+            <h4>Variants &amp; states</h4>
+            <ul>
+              <li><strong>Selection:</strong> Unselected (1px <code>border/default</code>, empty) · Selected (1px <code>border/selected</code> + 8px <code>dot/selected</code>)</li>
+              <li><strong>State:</strong> Default · Hover (<code>background/hover</code>, unselected border → <code>border/hover</code>) · Focus (focus-ring wrapper, unselected border → <code>border/focus</code>) · Disabled (60% opacity + disabled background, border, dot, label, and description tokens) · Error (1px <code>border/error</code>, <code>label/error</code>)</li>
+              <li><strong>Focus Visible:</strong> 2px <code>color/radio/focus/ring</code> outside a 2px <code>focus/gap</code>, circular. Keyboard only (<code>:focus-visible</code>).</li>
+              <li><strong>Booleans:</strong> Selected · Show description. Single size; vertical groups only.</li>
+            </ul>
             <div class="preview-panel">
-              <div class="preview-stack" role="radiogroup" aria-label="Filing type">
-                <label class="fk-control fk-radio">
-                  <input type="radio" name="filing" value="individual" checked />
-                  <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
-                  <span class="fk-control__content">
-                    <span class="fk-control__label">Individual</span>
-                    <span class="fk-control__desc">Select this option if you are filing for yourself.</span>
-                  </span>
-                </label>
-                <label class="fk-control fk-radio">
-                  <input type="radio" name="filing" value="business" />
-                  <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
-                  <span class="fk-control__content">
-                    <span class="fk-control__label">Business</span>
-                    <span class="fk-control__desc">Select this option if you are filing for a business.</span>
-                  </span>
-                </label>
+              <div class="preview-label">Interactive preview</div>
+              <div class="tf-state-list" role="list" aria-label="Radio Selector examples">
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Default / Unselected</p>
+                    <p class="tf-state-row__note">Empty circle with <code>border/default</code>. Hover darkens the stroke on a subtle fill; Tab shows the focus ring; Space selects. A single radio cannot be deselected — place it in a group.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-radio">
+                      <input type="radio" name="demo-radio-default" value="individual" />
+                      <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">Individual</span>
+                        <span class="fk-control__desc">Select this option if you are filing for yourself.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Selected</p>
+                    <p class="tf-state-row__note">Stroke switches to <code>border/selected</code> and the 8px <code>dot/selected</code> appears, centred. Hover keeps the selected stroke; keyboard focus adds the ring outside it.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-radio">
+                      <input type="radio" name="demo-radio-selected" value="individual" checked />
+                      <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">Individual</span>
+                        <span class="fk-control__desc">Select this option if you are filing for yourself.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Without description</p>
+                    <p class="tf-state-row__note"><code>Show description = false</code>: label only, same 20px control, 12px gap, and 2px indicator offset so the circle stays aligned with the first line.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-radio">
+                      <input type="radio" name="demo-radio-nodesc" value="business" />
+                      <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">Business</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Radio group</p>
+                    <p class="tf-state-row__note">Mirrors the Figma “Filing type” group: SemiBold legend, 12px between options. Only one option can be selected; picking another clears the previous one. Tab enters the group on the selected option, ← → ↑ ↓ move and select, skipping the disabled option.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <fieldset class="fk-radio-group">
+                      <legend class="fk-radio-group__legend">Filing type</legend>
+                      <div class="fk-radio-group__options">
+                        <label class="fk-control fk-radio">
+                          <input type="radio" name="demo-radio-filing" value="individual" checked />
+                          <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">Individual</span>
+                            <span class="fk-control__desc">Select this option if you are filing for yourself.</span>
+                          </span>
+                        </label>
+                        <label class="fk-control fk-radio">
+                          <input type="radio" name="demo-radio-filing" value="business" />
+                          <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">Business</span>
+                          </span>
+                        </label>
+                        <label class="fk-control fk-radio">
+                          <input type="radio" name="demo-radio-filing" value="nonprofit" disabled />
+                          <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">Non-profit</span>
+                            <span class="fk-control__desc">Not available for this tax year.</span>
+                          </span>
+                        </label>
+                        <label class="fk-control fk-radio">
+                          <input type="radio" name="demo-radio-filing" value="partnership" />
+                          <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">Partnership</span>
+                            <span class="fk-control__desc">Select this option if you are filing with partners.</span>
+                          </span>
+                        </label>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled</p>
+                    <p class="tf-state-row__note">Native <code>disabled</code>: whole row at 60% opacity, <code>background/disabled</code> and <code>border/disabled</code> on the circle, label and description in the disabled tokens. Not focusable, not selectable.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-radio">
+                      <input type="radio" name="demo-radio-disabled" value="individual" disabled />
+                      <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">Individual</span>
+                        <span class="fk-control__desc">Select this option if you are filing for yourself.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled + Selected</p>
+                    <p class="tf-state-row__note">A choice that was made earlier but can no longer be changed. The dot switches to <code>dot/disabled</code> so the selection stays readable at 60% opacity.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-radio">
+                      <input type="radio" name="demo-radio-disabled-selected" value="individual" disabled checked />
+                      <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">Individual</span>
+                        <span class="fk-control__desc">Select this option if you are filing for yourself.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Error + message</p>
+                    <p class="tf-state-row__note">Group-level validation: every option takes the Error variant (<code>border/error</code> stroke, <code>label/error</code> text) and a caption message is linked to each input with <code>aria-describedby</code>. Selecting an option clears the error.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <fieldset class="fk-radio-group is-error" data-radio-group-error aria-describedby="demo-radio-error-msg">
+                      <legend class="fk-radio-group__legend">Filing type</legend>
+                      <div class="fk-radio-group__options">
+                        <label class="fk-control fk-radio">
+                          <input type="radio" name="demo-radio-error" value="individual" aria-invalid="true" aria-describedby="demo-radio-error-msg" />
+                          <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">Individual</span>
+                            <span class="fk-control__desc">Select this option if you are filing for yourself.</span>
+                          </span>
+                        </label>
+                        <label class="fk-control fk-radio">
+                          <input type="radio" name="demo-radio-error" value="business" aria-invalid="true" aria-describedby="demo-radio-error-msg" />
+                          <span class="fk-control__indicator" aria-hidden="true"><span class="fk-control__mark"></span></span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">Business</span>
+                            <span class="fk-control__desc">Select this option if you are filing for a business.</span>
+                          </span>
+                        </label>
+                      </div>
+                      <p class="fk-error" id="demo-radio-error-msg" role="alert">Select a filing type to continue.</p>
+                    </fieldset>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="do-dont">
+              <article class="do">
+                <h4>Do</h4>
+                <p>Use Radio Selector for exactly one choice from a short, visible set — filing type, delivery method, plan tier. Group related options under a legend, keep labels short, and add a description only when a choice needs clarifying.</p>
+              </article>
+              <article class="dont">
+                <h4>Don’t</h4>
+                <p>Don’t use it for multi-select (Checkbox), for a single on/off setting (Switch or Checkbox), or for long lists (Dropdown). Don’t disable options without explaining why, and don’t show selection through colour alone.</p>
+              </article>
+            </div>
+            <section class="doc-note" aria-label="Radio Selector implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Anatomy</h4>
+                <ul class="doc-note__list">
+                  <li><strong>1 Outer radio circle</strong> — <code>radio-indicator</code>: 20 × 20 (<code>density/radio/control-size</code>), <code>radius/full</code>, 1px inside stroke (<code>border-width/sm</code>), <code>color/radio/background/*</code> fill. Offset 2px from the top of the row so it centres on the label’s first line.</li>
+                  <li><strong>2 Selected indicator</strong> — <code>selected-dot</code>: 8 × 8 (<code>density/radio/dot-size</code>) circle in <code>dot/selected</code>, centred inside the outer circle; present only when <code>Selected = true</code>.</li>
+                  <li><strong>3 Radio label</strong> — body/md (Poppins 16 / 24) in <code>label/default</code>; the whole label is the click target.</li>
+                  <li><strong>4 Supporting description</strong> — optional body/sm (14 / 20) in <code>description/default</code>, 4px below the label (<code>Show description</code> boolean).</li>
+                  <li><strong>5 Radio group container</strong> — vertical stack of options with 12px between rows (<code>fieldset</code>, <code>role="radiogroup"</code> semantics come from the shared <code>name</code>).</li>
+                  <li><strong>6 Group label / legend</strong> — Poppins SemiBold 14 in <code>text/default</code>, 12px above the first option (<code>&lt;legend&gt;</code>).</li>
+                  <li><strong>7 Helper / error message</strong> — caption/md below the group, 12px gap; error text uses the shared error caption and is linked to every input with <code>aria-describedby</code>. Needs verification: Figma defines the Error state per option and does not yet include a group-level message.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Typography:</strong> label body/md (Poppins 400 16/24) · description body/sm (14/20) · group legend Poppins SemiBold 14 (no bound text style — Needs verification) · helper / error caption/md 12/16.</li>
+                  <li><strong>Colour:</strong> <code>color/radio/background/{default #fff, hover #fafaf9, disabled #f5f5f4, error #fff}</code>, <code>border/{default #78716c, hover #57534e, selected #000, focus #d33f55, disabled #d6d3d1, error #dc2626}</code>, <code>dot/{selected #000, disabled #78716c}</code>, <code>label/{default #231f20, disabled #78716c, error #8d1818}</code>, <code>description/{default #57534e, disabled #78716c, error #57534e}</code>, <code>focus/{ring #d33f55, gap #fafaf9}</code> — resolved for Light and Dark as <code>--color-radio-*</code>. Dark: background <code>#1c1917</code> (disabled <code>#292524</code>), border <code>#a8a29e</code> / hover <code>#78716c</code> / disabled <code>#44403c</code> / error <code>#fae1e1</code>, selected border and dot <code>#fff</code>, label <code>#fff</code>, description <code>#d6d3d1</code>, label/error <code>#f4bebe</code>, focus ring <code>#fff</code> on a <code>#000</code> gap.</li>
+                  <li><strong>Dimensions &amp; spacing:</strong> control 20 (<code>density/radio/control-size</code>) · dot 8 (<code>density/radio/dot-size</code>) · stroke 1 (<code>border-width/sm</code>) · control → content 12 (<code>density/radio/gap</code>) · label → description 4 · indicator top offset 2 (<code>spacing/2</code>) · row 48 · option → option 12 · legend → options 12 · focus ring 2 + gap 2 (<code>border-width/md</code>, <code>spacing/2</code>).</li>
+                  <li><strong>Disabled:</strong> 60% opacity on the whole option in addition to the disabled colour tokens.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Unselected:</strong> empty circle, <code>border/default</code>. Appears for every option that is not the group’s current value.</li>
+                  <li><strong>Selected:</strong> <code>border/selected</code> + <code>dot/selected</code>; exactly one per group, persists until another option is chosen. Dot + stroke change, so selection never relies on colour alone.</li>
+                  <li><strong>Hover:</strong> pointer over the option — <code>background/hover</code>; unselected stroke → <code>border/hover</code>, selected stroke unchanged. Not a separate gallery row.</li>
+                  <li><strong>Active / Pressed:</strong> no dedicated Figma variant — the native control selects on pointer-up; the docs show the Hover treatment while pressed (Needs verification).</li>
+                  <li><strong>Focus Visible:</strong> keyboard-only ring (2px <code>focus/ring</code> outside a 2px <code>focus/gap</code>); the unselected stroke also switches to <code>border/focus</code>, the selected stroke stays <code>border/selected</code>. Selected and focused are independent — a selected option shows the ring only while it has keyboard focus.</li>
+                  <li><strong>Disabled / Disabled + Selected:</strong> native <code>disabled</code>; 60% opacity, disabled background, border, dot, label, and description. Skipped by Tab and arrow keys, not selectable by pointer or label click.</li>
+                  <li><strong>Error:</strong> <code>border/error</code> stroke and <code>label/error</code> text on every option of an invalid group plus a linked message; cleared as soon as a valid selection is made.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Keyboard &amp; focus</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Tab / Shift + Tab:</strong> one tab stop per group — lands on the selected option, or the first enabled option when nothing is selected.</li>
+                  <li><strong>← → ↑ ↓:</strong> move focus <em>and</em> selection to the previous / next enabled option, wrapping at the ends; disabled options are skipped.</li>
+                  <li><strong>Space:</strong> selects the focused option when the group has no selection yet.</li>
+                  <li><strong>Pattern:</strong> native <code>&lt;input type="radio"&gt;</code> inside <code>&lt;fieldset&gt;</code> / <code>&lt;legend&gt;</code> — the browser provides the roving tab stop and arrow-key behaviour; no script is needed.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Native semantics: each option is a real radio button wrapped in its <code>&lt;label&gt;</code>, so label text and description are part of the click target and the accessible name (label) is announced with “selected / not selected” and “n of m” position.</li>
+                  <li>Grouping: <code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> expose the group name; options share one <code>name</code>. Use <code>role="radiogroup"</code> + <code>aria-labelledby</code> only when a <code>fieldset</code> is impossible.</li>
+                  <li>Error: <code>aria-invalid="true"</code> on each input and the message id in <code>aria-describedby</code>; the message is caption-sized text, not colour alone.</li>
+                  <li>Disabled options keep their label visible (60% opacity, disabled tokens) and are removed from the tab and arrow order by the browser.</li>
+                  <li>Contrast (WCAG 2.2 AA, both themes): label, description, legend, and error text pass as text; the 1px <code>border/default</code> stroke (<code>#78716c</code> on white 4.80:1 · <code>#a8a29e</code> on <code>#1c1917</code> 6.93:1), <code>border/hover</code> (7.30 / 3.65:1), <code>border/error</code> (4.83 / 14.09:1) and the <code>border/selected</code> + dot (21 / 17.49:1) pass the 3:1 non-text requirement; the focus ring passes against its gap (4.36 / 21:1). Disabled rows are <strong>Exempt / Disabled state</strong>.</li>
+                  <li>Indicator and dot are <code>aria-hidden</code> decorations; state comes from the native input.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Usage guidelines</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Use for:</strong> exactly one choice from a group, mutually exclusive settings, and short sets (roughly 2 – 6) that benefit from being visible at once.</li>
+                  <li><strong>Don’t use for:</strong> multiple selections (Checkbox), one on/off setting (Switch or Checkbox), or long lists (Dropdown).</li>
+                  <li><strong>Best practices:</strong> write clear, parallel option labels; group related options under a legend; keep options visible rather than collapsing them; show selection with the dot and stroke, not colour alone; add a description only where a choice needs context; explain disabled options; report validation at the group level with a text message.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Implementation</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Markup:</strong> <code>&lt;fieldset class="fk-radio-group"&gt;</code> → <code>&lt;legend class="fk-radio-group__legend"&gt;</code> → <code>.fk-radio-group__options</code> → one <code>label.fk-control.fk-radio</code> per option containing <code>input[type="radio"]</code>, <code>.fk-control__indicator</code> (with <code>.fk-control__mark</code>) and <code>.fk-control__content</code> (<code>.fk-control__label</code>, optional <code>.fk-control__desc</code>) → optional <code>.fk-helper</code> / <code>.fk-error</code>.</li>
+                  <li><strong>Independent groups:</strong> every group needs its own <code>name</code>; the docs use <code>demo-radio-*</code> so the examples never affect each other.</li>
+                  <li><strong>States:</strong> <code>checked</code> and <code>disabled</code> are native; add <code>.is-error</code> on the group (or on a single <code>.fk-radio</code>) plus <code>aria-invalid</code> and <code>aria-describedby</code> for validation. The docs clear <code>.is-error</code> on <code>change</code> inside <code>[data-radio-group-error]</code>.</li>
+                  <li><strong>Styling:</strong> the input is visually hidden (1 × 1, opacity 0) and the indicator is styled through sibling selectors (<code>:checked</code>, <code>:disabled</code>, <code>:focus-visible</code>), so keyboard and assistive-technology behaviour stay native.</li>
+                  <li><strong>Theming:</strong> every colour reads <code>--color-radio-*</code>, which switches with <code>[data-theme="dark"]</code>; selections persist across theme changes because state lives in the input.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="checkbox">
@@ -3348,6 +3576,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=34"></script>
+  <script src="script.js?v=35"></script>
 </body>
 </html>

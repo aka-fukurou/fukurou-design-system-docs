@@ -161,6 +161,21 @@
     });
   });
 
+  /* —— Radio Selector: clear group-level error once a valid option is chosen —— */
+  document.querySelectorAll("[data-radio-group-error]").forEach(function (group) {
+    group.addEventListener("change", function (e) {
+      if (!(e.target instanceof HTMLInputElement) || e.target.type !== "radio" || !e.target.checked) return;
+      group.classList.remove("is-error");
+      group.removeAttribute("aria-describedby");
+      group.querySelectorAll('input[type="radio"]').forEach(function (input) {
+        input.removeAttribute("aria-invalid");
+        input.removeAttribute("aria-describedby");
+      });
+      const msg = group.querySelector(".fk-error");
+      if (msg) msg.hidden = true;
+    });
+  });
+
   /* —— Jumbo select (radio group) —— */
   document.querySelectorAll("[data-jumbo-group]").forEach(function (group) {
     const items = Array.from(group.querySelectorAll("[data-jumbo]"));

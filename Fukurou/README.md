@@ -733,6 +733,8 @@ Component tokens: `color/icon-button/background/*`, `color/icon-button/content/*
 
 **Scripts:** `scripts/figma-radio-tokens.js` · `figma-radio.js`
 
+**HTML docs reconciliation (2026-11-02):** the docs Radio Selector now matches the live set (`313:796`) — 20px circle with a **1px inside stroke** in every state, 8px dot, 12px gap, 2px indicator offset, body/md label + body/sm description (4px apart), 48px row. Live **`border/selected` and `dot/selected` resolve to `#000` (Light) / `#fff` (Dark), not the brand red** the docs previously used; Hover = `background/hover` + `border/hover` on unselected; Focus = 2px `focus/ring` + 2px `focus/gap` wrapper with the unselected stroke switching to `border/focus`; Disabled = **60% opacity** on the whole row plus `background/border/dot/label/description` disabled tokens; Error = `border/error` + `label/error`. Colours exposed as `--color-radio-*` for Light and Dark. Preview is the shared two-column gallery (Default / Unselected · Selected · Without description · Radio group "Filing type" · Disabled · Disabled + Selected · Error + message) on native `<input type="radio">` inside `<fieldset>` / `<legend>` (SemiBold 14 legend, 12px gaps), with Anatomy / Tokens / State / Keyboard / Accessibility / Usage / Implementation notes. **Needs verification:** Figma has no group-level error message (Error is per option — docs use the shared caption), the legend has no bound text style, rows stay 48px without a description in Figma, and there is no Active / Pressed variant. Figma file unchanged.
+
 ### Checkbox
 
 **Checkbox** → live name **`Selector / Checkbox`** — for **independent selections**. Use **Selector / Radio Button** for mutually exclusive choices.
