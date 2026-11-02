@@ -460,175 +460,327 @@
     });
   });
 
-  /* —— Date Picker —— */
-  document.querySelectorAll("[data-datepicker]").forEach(function (root) {
-    const trigger = root.querySelector("[data-datepicker-trigger]");
-    const calendar = root.querySelector("[data-datepicker-calendar]");
-    const valueEl = root.querySelector("[data-datepicker-value]");
-    const monthEl = root.querySelector("[data-datepicker-month]");
-    const grid = root.querySelector("[data-datepicker-grid]");
-    const prevBtn = root.querySelector("[data-datepicker-prev]");
-    const nextBtn = root.querySelector("[data-datepicker-next]");
-    const todayBtn = root.querySelector("[data-datepicker-today]");
-    const clearBtn = root.querySelector("[data-datepicker-clear]");
-    if (!trigger || !calendar || !grid) return;
-
-    // Static demo dates mirror the Figma Calendar Popover example (July 2026).
-    const demoToday = new Date(2026, 6, 26);
-    const demoDisabled = [new Date(2026, 6, 28)];
-    const demoUnavailable = [new Date(2026, 5, 30)];
-    let view = new Date(2026, 6, 1);
-    let selected = null;
-
-    const monthNames = [
+  /* —— Date Picker (WAI-ARIA APG Date Picker Dialog pattern; Figma Component/Date Picker 745:2579) —— */
+  (function () {
+    const MONTHS = [
       "January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
     ];
+    const WEEKDAYS = [
+      ["Su", "Sunday"], ["Mo", "Monday"], ["Tu", "Tuesday"], ["We", "Wednesday"],
+      ["Th", "Thursday"], ["Fr", "Friday"], ["Sa", "Saturday"]
+    ];
+    const ICON_PREV = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.77 3.77 16 2 6 12l10 10 1.77-1.77L9.54 12z"/></svg>';
+    const ICON_NEXT = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"/></svg>';
 
-    function formatDisplay(d) {
-      return monthNames[d.getMonth()].slice(0, 3) + " " + d.getDate() + ", " + d.getFullYear();
+    const pad2 = (n) => String(n).padStart(2, "0");
+    // Local-time construction only: no Date.parse / toISOString, so a day never shifts across time zones.
+    function parseISO(str) {
+      if (!str) return null;
+      const m = /^(\d{4})-(\d{1,2})(?:-(\d{1,2}))?$/.exec(String(str).trim());
+      if (!m) return null;
+      return new Date(Number(m[1]), Number(m[2]) - 1, m[3] ? Number(m[3]) : 1);
     }
-
+    function parseList(str) {
+      return String(str || "").split(",").map(parseISO).filter(Boolean);
+    }
+    function toISO(d) {
+      return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+    }
     function sameDay(a, b) {
-      return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+      return !!a && !!b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
     }
-
     function inList(list, d) {
-      return list.some(function (x) { return sameDay(x, d); });
+      return list.some((x) => sameDay(x, d));
+    }
+    function formatDisplay(d) {
+      return MONTHS[d.getMonth()].slice(0, 3) + " " + d.getDate() + ", " + d.getFullYear();
+    }
+    function formatLong(d) {
+      return WEEKDAYS[d.getDay()][1] + ", " + MONTHS[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+    }
+    function addDays(d, n) {
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+    }
+    function addMonths(d, n) {
+      const target = new Date(d.getFullYear(), d.getMonth() + n, 1);
+      const last = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
+      return new Date(target.getFullYear(), target.getMonth(), Math.min(d.getDate(), last));
+    }
+    function startOfMonth(d) {
+      return new Date(d.getFullYear(), d.getMonth(), 1);
     }
 
-    function close() {
-      calendar.hidden = true;
-      trigger.setAttribute("aria-expanded", "false");
-    }
+    document.querySelectorAll("[data-datepicker]").forEach(function (root, index) {
+      const trigger = root.querySelector("[data-datepicker-trigger]");
+      const calendar = root.querySelector("[data-datepicker-calendar]");
+      const valueEl = root.querySelector("[data-datepicker-value]");
+      if (!trigger || !calendar) return;
 
-    function open() {
-      calendar.hidden = false;
-      trigger.setAttribute("aria-expanded", "true");
-      render();
-    }
+      const wrap = trigger.closest(".fk-datepicker") || root;
+      const isStatic = root.hasAttribute("data-datepicker-static");
+      const baseId = calendar.id || "fk-dp-" + index;
+      const placeholder = root.dataset.datepickerPlaceholder || "Select date";
 
-    function render() {
-      const year = view.getFullYear();
-      const month = view.getMonth();
-      if (monthEl) monthEl.textContent = monthNames[month] + " " + year;
+      const realToday = new Date();
+      realToday.setHours(0, 0, 0, 0);
+      const today = parseISO(root.dataset.datepickerToday) || realToday;
+      const disabledDates = parseList(root.dataset.datepickerDisabled);
+      const unavailableDates = parseList(root.dataset.datepickerUnavailable);
 
-      const first = new Date(year, month, 1);
-      const startPad = first.getDay();
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-      const prevDays = new Date(year, month, 0).getDate();
-      const today = demoToday;
+      let selected = parseISO(root.dataset.datepickerSelected);
+      let view = parseISO(root.dataset.datepickerView) || startOfMonth(selected || today);
+      let focusDate = selected || today;
 
-      grid.innerHTML = "";
-      const total = Math.ceil((startPad + daysInMonth) / 7) * 7;
-      for (let i = 0; i < total; i++) {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "fk-calendar__day";
+      /* Build the Calendar Popover once: header (nav + live month), grid table, footer. */
+      calendar.innerHTML =
+        '<div class="fk-calendar__header">' +
+          '<button type="button" class="fk-calendar__nav" data-datepicker-prev aria-label="Previous month">' + ICON_PREV + "</button>" +
+          '<h5 class="fk-calendar__month" id="' + baseId + '-month" data-datepicker-month aria-live="polite"></h5>' +
+          '<button type="button" class="fk-calendar__nav" data-datepicker-next aria-label="Next month">' + ICON_NEXT + "</button>" +
+        "</div>" +
+        '<table class="fk-calendar__table" role="grid" aria-labelledby="' + baseId + '-month">' +
+          '<thead role="rowgroup"><tr role="row">' +
+            WEEKDAYS.map((w) => '<th role="columnheader" scope="col" class="fk-calendar__weekday" aria-label="' + w[1] + '">' + w[0] + "</th>").join("") +
+          "</tr></thead>" +
+          '<tbody role="rowgroup" data-datepicker-grid></tbody>' +
+        "</table>" +
+        '<div class="fk-calendar__footer">' +
+          '<button type="button" class="fk-calendar__footer-btn" data-datepicker-today>Today</button>' +
+          '<button type="button" class="fk-calendar__footer-btn" data-datepicker-clear>Clear</button>' +
+        "</div>";
 
-        let dayNum;
-        let cellDate;
-        let outside = false;
+      const monthEl = calendar.querySelector("[data-datepicker-month]");
+      const grid = calendar.querySelector("[data-datepicker-grid]");
+      const prevBtn = calendar.querySelector("[data-datepicker-prev]");
+      const nextBtn = calendar.querySelector("[data-datepicker-next]");
+      const todayBtn = calendar.querySelector("[data-datepicker-today]");
+      const clearBtn = calendar.querySelector("[data-datepicker-clear]");
 
-        if (i < startPad) {
-          dayNum = prevDays - startPad + i + 1;
-          cellDate = new Date(year, month - 1, dayNum);
-          outside = true;
-        } else if (i >= startPad + daysInMonth) {
-          dayNum = i - startPad - daysInMonth + 1;
-          cellDate = new Date(year, month + 1, dayNum);
-          outside = true;
-        } else {
-          dayNum = i - startPad + 1;
-          cellDate = new Date(year, month, dayNum);
+      function isDisabledDate(d) {
+        return inList(disabledDates, d) || inList(unavailableDates, d);
+      }
+
+      function isOpen() {
+        return !calendar.hidden;
+      }
+
+      function setValue(d) {
+        selected = d;
+        if (valueEl) {
+          valueEl.textContent = d ? formatDisplay(d) : placeholder;
+          valueEl.classList.toggle("is-placeholder", !d);
+        }
+        root.classList.toggle("is-filled", !!d);
+      }
+
+      function render() {
+        if (monthEl) monthEl.textContent = MONTHS[view.getMonth()] + " " + view.getFullYear();
+
+        const year = view.getFullYear();
+        const month = view.getMonth();
+        const startPad = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const totalCells = Math.ceil((startPad + daysInMonth) / 7) * 7;
+
+        // Keep the roving tabindex on a day that is visible in this month.
+        if (focusDate.getFullYear() !== year || focusDate.getMonth() !== month) {
+          focusDate = new Date(year, month, Math.min(focusDate.getDate(), daysInMonth));
         }
 
-        btn.textContent = String(dayNum);
-        btn.setAttribute("role", "gridcell");
-        btn.setAttribute("aria-label", formatDisplay(cellDate));
-
-        if (outside) btn.classList.add("is-outside");
-        if (sameDay(cellDate, today)) {
-          btn.classList.add("is-today");
-          btn.setAttribute("aria-current", "date");
-        }
-        if (inList(demoUnavailable, cellDate)) {
-          btn.classList.add("is-unavailable");
-          btn.disabled = true;
-        }
-        if (inList(demoDisabled, cellDate)) {
-          btn.disabled = true;
-        }
-
-        btn.setAttribute("aria-selected", sameDay(cellDate, selected) ? "true" : "false");
-
-        btn.addEventListener("click", function () {
-          selected = cellDate;
-          if (valueEl) {
-            valueEl.textContent = formatDisplay(selected);
-            valueEl.classList.remove("is-placeholder");
+        grid.innerHTML = "";
+        let row = null;
+        for (let i = 0; i < totalCells; i++) {
+          if (i % 7 === 0) {
+            row = document.createElement("tr");
+            row.setAttribute("role", "row");
+            grid.appendChild(row);
           }
-          close();
-          trigger.focus();
-        });
-
-        grid.appendChild(btn);
+          const cellDate = new Date(year, month, i - startPad + 1);
+          const outside = cellDate.getMonth() !== month;
+          const disabled = isDisabledDate(cellDate);
+          const td = document.createElement("td");
+          td.className = "fk-calendar__day";
+          td.setAttribute("role", "gridcell");
+          td.textContent = String(cellDate.getDate());
+          td.dataset.date = toISO(cellDate);
+          td.setAttribute("aria-label", formatLong(cellDate));
+          td.setAttribute("aria-selected", sameDay(cellDate, selected) ? "true" : "false");
+          td.setAttribute("tabindex", sameDay(cellDate, focusDate) ? "0" : "-1");
+          if (outside) td.classList.add("is-outside");
+          if (inList(unavailableDates, cellDate)) td.classList.add("is-unavailable");
+          if (disabled) td.setAttribute("aria-disabled", "true");
+          if (sameDay(cellDate, today)) {
+            td.classList.add("is-today");
+            td.setAttribute("aria-current", "date");
+          }
+          row.appendChild(td);
+        }
       }
-    }
 
-    trigger.addEventListener("click", function () {
-      if (calendar.hidden) open();
-      else close();
-    });
+      function focusCell(d) {
+        focusDate = d;
+        if (d.getFullYear() !== view.getFullYear() || d.getMonth() !== view.getMonth()) {
+          view = startOfMonth(d);
+        }
+        render();
+        const cell = grid.querySelector('[data-date="' + toISO(d) + '"]');
+        if (cell) cell.focus();
+      }
 
-    if (prevBtn) {
+      function position() {
+        if (isStatic) return;
+        calendar.classList.remove("is-above");
+        const rect = trigger.getBoundingClientRect();
+        const height = calendar.offsetHeight || 344;
+        const spaceBelow = window.innerHeight - rect.bottom;
+        if (spaceBelow < height + 2 && rect.top > height + 2) calendar.classList.add("is-above");
+      }
+
+      function open(moveFocus) {
+        if (trigger.disabled || isOpen()) return;
+        view = startOfMonth(selected || today);
+        focusDate = selected || today;
+        calendar.hidden = false;
+        calendar.classList.add("is-open");
+        wrap.classList.add("is-open");
+        trigger.setAttribute("aria-expanded", "true");
+        render();
+        position();
+        if (moveFocus) focusCell(focusDate);
+      }
+
+      function close(restoreFocus) {
+        if (isStatic || !isOpen()) return;
+        calendar.hidden = true;
+        calendar.classList.remove("is-open", "is-above");
+        wrap.classList.remove("is-open");
+        trigger.setAttribute("aria-expanded", "false");
+        if (restoreFocus) trigger.focus();
+      }
+
+      function select(d) {
+        if (isDisabledDate(d)) return;
+        setValue(d);
+        if (isStatic) {
+          focusCell(d);
+          return;
+        }
+        close(true);
+      }
+
+      /* Trigger */
+      trigger.addEventListener("click", function () {
+        if (isStatic) return;
+        if (isOpen()) close(false);
+        else open(true);
+      });
+
+      trigger.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+          e.preventDefault();
+          if (isOpen()) focusCell(focusDate);
+          else open(true);
+        }
+      });
+
+      /* Day grid: pointer */
+      grid.addEventListener("click", function (e) {
+        const td = e.target.closest("td[data-date]");
+        if (!td) return;
+        const d = parseISO(td.dataset.date);
+        if (!d || td.getAttribute("aria-disabled") === "true") return;
+        select(d);
+      });
+
+      /* Dialog keyboard model */
+      calendar.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          if (isStatic) {
+            trigger.focus();
+          } else {
+            close(true);
+          }
+          return;
+        }
+
+        if (e.key === "Tab") {
+          const activeDay = grid.querySelector('td[tabindex="0"]');
+          const order = [prevBtn, nextBtn, activeDay, todayBtn, clearBtn].filter(Boolean);
+          const i = order.indexOf(document.activeElement);
+          if (i === -1) return;
+          let next = i + (e.shiftKey ? -1 : 1);
+          if (next < 0) next = order.length - 1;
+          if (next >= order.length) next = 0;
+          e.preventDefault();
+          order[next].focus();
+          return;
+        }
+
+        const td = e.target.closest && e.target.closest("td[data-date]");
+        if (!td) return;
+        const current = parseISO(td.dataset.date);
+        if (!current) return;
+        let target = null;
+        switch (e.key) {
+          case "ArrowRight": target = addDays(current, 1); break;
+          case "ArrowLeft": target = addDays(current, -1); break;
+          case "ArrowDown": target = addDays(current, 7); break;
+          case "ArrowUp": target = addDays(current, -7); break;
+          case "Home": target = addDays(current, -current.getDay()); break;
+          case "End": target = addDays(current, 6 - current.getDay()); break;
+          case "PageUp": target = e.shiftKey ? addMonths(current, -12) : addMonths(current, -1); break;
+          case "PageDown": target = e.shiftKey ? addMonths(current, 12) : addMonths(current, 1); break;
+          case "Enter":
+          case " ":
+            e.preventDefault();
+            select(current);
+            return;
+          default:
+            return;
+        }
+        e.preventDefault();
+        focusCell(target);
+      });
+
+      /* Month navigation */
       prevBtn.addEventListener("click", function () {
-        view = new Date(view.getFullYear(), view.getMonth() - 1, 1);
+        view = addMonths(view, -1);
         render();
       });
-    }
-    if (nextBtn) {
       nextBtn.addEventListener("click", function () {
-        view = new Date(view.getFullYear(), view.getMonth() + 1, 1);
+        view = addMonths(view, 1);
         render();
       });
-    }
-    if (todayBtn) {
+
+      /* Footer */
       todayBtn.addEventListener("click", function () {
-        const t = demoToday;
-        selected = t;
-        view = new Date(t.getFullYear(), t.getMonth(), 1);
-        if (valueEl) {
-          valueEl.textContent = formatDisplay(selected);
-          valueEl.classList.remove("is-placeholder");
-        }
-        render();
+        select(today);
       });
-    }
-    if (clearBtn) {
       clearBtn.addEventListener("click", function () {
-        selected = null;
-        if (valueEl) {
-          valueEl.textContent = "Select date";
-          valueEl.classList.add("is-placeholder");
-        }
+        setValue(null);
         render();
       });
-    }
 
-    document.addEventListener("click", function (e) {
-      if (!root.contains(e.target)) close();
-    });
+      /* Dismissal */
+      document.addEventListener("pointerdown", function (e) {
+        if (!isStatic && isOpen() && !root.contains(e.target)) close(false);
+      });
+      window.addEventListener("resize", function () {
+        if (isOpen()) position();
+      });
 
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !calendar.hidden) {
-        close();
-        trigger.focus();
+      /* Initial state */
+      setValue(selected);
+      render();
+      if (isStatic) {
+        calendar.hidden = false;
+        calendar.classList.add("is-open");
+        trigger.setAttribute("aria-expanded", "true");
       }
     });
-
-    render();
-  });
+  })();
 
   /* —— Progress slider —— */
   document.querySelectorAll("[data-progress-demo]").forEach(function (demo) {

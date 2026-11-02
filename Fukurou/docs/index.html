@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=32" />
+  <link rel="stylesheet" href="styles.css?v=33" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -2338,125 +2338,298 @@
               <h3>Date Picker</h3>
               <span class="badge badge--ok">Public</span>
             </div>
-            <p>Select one specific calendar date (appointment, due date, birth date, start date, report date). Aligns with Text Field / Search Field / Dropdown form-control behavior. <strong>Not</strong> for date ranges — use a dedicated Date Range Picker pattern when it is available.</p>
-
-            <h4>Anatomy</h4>
+            <p><code>Date Picker</code> is a single-date form control that shares Text Field’s label, border, focus-ring, and support-text model. Medium trigger 48 / padding 16, Small 40 / padding 12, radius 8, 1px stroke, 24px <code>calendar_today</code> icon on the right. The <code>Calendar Popover</code> opens 2px below the trigger: 308px wide, 16px padding, radius 12, 1px border, <code>elevation/Popover</code>, 32px month navigation, 12px weekday labels, and 36px circular day cells with 4px gaps. Date Range Picker is <strong>not</strong> a current component.</p>
+            <h4>Variants &amp; states</h4>
             <ul>
-              <li><strong>Label row</strong> — label + optional required indicator</li>
-              <li><strong>Date input trigger</strong> — placeholder or selected date + calendar icon</li>
-              <li><strong>Support text</strong> — helper or error</li>
-              <li><strong>Calendar popover</strong> — separate open-state surface (header, weekdays, day grid, Today / Clear)</li>
+              <li><strong>Field state:</strong> Default · Hover (1px <code>border/hover</code>) · Active / open (2px <code>border/active</code>, icon switches to <code>icon/active</code>) · Filled · Error (1px <code>border/error</code>, red label + message) · Error Active · Disabled (disabled background, border, text, and icon tokens)</li>
+              <li><strong>Focus Visible:</strong> <code>Focus Ring</code> boolean — 2px <code>color/date-picker/focus/ring</code> outside a 2px page-coloured gap, radius 10. Keyboard only (<code>:focus-visible</code>).</li>
+              <li><strong>Calendar day state:</strong> Default · Hover · Focus · Selected · Today · Disabled · Outside month (unavailable days are struck through)</li>
+              <li><strong>Size:</strong> Small (40) · Medium (48)</li>
+              <li><strong>Booleans:</strong> Show label · Required · Helper Text · Error Text · Show calendar icon · Focus Ring</li>
             </ul>
-
-            <h4>States &amp; sizes</h4>
-            <ul>
-              <li><strong>State:</strong> Default · Hover · Active · Filled · Error · Error Active · Disabled</li>
-              <li><strong>Focus Visible:</strong> <code>Focus Ring</code> boolean (same model as Text Field)</li>
-              <li><strong>Size:</strong> Small (~40px) · Medium (~48px)</li>
-              <li><strong>Properties:</strong> Show label · Required · Helper Text · Error Text · Show calendar icon · text props</li>
-            </ul>
-
             <div class="preview-panel">
               <div class="preview-label">Interactive preview</div>
-              <div class="fk-datepicker" data-datepicker>
-                <div class="fk-field fk-field--wide">
-                  <div class="fk-field__label-row">
-                    <label id="demo-dp-label" for="demo-dp-trigger">Date</label>
-                    <span class="fk-field__required" aria-hidden="true">*</span>
+              <div class="tf-state-list" role="list" aria-label="Date Picker examples">
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Default</p>
+                    <p class="tf-state-row__note">Placeholder before selection. Click, Enter, Space, or ↓ opens the calendar on today’s month; arrow keys move between days, Enter selects.</p>
                   </div>
-                  <div class="fk-datepicker__anchor">
-                    <button
-                      type="button"
-                      id="demo-dp-trigger"
-                      class="fk-datepicker__trigger"
-                      data-datepicker-trigger
-                      aria-haspopup="dialog"
-                      aria-expanded="false"
-                      aria-controls="demo-dp-calendar"
-                      aria-labelledby="demo-dp-label"
-                    >
-                      <span class="fk-datepicker__value is-placeholder" data-datepicker-value>Select date</span>
-                      <svg class="fk-datepicker__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                        <rect x="3.5" y="5.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.75"/>
-                        <path d="M8 3.5v4M16 3.5v4M3.5 10h17" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                      </svg>
-                    </button>
-                    <div
-                      class="fk-calendar"
-                      id="demo-dp-calendar"
-                      data-datepicker-calendar
-                      role="dialog"
-                      aria-modal="false"
-                      aria-labelledby="demo-dp-month"
-                      hidden
-                    >
-                  <div class="fk-calendar__header">
-                    <button type="button" class="fk-calendar__nav" data-datepicker-prev aria-label="Previous month">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                    <p class="fk-calendar__month" id="demo-dp-month" data-datepicker-month>July 2026</p>
-                    <button type="button" class="fk-calendar__nav" data-datepicker-next aria-label="Next month">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                  </div>
-                  <div class="fk-calendar__weekdays" aria-hidden="true">
-                    <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-                  </div>
-                  <div class="fk-calendar__grid" data-datepicker-grid role="grid" aria-labelledby="demo-dp-month"></div>
-                  <div class="fk-calendar__footer">
-                    <button type="button" class="fk-calendar__footer-btn" data-datepicker-today>Today</button>
-                    <button type="button" class="fk-calendar__footer-btn" data-datepicker-clear>Clear</button>
-                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-field fk-dp" data-datepicker>
+                      <div class="fk-field__label-row">
+                        <label id="demo-dp-label" for="demo-dp-trigger">Date</label>
+                      </div>
+                      <div class="fk-datepicker">
+                        <button type="button" id="demo-dp-trigger" class="fk-datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="demo-dp-calendar" aria-labelledby="demo-dp-label demo-dp-value" aria-describedby="demo-dp-helper">
+                          <span class="fk-datepicker__value is-placeholder" id="demo-dp-value" data-datepicker-value>Select date</span>
+                          <svg class="fk-datepicker__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+                        </button>
+                        <div class="fk-calendar" id="demo-dp-calendar" data-datepicker-calendar role="dialog" aria-modal="true" aria-label="Choose date" hidden></div>
+                      </div>
+                      <p class="fk-helper" id="demo-dp-helper">Choose a date from the calendar.</p>
                     </div>
                   </div>
-                  <p class="fk-helper" id="demo-dp-helper">Choose a date from the calendar.</p>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Selected date</p>
+                    <p class="tf-state-row__note">Filled state shows the chosen date as <code>Mon D, YYYY</code>; reopening the calendar returns to that month with the day highlighted.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-field fk-dp" data-datepicker data-datepicker-selected="2026-07-26">
+                      <div class="fk-field__label-row">
+                        <label id="demo-dp-filled-label" for="demo-dp-filled-trigger">Date</label>
+                      </div>
+                      <div class="fk-datepicker">
+                        <button type="button" id="demo-dp-filled-trigger" class="fk-datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="demo-dp-filled-calendar" aria-labelledby="demo-dp-filled-label demo-dp-filled-value" aria-describedby="demo-dp-filled-helper">
+                          <span class="fk-datepicker__value" id="demo-dp-filled-value" data-datepicker-value>Jul 26, 2026</span>
+                          <svg class="fk-datepicker__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+                        </button>
+                        <div class="fk-calendar" id="demo-dp-filled-calendar" data-datepicker-calendar role="dialog" aria-modal="true" aria-label="Choose date" hidden></div>
+                      </div>
+                      <p class="fk-helper" id="demo-dp-filled-helper">Choose a date from the calendar.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Calendar open</p>
+                    <p class="tf-state-row__note">Active trigger with the Calendar Popover kept open and fully interactive. Mirrors the Figma example: July 2026, Selected 15, Today 26, Disabled 28, unavailable Jun 30. The popover is rendered in flow here so it does not cover the rows below.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-field fk-dp" data-datepicker data-datepicker-static data-datepicker-view="2026-07" data-datepicker-selected="2026-07-15" data-datepicker-today="2026-07-26" data-datepicker-disabled="2026-07-28" data-datepicker-unavailable="2026-06-30">
+                      <div class="fk-field__label-row">
+                        <label id="demo-dp-open-label" for="demo-dp-open-trigger">Date</label>
+                      </div>
+                      <div class="fk-datepicker fk-datepicker--static">
+                        <button type="button" id="demo-dp-open-trigger" class="fk-datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="demo-dp-open-calendar" aria-labelledby="demo-dp-open-label demo-dp-open-value">
+                          <span class="fk-datepicker__value" id="demo-dp-open-value" data-datepicker-value>Jul 15, 2026</span>
+                          <svg class="fk-datepicker__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+                        </button>
+                        <div class="fk-calendar" id="demo-dp-open-calendar" data-datepicker-calendar role="dialog" aria-modal="false" aria-label="Choose date" hidden></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Error + message</p>
+                    <p class="tf-state-row__note">Red label, 1px <code>border/error</code>, error-coloured icon, and a caption message linked with <code>aria-describedby</code>. The demo stays in error for inspection; product code clears it on a valid selection.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-field fk-dp is-error" data-datepicker data-datepicker-selected="2026-07-26">
+                      <div class="fk-field__label-row">
+                        <label id="demo-dp-err-label" for="demo-dp-err-trigger">Date</label>
+                      </div>
+                      <div class="fk-datepicker">
+                        <button type="button" id="demo-dp-err-trigger" class="fk-datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="demo-dp-err-calendar" aria-labelledby="demo-dp-err-label demo-dp-err-value" aria-invalid="true" aria-describedby="demo-dp-err-msg">
+                          <span class="fk-datepicker__value" id="demo-dp-err-value" data-datepicker-value>Jul 26, 2026</span>
+                          <svg class="fk-datepicker__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+                        </button>
+                        <div class="fk-calendar" id="demo-dp-err-calendar" data-datepicker-calendar role="dialog" aria-modal="true" aria-label="Choose date" hidden></div>
+                      </div>
+                      <p class="fk-error" id="demo-dp-err-msg" role="alert">Select a valid date.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled</p>
+                    <p class="tf-state-row__note">Unavailable control using native <code>disabled</code>; the calendar cannot open and helper text uses the disabled token.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-field fk-dp is-disabled" data-datepicker>
+                      <div class="fk-field__label-row">
+                        <label id="demo-dp-dis-label" for="demo-dp-dis-trigger">Date</label>
+                      </div>
+                      <div class="fk-datepicker">
+                        <button type="button" id="demo-dp-dis-trigger" class="fk-datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="demo-dp-dis-calendar" aria-labelledby="demo-dp-dis-label demo-dp-dis-value" aria-describedby="demo-dp-dis-helper" disabled>
+                          <span class="fk-datepicker__value is-placeholder" id="demo-dp-dis-value" data-datepicker-value>Select date</span>
+                          <svg class="fk-datepicker__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+                        </button>
+                        <div class="fk-calendar" id="demo-dp-dis-calendar" data-datepicker-calendar role="dialog" aria-modal="true" aria-label="Choose date" hidden></div>
+                      </div>
+                      <p class="fk-helper" id="demo-dp-dis-helper">Choose a date from the calendar.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Required</p>
+                    <p class="tf-state-row__note">Visual asterisk in <code>label/error</code>; the trigger uses <code>aria-required</code>.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-field fk-dp" data-datepicker>
+                      <div class="fk-field__label-row">
+                        <label id="demo-dp-req-label" for="demo-dp-req-trigger">Date</label>
+                        <span class="fk-field__required" aria-hidden="true">*</span>
+                      </div>
+                      <div class="fk-datepicker">
+                        <button type="button" id="demo-dp-req-trigger" class="fk-datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="demo-dp-req-calendar" aria-labelledby="demo-dp-req-label demo-dp-req-value" aria-required="true" aria-describedby="demo-dp-req-helper">
+                          <span class="fk-datepicker__value is-placeholder" id="demo-dp-req-value" data-datepicker-value>Select date</span>
+                          <svg class="fk-datepicker__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+                        </button>
+                        <div class="fk-calendar" id="demo-dp-req-calendar" data-datepicker-calendar role="dialog" aria-modal="true" aria-label="Choose date" hidden></div>
+                      </div>
+                      <p class="fk-helper" id="demo-dp-req-helper">Choose a date from the calendar.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Without calendar icon</p>
+                    <p class="tf-state-row__note"><code>Show calendar icon = false</code>. The trigger keeps the same height, padding, and behaviour.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-field fk-dp" data-datepicker>
+                      <div class="fk-field__label-row">
+                        <label id="demo-dp-noicon-label" for="demo-dp-noicon-trigger">Date</label>
+                      </div>
+                      <div class="fk-datepicker">
+                        <button type="button" id="demo-dp-noicon-trigger" class="fk-datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="demo-dp-noicon-calendar" aria-labelledby="demo-dp-noicon-label demo-dp-noicon-value">
+                          <span class="fk-datepicker__value is-placeholder" id="demo-dp-noicon-value" data-datepicker-value>Select date</span>
+                        </button>
+                        <div class="fk-calendar" id="demo-dp-noicon-calendar" data-datepicker-calendar role="dialog" aria-modal="true" aria-label="Choose date" hidden></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Small</p>
+                    <p class="tf-state-row__note">40px trigger, 12px padding, 14/20 text. The Calendar Popover is the same size for both trigger sizes.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-field fk-dp" data-datepicker>
+                      <div class="fk-field__label-row">
+                        <label id="demo-dp-sm-label" for="demo-dp-sm-trigger">Date</label>
+                      </div>
+                      <div class="fk-datepicker fk-datepicker--sm">
+                        <button type="button" id="demo-dp-sm-trigger" class="fk-datepicker__trigger" data-datepicker-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="demo-dp-sm-calendar" aria-labelledby="demo-dp-sm-label demo-dp-sm-value" aria-describedby="demo-dp-sm-helper">
+                          <span class="fk-datepicker__value is-placeholder" id="demo-dp-sm-value" data-datepicker-value>Select date</span>
+                          <svg class="fk-datepicker__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+                        </button>
+                        <div class="fk-calendar" id="demo-dp-sm-calendar" data-datepicker-calendar role="dialog" aria-modal="true" aria-label="Choose date" hidden></div>
+                      </div>
+                      <p class="fk-helper" id="demo-dp-sm-helper">Choose a date from the calendar.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Calendar day states</p>
+                    <p class="tf-state-row__note">Static reference for <code>.Base / Calendar / Day Cell</code>: 36px circles, body/sm text. Hover and Focus are shown here for comparison only — in the live calendar they come from the pointer and keyboard.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <ul class="fk-cal-states" aria-label="Calendar day cell states">
+                      <li><span class="fk-calendar__day" aria-hidden="true">15</span><span class="fk-cal-states__label">Default</span></li>
+                      <li><span class="fk-calendar__day is-hover" aria-hidden="true">15</span><span class="fk-cal-states__label">Hover</span></li>
+                      <li><span class="fk-calendar__day is-focus" aria-hidden="true">15</span><span class="fk-cal-states__label">Focus</span></li>
+                      <li><span class="fk-calendar__day is-selected" aria-hidden="true">15</span><span class="fk-cal-states__label">Selected</span></li>
+                      <li><span class="fk-calendar__day is-today" aria-hidden="true">26</span><span class="fk-cal-states__label">Today</span></li>
+                      <li><span class="fk-calendar__day" aria-disabled="true" aria-hidden="true">15</span><span class="fk-cal-states__label">Disabled</span></li>
+                      <li><span class="fk-calendar__day is-outside is-unavailable" aria-hidden="true">30</span><span class="fk-cal-states__label">Outside</span></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <h4>Calendar day states</h4>
-            <ul>
-              <li>Default · Hover · Focus Visible · Selected · Today · Disabled · Outside month</li>
-              <li>Day cells are 36px circles (<code>radius/full</code>). Hover and Selected are circular fills; Today is a 2px circular outline; Focus Visible is a 2px <code>color/calendar/day/focus-ring</code> outline.</li>
-              <li>Selected uses <code>color/calendar/day/background/selected</code> + inverse text (not color alone). Today keeps default text with a distinct border.</li>
-              <li>Demo dates mirror the Figma example: Today = Jul 26 · Disabled = Jul 28 · Unavailable (outside, struck through) = Jun 30.</li>
-            </ul>
-
-            <h4>Calendar navigation</h4>
-            <p>Previous/Next month controls use the internal <code>.Base / Calendar / Nav Button</code> component (calendar-specific; visually inspired by Icon Button but not an Icon Button instance). In product code, give them accessible labels <code>Previous month</code> and <code>Next month</code>.</p>
-
             <div class="do-dont">
               <article class="do">
                 <h4>Do</h4>
-                <p>Use Date Picker when users need to select one specific date. Provide a visible label or accessible name. Keep the calendar popover separate from the closed trigger so layout does not reserve empty popover space.</p>
+                <p>Use Date Picker for one specific calendar date — appointments, due dates, scheduling, and date-based filters. Keep the visible label, explain constraints in helper text, and pair any error colour with a text message.</p>
               </article>
               <article class="dont">
                 <h4>Don’t</h4>
-                <p>Don’t use this for date ranges. Don’t rely on placeholder or the calendar icon as the only label. Don’t recreate Multi-Select Dropdown or Date Range Picker from older templates.</p>
+                <p>Don’t use it for a time without a date, or for date ranges — Date Range Picker is not a current Fukurou component. Don’t rely on the placeholder or the calendar icon as the only label, and don’t disable dates without telling users why.</p>
               </article>
             </div>
-
             <section class="doc-note" aria-label="Date Picker implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Anatomy</h4>
+                <ul class="doc-note__list">
+                  <li><strong>1 Field label</strong> — <code>label-row</code>: body/sm label plus an optional <strong>2 required indicator</strong> (12px SemiBold asterisk in <code>label/error</code>). <code>Show label = false</code> requires an <code>aria-label</code> on the trigger.</li>
+                  <li><strong>3 Date input / trigger</strong> — <code>input-container</code> button: 48px (Medium) or 40px (Small), 16 / 12px horizontal padding, 8px gap, radius 8, 1px <code>border/default</code>.</li>
+                  <li><strong>4 Placeholder / selected value</strong> — <code>text/placeholder</code> “Select date” or <code>text/value</code> formatted <code>Mon D, YYYY</code>; long values truncate with an ellipsis.</li>
+                  <li><strong>5 Calendar icon</strong> — 24px <code>calendar_today</code> on the trailing edge, <code>icon/default</code> → <code>icon/active</code> when open; optional via <code>Show calendar icon</code>.</li>
+                  <li><strong>6 Helper / error message</strong> — caption/md below the trigger: <code>helper/default</code> or <code>error/default</code>.</li>
+                  <li><strong>7 Calendar Popover</strong> — 308 × 344 surface, 16px padding, 12px vertical gap, radius 12, 1px <code>calendar/border/default</code>, <code>elevation/Popover</code>, 2px below the trigger.</li>
+                  <li><strong>8 Month / year header</strong> — 32px row: body/md centred title between <strong>9 Previous / Next</strong> <code>.Base / Calendar / Nav Button</code> controls (32px, radius 4, 16px <code>arrow_back_ios_new</code> / <code>arrow_forward_ios</code>).</li>
+                  <li><strong>10 Weekday headers</strong> — 24px row of caption/md labels (Su … Sa) in <code>calendar/week/text/default</code>.</li>
+                  <li><strong>11 Day cells</strong> — 7-column grid of 36px circles with 4px gaps, body/sm numerals; Today = 2px <code>day/border/today</code> outline, Selected = <code>day/background/selected</code> fill + inverse text.</li>
+                  <li><strong>12 Footer</strong> — 24px row with <strong>Today</strong> and <strong>Clear</strong> text actions in <code>calendar/footer/text/default</code>.</li>
+                </ul>
+              </div>
               <div class="doc-note__group">
                 <h4 class="doc-note__title">Tokens</h4>
                 <ul class="doc-note__list">
-                  <li><strong>Color:</strong> <code>color/date-picker/*</code>, <code>color/calendar/*</code>.</li>
-                  <li><strong>Elevation:</strong> <code>elevation/calendar/default</code>.</li>
-                  <li><strong>Density:</strong> <code>density/calendar/*</code>.</li>
-                  <li><strong>Internal:</strong> <code>.Base / Calendar / Day Cell</code>, <code>.Base / Calendar / Nav Button</code>.</li>
-                  <li><strong>Supporting:</strong> <code>Calendar Popover</code>.</li>
+                  <li><strong>Typography:</strong> label body/sm (Poppins 14/20) · value and placeholder body/md 16/24 (Small: body/sm) · helper and error caption/md 12/16 · month/year body/md · weekday caption/md · day numerals and footer actions body/sm.</li>
+                  <li><strong>Trigger colour:</strong> <code>color/date-picker/background/{default,hover,active,filled,error,disabled}</code>, <code>border/{default #78716c, hover #57534e, active #000, error #dc2626, disabled #d6d3d1}</code>, <code>text/{value, placeholder, disabled}</code>, <code>label/{default, error, disabled}</code>, <code>helper/{default, disabled}</code>, <code>error/default</code>, <code>icon/{default, active, error, disabled}</code>, <code>focus/ring #d33f55</code> — resolved for Light and Dark as <code>--color-date-picker-*</code>.</li>
+                  <li><strong>Calendar colour:</strong> <code>color/calendar/background/default</code>, <code>border/default</code>, <code>header/text/default</code>, <code>week/text/default</code>, <code>day/background/{default, hover #fafaf9, selected #d33f55, today, disabled}</code>, <code>day/text/{default, selected #fff, today, outside #57534e, disabled #78716c}</code>, <code>day/border/today #000</code>, <code>day/focus/ring #d33f55</code>, <code>nav/icon/{default, hover, disabled}</code>, <code>footer/text/default</code> — resolved as <code>--color-calendar-*</code>. Dark: surface <code>#1c1917</code>, Selected <code>#fff</code> with <code>#231f20</code> text, Hover <code>#000</code>, Today and focus rings <code>#fff</code>.</li>
+                  <li><strong>Layout:</strong> trigger 48 / 40 high, padding 16 / 12 (<code>density/text-field/*/padding-x</code>), gap 8, radius 8 (<code>radius/8</code>), focus ring radius 10 · popover width 308, padding 16, gap 12, radius 12 (<code>radius/12</code>), offset <code>spacing/2</code> (2px) · header 32 · weekday row 24 · day cell 36 (<code>density/calendar/day-size</code>), gap 4 (<code>density/calendar/gap</code>), <code>radius/full</code> · footer 24.</li>
+                  <li><strong>Elevation:</strong> <code>elevation/Popover</code> — 0 8 16 rgba(35,31,32,.10) + 0 4 8 rgba(35,31,32,.06) (<code>--elevation-popover</code>); identical in Dark, paired with the Dark surface and border.</li>
+                  <li><strong>Needs verification:</strong> Dark <code>icon/error</code> (docs use the Dark <code>status/danger</code> value) and the Error Active composite in Figma, where the popover overlaps the error message.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Field state behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Default / Filled:</strong> 1px <code>border/default</code>; Filled replaces the placeholder with the formatted value and highlights that day when the calendar reopens.</li>
+                  <li><strong>Hover:</strong> 1px <code>border/hover</code>. Not a separate gallery row.</li>
+                  <li><strong>Active / open:</strong> 2px <code>border/active</code> drawn inside the same 48px box, icon in <code>icon/active</code>, popover visible. Closes on selection, Today, outside click, or Escape.</li>
+                  <li><strong>Focus Visible:</strong> keyboard-only offset ring on the trigger; while the calendar is open the focused day shows the 2px <code>day/focus/ring</code> outline (an offset ring on the Selected day).</li>
+                  <li><strong>Error / Error Active:</strong> <code>aria-invalid</code>, red label and border, error icon colour, and a caption message linked with <code>aria-describedby</code>; Error Active uses the 2px error border.</li>
+                  <li><strong>Disabled:</strong> native <code>disabled</code>, disabled tokens on background, border, text, icon, label, and helper; the calendar never opens.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Calendar day behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Today:</strong> 2px circular <code>day/border/today</code> outline with default text, <code>aria-current="date"</code>; stays visible until that day is selected.</li>
+                  <li><strong>Selected:</strong> circular <code>day/background/selected</code> fill with inverse text and <code>aria-selected="true"</code> — fill plus focus ring, never colour alone.</li>
+                  <li><strong>Hover:</strong> circular <code>day/background/hover</code> fill on enabled, unselected days.</li>
+                  <li><strong>Keyboard Focus Visible:</strong> 2px <code>day/focus/ring</code> circle on the focused day; roving <code>tabindex</code> keeps one day in the tab order.</li>
+                  <li><strong>Disabled:</strong> <code>day/text/disabled</code>, <code>aria-disabled="true"</code>, not selectable by pointer or keyboard; arrow keys still pass over it.</li>
+                  <li><strong>Outside month:</strong> leading and trailing days in <code>day/text/outside</code>; selecting one moves the view to that month. Unavailable days add a strike-through.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Keyboard &amp; focus</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Trigger:</strong> Tab focuses · Enter / Space / ↓ / ↑ open the calendar and move focus to the selected day (or today).</li>
+                  <li><strong>Day grid:</strong> ← → move one day · ↑ ↓ move one week · Home / End move to the first / last day of the week · Page Up / Page Down change month · Shift + Page Up / Page Down change year · Enter / Space select and close.</li>
+                  <li><strong>Dialog:</strong> Tab and Shift + Tab cycle through Previous, Next, the focused day, Today, and Clear · Escape closes and returns focus to the trigger · selecting a date closes and returns focus to the trigger · outside click closes without moving focus.</li>
+                  <li><strong>Pattern:</strong> WAI-ARIA APG Date Picker Dialog — <code>button[aria-haspopup="dialog"]</code> + <code>role="dialog"</code> containing a <code>role="grid"</code> calendar.</li>
                 </ul>
               </div>
               <div class="doc-note__group">
                 <h4 class="doc-note__title">Accessibility</h4>
                 <ul class="doc-note__list">
-                  <li>A visible label or accessible name is required.</li>
-                  <li>Associate error text in product code.</li>
-                  <li>Focus Visible must stay unclipped.</li>
-                  <li>Keyboard users should open the calendar, move between days, select, and close (Escape).</li>
-                  <li>Disabled dates are non-interactive. Exempt / Disabled state for contrast.</li>
-                  <li>Announce the selected date to assistive technology.</li>
-                  <li>The docs example uses semantic buttons for day cells. The calendar icon is decorative (<code>aria-hidden</code>).</li>
+                  <li>Trigger is a <code>&lt;button aria-haspopup="dialog" aria-expanded aria-controls&gt;</code> named by label + current value (<code>aria-labelledby</code>); helper and error text are linked with <code>aria-describedby</code>, errors add <code>aria-invalid</code>, required adds <code>aria-required</code>.</li>
+                  <li>Calendar is <code>role="dialog" aria-modal="true" aria-label="Choose date"</code>; the month heading is <code>aria-live="polite"</code> so Previous / Next announce the new month; nav buttons are labelled “Previous month” / “Next month”.</li>
+                  <li>Days are a <code>&lt;table role="grid"&gt;</code> with <code>columnheader</code> weekday cells (full names via <code>aria-label</code>) and <code>gridcell</code> days whose <code>aria-label</code> is the full date, plus <code>aria-selected</code>, <code>aria-disabled</code>, and <code>aria-current="date"</code>.</li>
+                  <li>Contrast (WCAG 2.2 AA): value, placeholder, label, helper, error, month, weekday, day, outside-day, Selected (white on <code>#d33f55</code>), Today border, and focus rings pass in both themes; Disabled text and days are <strong>Exempt / Disabled state</strong>.</li>
+                  <li>Decorative icons (<code>calendar_today</code>, arrows) are <code>aria-hidden</code>. Manual typing is not part of the Figma component, so the trigger is a button rather than a text input.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Usage guidelines</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Use for:</strong> one specific calendar date — scheduling, appointment booking, due or start dates, and date-based filtering.</li>
+                  <li><strong>Don’t use for:</strong> time-only input, date ranges (single-date component only), or well-known dates such as a birth date, where plain typed fields can be faster.</li>
+                  <li><strong>Best practices:</strong> keep a clear visible label; state constraints (earliest / latest date) in helper text; give specific validation messages and never rely on colour alone; show dates in the user’s locale format; restrict dates only when necessary and make unavailable days visibly different; keep the full keyboard model available.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Implementation</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Value:</strong> hold a single local <code>Date</code> (or ISO <code>YYYY-MM-DD</code>); build dates with <code>new Date(y, m, d)</code> and compare by year / month / day so UTC conversion never shifts a day. The docs display <code>Mon D, YYYY</code>.</li>
+                  <li><strong>Markup:</strong> <code>.fk-field.fk-dp[data-datepicker]</code> → label row → <code>.fk-datepicker</code> with <code>button.fk-datepicker__trigger[data-datepicker-trigger]</code> (value span + icon) and an empty <code>.fk-calendar[data-datepicker-calendar]</code> that the script fills → <code>.fk-helper</code> or <code>.fk-error</code>. Add <code>.fk-datepicker--sm</code> for Small; <code>.is-error</code> / <code>.is-disabled</code> on the field recolour label and helper.</li>
+                  <li><strong>Options (data attributes on the field):</strong> <code>data-datepicker-selected</code>, <code>data-datepicker-view</code> (<code>YYYY-MM</code>), <code>data-datepicker-today</code>, <code>data-datepicker-disabled</code> and <code>data-datepicker-unavailable</code> (comma-separated ISO dates), <code>data-datepicker-static</code> (always-open in-flow calendar for documentation).</li>
+                  <li><strong>Open / close:</strong> the script toggles <code>aria-expanded</code>, <code>.is-open</code>, and <code>hidden</code>; the popover is absolutely positioned 2px below the trigger and flips above (<code>.is-above</code>) when the viewport has no room below. The container that holds it must allow <code>overflow: visible</code>.</li>
+                  <li><strong>Validation:</strong> disabled days carry <code>aria-disabled</code> and ignore selection; show errors by adding <code>.is-error</code>, <code>aria-invalid="true"</code>, and an <code>.fk-error</code> message referenced by <code>aria-describedby</code>.</li>
+                  <li><strong>Theming:</strong> every colour reads <code>--color-date-picker-*</code> / <code>--color-calendar-*</code>, which switch with <code>[data-theme="dark"]</code>; no component-level overrides are needed.</li>
                 </ul>
               </div>
             </section>
@@ -3175,6 +3348,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=32"></script>
+  <script src="script.js?v=33"></script>
 </body>
 </html>

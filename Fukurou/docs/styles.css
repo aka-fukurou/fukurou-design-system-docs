@@ -175,14 +175,52 @@
   --color-border-elevated: #e7e5e4;       /* color/border/elevated → neutral/200 */
   --color-surface-overlay: rgba(0, 0, 0, 0.55); /* color/surface/overlay */
 
-  /* Calendar (color/calendar/* from live Figma) */
+  /* Date Picker trigger (color/date-picker/* from live Figma Component/Date Picker 745:2579) */
+  --color-date-picker-bg: #ffffff;
+  --color-date-picker-bg-disabled: #f5f5f4;
+  --color-date-picker-border: #78716c;
+  --color-date-picker-border-hover: #57534e;
+  --color-date-picker-border-active: #000000;
+  --color-date-picker-border-error: #dc2626;
+  --color-date-picker-border-disabled: #d6d3d1;
+  --color-date-picker-text: #231f20;
+  --color-date-picker-placeholder: #57534e;
+  --color-date-picker-text-disabled: #78716c;
+  --color-date-picker-label: #231f20;
+  --color-date-picker-label-error: #8d1818;
+  --color-date-picker-label-disabled: #78716c;
+  --color-date-picker-helper: #57534e;
+  --color-date-picker-helper-disabled: #78716c;
+  --color-date-picker-error: #8d1818;
+  --color-date-picker-icon: #57534e;
+  --color-date-picker-icon-active: #231f20;
+  --color-date-picker-icon-error: #dc2626;
+  --color-date-picker-icon-disabled: #78716c;
+  --color-date-picker-focus-ring: #d33f55;
+  --color-date-picker-focus-gap: #fafaf9;
+
+  /* Calendar Popover (color/calendar/* from live Figma 743:1973 / Day Cell 743:1955 / Nav Button 761:2392) */
   --color-calendar-bg: #ffffff;
   --color-calendar-border: #78716c;
+  --color-calendar-header-text: #231f20;
+  --color-calendar-week-text: #57534e;
+  --color-calendar-day-bg: #ffffff;
   --color-calendar-day-bg-hover: #fafaf9;
   --color-calendar-day-bg-selected: #d33f55;
+  --color-calendar-day-bg-today: #ffffff;
+  --color-calendar-day-bg-disabled: #ffffff;
+  --color-calendar-day-text: #231f20;
   --color-calendar-day-text-selected: #ffffff;
+  --color-calendar-day-text-today: #231f20;
+  --color-calendar-day-text-outside: #57534e;
+  --color-calendar-day-text-disabled: #78716c;
   --color-calendar-day-border-today: #000000;
   --color-calendar-day-focus-ring: #d33f55;
+  --color-calendar-nav-icon: #57534e;
+  --color-calendar-nav-icon-hover: #231f20;
+  --color-calendar-nav-icon-disabled: #78716c;
+  --color-calendar-nav-bg-hover: #f5f5f4;
+  --color-calendar-footer-text: #231f20;
   --shadow-popover: 0 8px 16px rgba(35, 31, 32, 0.1), 0 4px 8px rgba(35, 31, 32, 0.06);
 
   /* Docs chrome */
@@ -403,13 +441,52 @@
   --color-border-elevated: #57534e;       /* neutral/600 */
   --color-surface-overlay: rgba(255, 255, 255, 0.5);
 
+  /* Date Picker Dark — same semantic aliases as Text Field / Dropdown (surface/card, border/control/*, text/*) */
+  --color-date-picker-bg: #1c1917;
+  --color-date-picker-bg-disabled: #292524;
+  --color-date-picker-border: #a8a29e;
+  --color-date-picker-border-hover: #78716c;
+  --color-date-picker-border-active: #ffffff;
+  --color-date-picker-border-error: #e55e5e;
+  --color-date-picker-border-disabled: #44403c;
+  --color-date-picker-text: #ffffff;
+  --color-date-picker-placeholder: #d6d3d1;
+  --color-date-picker-text-disabled: #a8a29e;
+  --color-date-picker-label: #ffffff;
+  --color-date-picker-label-error: #f4bebe;
+  --color-date-picker-label-disabled: #a8a29e;
+  --color-date-picker-helper: #d6d3d1;
+  --color-date-picker-helper-disabled: #a8a29e;
+  --color-date-picker-error: #f4bebe;
+  --color-date-picker-icon: #d6d3d1;
+  --color-date-picker-icon-active: #ffffff;
+  --color-date-picker-icon-error: #fae1e1; /* Needs verification: Dark icon/error read from status/danger Dark */
+  --color-date-picker-icon-disabled: #a8a29e;
+  --color-date-picker-focus-ring: #ffffff;
+  --color-date-picker-focus-gap: #000000;
+
+  /* Calendar Dark — verified against the Dark open example (770:5325): white Selected, black Hover, white Today ring */
   --color-calendar-bg: #1c1917;
   --color-calendar-border: #a8a29e;
+  --color-calendar-header-text: #ffffff;
+  --color-calendar-week-text: #d6d3d1;
+  --color-calendar-day-bg: #1c1917;
   --color-calendar-day-bg-hover: #000000;
   --color-calendar-day-bg-selected: #ffffff;
+  --color-calendar-day-bg-today: #1c1917;
+  --color-calendar-day-bg-disabled: #1c1917;
+  --color-calendar-day-text: #ffffff;
   --color-calendar-day-text-selected: #231f20;
+  --color-calendar-day-text-today: #ffffff;
+  --color-calendar-day-text-outside: #d6d3d1;
+  --color-calendar-day-text-disabled: #a8a29e;
   --color-calendar-day-border-today: #ffffff;
   --color-calendar-day-focus-ring: #ffffff;
+  --color-calendar-nav-icon: #d6d3d1;
+  --color-calendar-nav-icon-hover: #ffffff;
+  --color-calendar-nav-icon-disabled: #a8a29e;
+  --color-calendar-nav-bg-hover: #292524;
+  --color-calendar-footer-text: #ffffff;
 
   --color-topbar-bg: rgba(0, 0, 0, 0.88);
   --color-heading: #ffffff;
@@ -2198,182 +2275,332 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   white-space: nowrap;
 }
 
-/* Date Picker */
-.fk-datepicker {
-  position: relative;
+/* Date Picker — Figma Component/Date Picker (745:2579): trigger Medium 48/16, Small 40/12, radius 8,
+   1px border/default, 24px calendar_today icon, Active = 2px border/active, Focus Ring = 2px ring + 2px gap.
+   Calendar Popover (743:1973): 308 wide, 16 padding, 12 gap, radius 12, 1px border, elevation/Popover,
+   opens 2px (spacing/2) below the trigger; 36px circular day cells with 4px gaps. */
+#date-picker .preview-panel {
+  overflow: visible;
+}
+
+#date-picker .fk-field {
   width: min(100%, 320px);
 }
 
-.fk-datepicker .fk-field {
+.fk-dp .fk-field__label-row label,
+.fk-dp .fk-field__label-row .fk-field__label {
+  color: var(--color-date-picker-label);
+}
+
+.fk-dp.is-error .fk-field__label-row label {
+  color: var(--color-date-picker-label-error);
+}
+
+.fk-dp.is-disabled .fk-field__label-row label {
+  color: var(--color-date-picker-label-disabled);
+}
+
+.fk-dp .fk-helper {
+  color: var(--color-date-picker-helper);
+}
+
+.fk-dp.is-disabled .fk-helper {
+  color: var(--color-date-picker-helper-disabled);
+}
+
+.fk-dp .fk-error {
+  color: var(--color-date-picker-error);
+}
+
+.fk-datepicker {
+  position: relative;
   width: 100%;
 }
 
-.fk-datepicker__anchor {
-  position: relative;
+.fk-datepicker.is-open {
+  z-index: 31;
 }
 
 .fk-datepicker__trigger {
+  --fk-dp-pad: 16px;
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 8px;
   width: 100%;
   height: 48px;
-  padding: 0 16px;
-  border: 1px solid var(--color-field-border);
+  padding: 0 var(--fk-dp-pad);
+  border: 1px solid var(--color-date-picker-border);
   border-radius: var(--radius-md);
-  background: var(--color-field-bg);
+  background: var(--color-date-picker-bg);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 24px;
-  color: var(--color-text-default);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-date-picker-text);
   cursor: pointer;
   text-align: left;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
-.fk-datepicker__trigger:hover {
-  border-color: var(--color-text-default);
+.fk-datepicker--sm .fk-datepicker__trigger {
+  --fk-dp-pad: 12px;
+  height: 40px;
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.fk-datepicker__trigger:focus-visible {
-  box-shadow: var(--focus-ring);
-  border-color: var(--color-border-focus);
-  outline: none;
+.fk-datepicker__trigger:hover:not(:disabled) {
+  border-color: var(--color-date-picker-border-hover);
 }
 
-.fk-datepicker__trigger[aria-expanded="true"] {
-  border-color: var(--color-action-primary);
+/* Active / open: 2px border/active drawn inside the box (padding compensates so text does not shift). */
+.fk-datepicker__trigger[aria-expanded="true"]:not(:disabled) {
   border-width: 2px;
-  padding: 0 15px;
+  border-color: var(--color-date-picker-border-active);
+  padding: 0 calc(var(--fk-dp-pad) - 1px);
+}
+
+/* Focus Visible: keyboard only (buttons do not match :focus-visible after a pointer click). */
+.fk-datepicker__trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-date-picker-focus-gap), 0 0 0 4px var(--color-date-picker-focus-ring);
+}
+
+.fk-datepicker__trigger[aria-invalid="true"] {
+  border-color: var(--color-date-picker-border-error);
+}
+
+.fk-datepicker__trigger:disabled {
+  background: var(--color-date-picker-bg-disabled);
+  border-color: var(--color-date-picker-border-disabled);
+  color: var(--color-date-picker-text-disabled);
+  cursor: not-allowed;
+}
+
+.fk-datepicker__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .fk-datepicker__value.is-placeholder {
-  color: var(--color-text-placeholder);
+  color: var(--color-date-picker-placeholder);
+}
+
+.fk-datepicker__trigger:disabled .fk-datepicker__value,
+.fk-datepicker__trigger:disabled .fk-datepicker__value.is-placeholder {
+  color: var(--color-date-picker-text-disabled);
 }
 
 .fk-datepicker__icon {
-  width: 20px;
-  height: 20px;
   flex-shrink: 0;
-  color: var(--color-text-subtle);
+  width: 24px;
+  height: 24px;
+  margin-inline-start: auto;
+  color: var(--color-date-picker-icon);
 }
 
+.fk-datepicker__trigger[aria-expanded="true"] .fk-datepicker__icon {
+  color: var(--color-date-picker-icon-active);
+}
+
+.fk-datepicker__trigger[aria-invalid="true"] .fk-datepicker__icon {
+  color: var(--color-date-picker-icon-error);
+}
+
+.fk-datepicker__trigger:disabled .fk-datepicker__icon {
+  color: var(--color-date-picker-icon-disabled);
+}
+
+/* Calendar Popover */
 .fk-calendar {
   position: absolute;
   z-index: 40;
-  top: calc(100% + 2px);
+  top: calc(100% + 2px); /* spacing/2 */
   left: 0;
-  width: min(100%, 308px);
+  width: min(308px, 100%);
+  box-sizing: border-box;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
   padding: 16px;
   border: 1px solid var(--color-calendar-border);
   border-radius: var(--radius-lg);
   background: var(--color-calendar-bg);
-  box-shadow: var(--shadow-popover);
+  color: var(--color-calendar-day-text);
+  box-shadow: var(--elevation-popover);
+  font-family: var(--font-body);
+}
+
+.fk-calendar.is-open {
+  display: flex;
+}
+
+/* Flip above the trigger when the viewport has no room below. */
+.fk-calendar.is-above {
+  top: auto;
+  bottom: calc(100% + 2px);
+}
+
+/* Documentation "Calendar open" example: popover rendered in flow so it never covers neighbouring rows. */
+.fk-datepicker--static .fk-calendar {
+  position: static;
+  margin-top: 2px;
 }
 
 .fk-calendar__header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 8px;
   height: 32px;
-  margin-bottom: 12px;
 }
 
 .fk-calendar__month {
   flex: 1;
+  min-width: 0;
   margin: 0;
   font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+  letter-spacing: 0;
   text-align: center;
-  color: var(--color-text-default);
+  color: var(--color-calendar-header-text);
 }
 
+/* .Base / Calendar / Nav Button: 32px, radius 4, 16px arrow glyph, hover surface/subtle, focus 2px inset ring */
 .fk-calendar__nav {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
   padding: 0;
   border: 0;
   border-radius: var(--radius-sm);
   background: transparent;
-  color: var(--color-text-subtle);
+  color: var(--color-calendar-nav-icon);
   cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
 }
 
-.fk-calendar__nav:hover {
-  background: var(--color-surface-subtle);
-  color: var(--color-text-default);
+.fk-calendar__nav svg {
+  width: 16px;
+  height: 16px;
+}
+
+.fk-calendar__nav:hover:not(:disabled) {
+  background: var(--color-calendar-nav-bg-hover);
+  color: var(--color-calendar-nav-icon-hover);
 }
 
 .fk-calendar__nav:focus-visible {
-  box-shadow: var(--focus-ring);
   outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-calendar-day-focus-ring);
 }
 
-.fk-calendar__weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+.fk-calendar__nav:disabled {
+  color: var(--color-calendar-nav-icon-disabled);
+  cursor: not-allowed;
+}
+
+/* Grid: real <table role="grid"> semantics, laid out as 7 equal columns with 4px gaps (36px cells). */
+.fk-calendar__table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.fk-calendar__table thead,
+.fk-calendar__table tbody {
+  display: flex;
+  flex-direction: column;
   gap: 4px;
-  margin-bottom: 12px;
 }
 
-.fk-calendar__weekdays span {
+.fk-calendar__table tr {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+/* Weekday header cells reset the docs' generic th chrome (uppercase, subtle fill, bottom border). */
+.fk-calendar__weekday {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
-  color: var(--color-text-subtle);
-}
-
-.fk-calendar__grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  letter-spacing: 0;
+  text-transform: none;
+  text-align: center;
+  color: var(--color-calendar-week-text);
 }
 
 .fk-calendar__day {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   width: 36px;
   height: 36px;
   margin: 0 auto;
   padding: 0;
   border: 2px solid transparent;
   border-radius: var(--radius-full);
-  background: transparent;
+  background: var(--color-calendar-day-bg);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--color-text-default);
+  color: var(--color-calendar-day-text);
   cursor: pointer;
+  user-select: none;
+  transition: background-color 0.12s ease;
 }
 
-.fk-calendar__day:hover:not(:disabled):not([aria-selected="true"]) {
+.fk-calendar__day:hover:not([aria-disabled="true"]):not([aria-selected="true"]),
+.fk-calendar__day.is-hover {
   background: var(--color-calendar-day-bg-hover);
 }
 
-.fk-calendar__day:focus-visible {
-  border-color: var(--color-calendar-day-focus-ring);
+.fk-calendar__day:focus-visible,
+.fk-calendar__day.is-focus {
   outline: none;
+  border-color: var(--color-calendar-day-focus-ring);
 }
 
-.fk-calendar__day[aria-selected="true"] {
+.fk-calendar__day[aria-selected="true"],
+.fk-calendar__day.is-selected {
   background: var(--color-calendar-day-bg-selected);
   color: var(--color-calendar-day-text-selected);
 }
 
+/* Keyboard focus on the Selected day: offset ring so it stays distinguishable from the fill. */
+.fk-calendar__day[aria-selected="true"]:focus-visible {
+  border-color: var(--color-calendar-bg);
+  box-shadow: 0 0 0 2px var(--color-calendar-day-focus-ring);
+}
+
 .fk-calendar__day.is-today:not([aria-selected="true"]) {
+  background: var(--color-calendar-day-bg-today);
   border-color: var(--color-calendar-day-border-today);
+  color: var(--color-calendar-day-text-today);
 }
 
 .fk-calendar__day.is-today:not([aria-selected="true"]):focus-visible {
@@ -2381,15 +2608,16 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
 }
 
 .fk-calendar__day.is-outside {
-  color: var(--color-text-subtle);
+  color: var(--color-calendar-day-text-outside);
 }
 
 .fk-calendar__day.is-unavailable {
   text-decoration: line-through;
 }
 
-.fk-calendar__day:disabled {
-  color: var(--color-text-disabled);
+.fk-calendar__day[aria-disabled="true"] {
+  background: var(--color-calendar-day-bg-disabled);
+  color: var(--color-calendar-day-text-disabled);
   cursor: not-allowed;
 }
 
@@ -2399,7 +2627,6 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   justify-content: space-between;
   gap: 8px;
   height: 24px;
-  margin-top: 12px;
 }
 
 .fk-calendar__footer-btn {
@@ -2411,7 +2638,7 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--color-text-default);
+  color: var(--color-calendar-footer-text);
   cursor: pointer;
 }
 
@@ -2420,8 +2647,37 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
 }
 
 .fk-calendar__footer-btn:focus-visible {
-  box-shadow: var(--focus-ring);
   outline: none;
+  box-shadow: 0 0 0 2px var(--color-calendar-bg), 0 0 0 4px var(--color-calendar-day-focus-ring);
+}
+
+/* Compact day-state reference strip (static, mirrors .Base / Calendar / Day Cell variants) */
+.fk-cal-states {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fk-cal-states li {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  min-width: 56px;
+}
+
+.fk-cal-states .fk-calendar__day {
+  cursor: default;
+}
+
+.fk-cal-states__label {
+  font-family: var(--font-body);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-lh);
+  color: var(--color-text-subtle);
+  text-align: center;
 }
 
 /* Checkbox / Radio */

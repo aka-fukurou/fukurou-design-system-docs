@@ -672,6 +672,8 @@ Component tokens: `color/icon-button/background/*`, `color/icon-button/content/*
 
 **Docs example reconciliation (2026-10-05):** HTML calendar now matches Figma Day Cell + Calendar Popover — 36px **circular** cells (`radius/full`), circular Hover (`#fafaf9` / `#000`) and Selected (`#d33f55` + white / `#fff` + `#231f20`) fills, **Today** 2px outline (`#000` / `#fff`), 2px focus outline, Disabled/Outside text tokens, popover `#fff` / `#1c1917` with `elevation/Popover` shadow, 16px Regular month label, 12px two-letter weekdays, no footer divider. Figma file unchanged.
 
+**Docs section expansion (2026-11-02):** HTML docs Date Picker now matches the Text Field / Search Field / Dropdown documentation depth — two-column interactive gallery (Default · Selected date · Calendar open · Error + message · Disabled · Required · Without calendar icon · Small · day-state strip), `--color-date-picker-*` + full `--color-calendar-*` Light/Dark variables, 24px `calendar_today` icon, 2px `border/active` open state, `.Base / Calendar / Nav Button` glyphs and inset focus ring, `<table role="grid">` calendar with roving tabindex and the WAI-ARIA APG Date Picker Dialog keyboard model (arrows, Home/End, Page Up/Down, Enter/Space, Escape, Tab containment), `aria-live` month heading, and boxed Anatomy / Tokens / State / Keyboard / Accessibility / Usage / Implementation notes. Figma file unchanged.
+
 **Accessibility:** Visible label or accessible name; placeholder/icon are not labels; Focus Visible unclipped; keyboard open/navigate/select/close; disabled dates exempt for contrast; announce selected date in product code.
 
 ### Textarea
