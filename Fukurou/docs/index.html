@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=27" />
+  <link rel="stylesheet" href="styles.css?v=28" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -2450,7 +2450,7 @@
                 <ul class="doc-note__list">
                   <li><strong>Focus Visible:</strong> Same keyboard-only gating as Text Field (<code>:focus-visible</code> + <code>data-focus-modality</code>). Interactive preview uses live Tab focus — no permanent demo ring.</li>
                   <li><strong>Hover:</strong> 1px <code>border/hover</code> on pointer hover. Still supported; not shown as a separate gallery row.</li>
-                  <li><strong>Clear:</strong> Shown when the input has a value; clears query and returns focus to the input.</li>
+                  <li><strong>Clear:</strong> Custom <code>.fk-clear</code> only — native <code>type="search"</code> cancel/decoration is suppressed in docs CSS so WebKit does not show a second ×.</li>
                 </ul>
               </div>
               <div class="doc-note__group">
@@ -3064,6 +3064,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=27"></script>
+  <script src="script.js?v=28"></script>
 </body>
 </html>
