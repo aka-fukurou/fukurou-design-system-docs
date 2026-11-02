@@ -1866,8 +1866,13 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   padding-left: 12px;
 }
 
-.fk-search .fk-input-shell:focus-within {
+.fk-search .fk-input-shell:focus-within,
+.fk-search .fk-input-shell.is-active-demo {
   padding-left: 11px;
+}
+
+#search-field .preview-panel {
+  overflow: visible;
 }
 
 .fk-search-ico {
