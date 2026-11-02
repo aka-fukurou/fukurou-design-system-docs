@@ -1001,14 +1001,9 @@ tr:last-child td {
 #button .preview-panel > .preview-row,
 #text-button .preview-panel > .preview-row,
 #icon-button .preview-panel > .preview-row,
-#card .preview-panel > .preview-row,
-#text-field .preview-panel > .preview-row {
+#card .preview-panel > .preview-row {
   column-gap: var(--space-16);
   row-gap: var(--space-4);
-}
-
-#text-field .preview-panel > .preview-row {
-  row-gap: var(--space-16);
 }
 
 @media (max-width: 768px) {
@@ -1016,21 +1011,9 @@ tr:last-child td {
   #button .preview-panel > .preview-row,
   #text-button .preview-panel > .preview-row,
   #icon-button .preview-panel > .preview-row,
-  #card .preview-panel > .preview-row,
-  #text-field .preview-panel > .preview-row {
+  #card .preview-panel > .preview-row {
     column-gap: var(--space-8);
     row-gap: var(--space-4);
-  }
-
-  #text-field .preview-panel > .preview-row {
-    row-gap: var(--space-8);
-  }
-}
-
-@media (max-width: 480px) {
-  #text-field .preview-panel > .preview-row {
-    column-gap: var(--space-6);
-    row-gap: var(--space-6);
   }
 }
 
@@ -1082,31 +1065,79 @@ tr:last-child td {
   align-items: flex-start;
 }
 
-/* Wide form-control specimens (Text Field): left-align captions under the field */
-.preview-specimen--field {
-  align-items: stretch;
-  flex: 1 1 280px;
-  max-width: 320px;
-  width: min(100%, 320px);
-}
-
-.preview-specimen--field .preview-specimen__label {
-  text-align: left;
-  white-space: normal;
-}
-
-.preview-specimen--field .fk-field {
-  width: 100%;
-}
-
 @media (max-width: 768px) {
   .preview-specimen__label {
     white-space: normal;
   }
+}
 
-  .preview-specimen--field {
-    flex: 1 1 100%;
-    max-width: 100%;
+/* Text Field state gallery: description column | component column (Figma 255:772 order) */
+.tf-state-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.tf-state-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) minmax(0, 1fr);
+  column-gap: var(--space-16);
+  align-items: start;
+}
+
+.tf-state-row__desc {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-1);
+  min-width: 0;
+}
+
+.tf-state-row__name {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-lh);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-heading);
+}
+
+.tf-state-row__note {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-lh);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-subtle);
+}
+
+.tf-state-row__note code {
+  font-size: 0.95em;
+}
+
+.tf-state-row__component {
+  min-width: 0;
+}
+
+.tf-state-row__component .fk-field {
+  width: min(100%, 320px);
+}
+
+@media (max-width: 768px) {
+  .tf-state-list {
+    gap: var(--space-6);
+  }
+
+  .tf-state-row {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-3);
+  }
+
+  .tf-state-row__desc {
+    padding-top: 0;
+  }
+
+  .tf-state-row__component .fk-field {
+    width: 100%;
   }
 }
 
@@ -1680,8 +1711,10 @@ tr:last-child td {
   border-width: 2px;
 }
 
-/* Focus Visible: keyboard only — 2px ring outside a 2px gap (radius 8 + 2 = 10) */
-.fk-input-shell:has(> input:focus-visible),
+/* Focus Visible: keyboard only — 2px ring outside a 2px gap (radius 8 + 2 = 10).
+   Browsers match :focus-visible on text inputs even for pointer focus, so the ring is also
+   gated on the page-level input modality tracked in script.js (data-focus-modality). */
+html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visible),
 .fk-input-shell.is-focus-demo {
   box-shadow: 0 0 0 2px var(--color-text-field-focus-gap), 0 0 0 4px var(--color-text-field-focus-ring);
 }
@@ -1826,26 +1859,6 @@ tr:last-child td {
 
 #text-field .preview-panel {
   overflow: visible;
-}
-
-#text-field .preview-panel > .preview-row {
-  margin-bottom: 0;
-}
-
-#text-field .preview-panel > .preview-row + .preview-row {
-  margin-top: var(--space-16);
-}
-
-@media (max-width: 768px) {
-  #text-field .preview-panel > .preview-row + .preview-row {
-    margin-top: var(--space-8);
-  }
-}
-
-@media (max-width: 480px) {
-  #text-field .preview-panel > .preview-row + .preview-row {
-    margin-top: var(--space-6);
-  }
 }
 
 /* Search */

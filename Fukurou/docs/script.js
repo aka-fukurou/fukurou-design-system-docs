@@ -112,6 +112,29 @@
     sync();
   });
 
+  /* —— Input modality (keyboard vs pointer) for Focus Visible gating ——
+     Browsers match :focus-visible on text inputs even after a mouse click. Track the last
+     interaction so the Text Field shell ring only appears for keyboard-driven focus. */
+  (function trackFocusModality() {
+    const root = document.documentElement;
+    function setPointer() {
+      root.setAttribute("data-focus-modality", "pointer");
+    }
+    function setKeyboard(e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const t = e.target;
+      const typing =
+        t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+      // Typing inside a field is not focus navigation; only Tab/Escape count there.
+      if (typing && e.key !== "Tab" && e.key !== "Escape") return;
+      root.setAttribute("data-focus-modality", "keyboard");
+    }
+    window.addEventListener("pointerdown", setPointer, true);
+    window.addEventListener("mousedown", setPointer, true);
+    window.addEventListener("touchstart", setPointer, { capture: true, passive: true });
+    window.addEventListener("keydown", setKeyboard, true);
+  })();
+
   /* —— Text Field cancel (Active state) —— */
   document.querySelectorAll("[data-clearable]").forEach(function (field) {
     const input = field.querySelector("input");
