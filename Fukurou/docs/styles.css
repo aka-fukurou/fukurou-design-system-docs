@@ -1040,6 +1040,37 @@ tr:last-child td {
   margin-bottom: var(--space-3);
 }
 
+/* Labeled component specimens in interactive previews (e.g. Notification Button) */
+.preview-specimen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  padding-top: var(--space-1);
+}
+
+.preview-specimen__label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-lh);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-heading);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.preview-row--labeled {
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .preview-specimen__label {
+    white-space: normal;
+  }
+}
+
 .preview-actions {
   display: flex;
   flex-wrap: wrap;
