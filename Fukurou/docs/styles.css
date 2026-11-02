@@ -60,6 +60,34 @@
   --color-text-field-focus-ring: #d33f55;
   --color-text-field-focus-gap: #fafaf9;
 
+  /* Dropdown (Figma color/dropdown/* · color/dropdown-menu/*) */
+  --color-dropdown-bg: #ffffff;
+  --color-dropdown-bg-disabled: #f5f5f4;
+  --color-dropdown-border: #78716c;
+  --color-dropdown-border-hover: #57534e;
+  --color-dropdown-border-error: #dc2626;
+  --color-dropdown-border-disabled: #d6d3d1;
+  --color-dropdown-text: #231f20;
+  --color-dropdown-placeholder: #57534e;
+  --color-dropdown-text-disabled: #78716c;
+  --color-dropdown-label: #231f20;
+  --color-dropdown-label-error: #8d1818;
+  --color-dropdown-label-disabled: #78716c;
+  --color-dropdown-helper: #57534e;
+  --color-dropdown-error: #8d1818;
+  --color-dropdown-icon: #57534e;
+  --color-dropdown-icon-error: #dc2626;
+  --color-dropdown-icon-disabled: #78716c;
+  --color-dropdown-menu-bg: #ffffff;
+  --color-dropdown-menu-border: #78716c;
+  --color-dropdown-option-bg: #ffffff;
+  --color-dropdown-option-bg-hover: #fafaf9;
+  --color-dropdown-option-bg-selected: #fafaf9;
+  --color-dropdown-option-text: #231f20;
+  --color-dropdown-option-text-selected: #231f20;
+  --color-dropdown-option-text-disabled: #78716c;
+  --color-dropdown-checkmark: #44403c;
+
   /* Action (live Theme: primary = neutral) */
   --color-action-primary: #000000;
   --color-action-primary-hover: #57534e;
@@ -276,6 +304,33 @@
   --color-text-field-icon-disabled: #a8a29e;
   --color-text-field-focus-ring: #ffffff;
   --color-text-field-focus-gap: #000000;
+
+  --color-dropdown-bg: #1c1917;
+  --color-dropdown-bg-disabled: #292524;
+  --color-dropdown-border: #a8a29e;
+  --color-dropdown-border-hover: #78716c;
+  --color-dropdown-border-error: #e55e5e;
+  --color-dropdown-border-disabled: #44403c;
+  --color-dropdown-text: #ffffff;
+  --color-dropdown-placeholder: #d6d3d1;
+  --color-dropdown-text-disabled: #a8a29e;
+  --color-dropdown-label: #ffffff;
+  --color-dropdown-label-error: #f4bebe;
+  --color-dropdown-label-disabled: #a8a29e;
+  --color-dropdown-helper: #d6d3d1;
+  --color-dropdown-error: #f4bebe;
+  --color-dropdown-icon: #d6d3d1;
+  --color-dropdown-icon-error: #fae1e1;
+  --color-dropdown-icon-disabled: #a8a29e;
+  --color-dropdown-menu-bg: #292524;
+  --color-dropdown-menu-border: #a8a29e;
+  --color-dropdown-option-bg: #292524;
+  --color-dropdown-option-bg-hover: #1c1917; /* Needs verification: Dark hover not bound in live set; mirrors selected */
+  --color-dropdown-option-bg-selected: #1c1917;
+  --color-dropdown-option-text: #ffffff;
+  --color-dropdown-option-text-selected: #ffffff;
+  --color-dropdown-option-text-disabled: #a8a29e;
+  --color-dropdown-checkmark: #d6d3d1;
 
   --color-action-primary: #ffffff;
   --color-action-primary-hover: #d6d3d1;
@@ -1899,67 +1954,178 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   display: inline-flex;
 }
 
-/* Dropdown */
-.fk-dropdown {
-  position: relative;
+/* Dropdown — Figma Selector / Dropdown (309:634): Medium 48/16, Small 40/12, radius 8, 1px border,
+   24px chevron, 2px border/hover when open (Active), keyboard ring = 2px ring + 2px gap (radius 10). */
+#dropdown .preview-panel {
+  overflow: visible;
+}
+
+#dropdown .fk-field {
   width: min(100%, 320px);
 }
 
+.fk-dd .fk-field__label-row label,
+.fk-dd .fk-field__label-row .fk-field__label {
+  color: var(--color-dropdown-label);
+}
+
+.fk-dd.is-error .fk-field__label-row label {
+  color: var(--color-dropdown-label-error);
+}
+
+.fk-dd.is-disabled {
+  opacity: 0.6;
+}
+
+.fk-dd.is-disabled .fk-field__label-row label,
+.fk-dd.is-disabled .fk-field__required {
+  color: var(--color-dropdown-label-disabled);
+}
+
+.fk-dd .fk-helper {
+  color: var(--color-dropdown-helper);
+}
+
+.fk-dd .fk-helper__icon {
+  color: var(--color-dropdown-icon);
+}
+
+.fk-dd .fk-error {
+  color: var(--color-dropdown-error);
+}
+
+.fk-dd .fk-error__icon {
+  color: var(--color-dropdown-icon-error);
+}
+
+.fk-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.fk-dropdown.is-open {
+  z-index: 31;
+}
+
 .fk-dropdown__trigger {
+  --fk-dd-pad: 16px;
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 8px;
   width: 100%;
   height: 48px;
-  padding: 0 16px;
-  border: 1px solid var(--color-field-border);
+  padding: 0 var(--fk-dd-pad);
+  border: 1px solid var(--color-dropdown-border);
   border-radius: var(--radius-md);
-  background: var(--color-field-bg);
+  background: var(--color-dropdown-bg);
   font-family: var(--font-body);
   font-size: 16px;
-  color: var(--color-text-default);
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-dropdown-text);
   cursor: pointer;
   text-align: left;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
-.fk-dropdown__trigger:hover {
-  border-color: var(--color-text-default);
+.fk-dropdown--sm .fk-dropdown__trigger {
+  --fk-dd-pad: 12px;
+  height: 40px;
+  font-size: 14px;
+  line-height: 20px;
 }
 
+.fk-dropdown__trigger:hover:not(:disabled) {
+  border-color: var(--color-dropdown-border-hover);
+}
+
+/* Active / open: 2px border/hover drawn inside the box (padding compensates so text does not shift). */
+.fk-dropdown__trigger[aria-expanded="true"]:not(:disabled) {
+  border-width: 2px;
+  border-color: var(--color-dropdown-border-hover);
+  padding: 0 calc(var(--fk-dd-pad) - 1px);
+}
+
+/* Focus Visible: keyboard only. Buttons do not match :focus-visible after a mouse click. */
 .fk-dropdown__trigger:focus-visible {
-  box-shadow: var(--focus-ring);
-  border-color: var(--color-border-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-text-field-focus-gap), 0 0 0 4px var(--color-border-focus);
 }
 
-.fk-dropdown__trigger[aria-expanded="true"] {
-  border-color: var(--color-border-focus);
+.fk-dropdown__trigger[aria-invalid="true"] {
+  border-color: var(--color-dropdown-border-error);
+}
+
+.fk-dropdown__trigger:disabled {
+  background: var(--color-dropdown-bg-disabled);
+  border-color: var(--color-dropdown-border-disabled);
+  color: var(--color-dropdown-text-disabled);
+  cursor: not-allowed;
+}
+
+.fk-dropdown__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .fk-dropdown__value.is-placeholder {
-  color: var(--color-text-placeholder);
+  color: var(--color-dropdown-placeholder);
+}
+
+.fk-dropdown__trigger:disabled .fk-dropdown__value,
+.fk-dropdown__trigger:disabled .fk-dropdown__value.is-placeholder {
+  color: var(--color-dropdown-text-disabled);
+}
+
+.fk-dropdown__leading {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--color-dropdown-icon);
 }
 
 .fk-dropdown__chevron {
-  width: 16px;
-  height: 16px;
   flex-shrink: 0;
-  color: var(--color-text-subtle);
+  width: 24px;
+  height: 24px;
+  color: var(--color-dropdown-icon);
+  transition: transform 0.12s ease;
 }
 
+.fk-dropdown__trigger[aria-expanded="true"] .fk-dropdown__chevron {
+  transform: rotate(180deg);
+}
+
+.fk-dropdown__trigger[aria-invalid="true"] .fk-dropdown__chevron {
+  color: var(--color-dropdown-icon-error);
+}
+
+.fk-dropdown__trigger:disabled .fk-dropdown__chevron,
+.fk-dropdown__trigger:disabled .fk-dropdown__leading {
+  color: var(--color-dropdown-icon-disabled);
+}
+
+/* Menu: 2px below trigger, 4px inner padding, 1px border, radius 8, elevation/Floating */
 .fk-dropdown__menu {
   position: absolute;
   z-index: 30;
-  top: calc(100% + 4px);
+  top: calc(100% + 2px); /* spacing/2 */
   left: 0;
   right: 0;
   margin: 0;
-  padding: 8px;
+  padding: 4px;
   list-style: none;
-  background: var(--color-surface-elevated);
-  border: 1px solid var(--color-border-elevated);
+  background: var(--color-dropdown-menu-bg);
+  border: 1px solid var(--color-dropdown-menu-border);
   border-radius: var(--radius-md);
-  box-shadow: var(--elevation-popover);
+  box-shadow: var(--elevation-floating);
+  max-height: 248px;
+  overflow-y: auto;
   display: none;
 }
 
@@ -1967,28 +2133,67 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   display: block;
 }
 
-.fk-dropdown__option {
-  width: 100%;
-  padding: 10px 12px;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--color-text-default);
-  text-align: left;
-  cursor: pointer;
-}
-
-.fk-dropdown__option:hover,
-.fk-dropdown__option:focus-visible {
-  background: var(--color-surface-subtle);
+.fk-dropdown__menu:focus {
   outline: none;
 }
 
+/* Option: 40px, 12px padding-x, body/md 16/24, 8px gap before text (checkmark slot) */
+.fk-dropdown__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 12px;
+  margin: 0;
+  background: var(--color-dropdown-option-bg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-dropdown-option-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.fk-dropdown__option:hover:not([aria-disabled="true"]),
+.fk-dropdown__option.is-active:not([aria-disabled="true"]) {
+  background: var(--color-dropdown-option-bg-hover);
+}
+
 .fk-dropdown__option[aria-selected="true"] {
-  background: rgba(211, 63, 85, 0.08);
-  font-weight: 500;
+  background: var(--color-dropdown-option-bg-selected);
+  color: var(--color-dropdown-option-text-selected);
+}
+
+.fk-dropdown__option[aria-disabled="true"] {
+  color: var(--color-dropdown-option-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Keyboard-active option gets a visible inset indicator in addition to the hover fill. */
+.fk-dropdown__menu:focus-visible .fk-dropdown__option.is-active {
+  box-shadow: inset 0 0 0 2px var(--color-border-focus);
+  border-radius: 4px;
+}
+
+.fk-dropdown__check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--color-dropdown-checkmark);
+  display: none;
+}
+
+/* Figma: checkmark only renders on the Selected option; unselected text starts at the 12px inset. */
+.fk-dropdown__option[aria-selected="true"] .fk-dropdown__check {
+  display: block;
+}
+
+.fk-dropdown__option-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Date Picker */

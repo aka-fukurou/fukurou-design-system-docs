@@ -307,54 +307,156 @@
     }
   });
 
-  /* —— Dropdown —— */
+  /* —— Dropdown (single-select listbox) ——
+     Trigger: button[aria-haspopup=listbox]. Menu: ul[role=listbox][tabindex=-1] with li[role=option].
+     Focus moves into the listbox while open; aria-activedescendant tracks the active option. */
   document.querySelectorAll("[data-dropdown]").forEach(function (dd) {
     const trigger = dd.querySelector("[data-dropdown-trigger]");
     const menu = dd.querySelector("[data-dropdown-menu]");
     const valueEl = dd.querySelector("[data-dropdown-value]");
     const options = Array.from(dd.querySelectorAll("[data-dropdown-option]"));
-    if (!trigger || !menu) return;
+    if (!trigger || !menu || options.length === 0) return;
 
-    function close() {
+    let activeIndex = -1;
+
+    function isEnabled(opt) {
+      return opt.getAttribute("aria-disabled") !== "true";
+    }
+
+    function isOpen() {
+      return menu.classList.contains("is-open");
+    }
+
+    function setActive(index) {
+      options.forEach(function (o, i) {
+        o.classList.toggle("is-active", i === index);
+      });
+      activeIndex = index;
+      if (index >= 0) {
+        menu.setAttribute("aria-activedescendant", options[index].id);
+        if (typeof options[index].scrollIntoView === "function") {
+          options[index].scrollIntoView({ block: "nearest" });
+        }
+      } else {
+        menu.removeAttribute("aria-activedescendant");
+      }
+    }
+
+    function moveActive(delta) {
+      const n = options.length;
+      let i = activeIndex;
+      for (let step = 0; step < n; step += 1) {
+        i = (i + delta + n) % n;
+        if (isEnabled(options[i])) {
+          setActive(i);
+          return;
+        }
+      }
+    }
+
+    function firstEnabled(fromEnd) {
+      const list = fromEnd ? options.slice().reverse() : options;
+      const found = list.find(isEnabled);
+      return found ? options.indexOf(found) : -1;
+    }
+
+    function close(returnFocus) {
+      if (!isOpen()) return;
       menu.classList.remove("is-open");
+      dd.classList.remove("is-open");
       trigger.setAttribute("aria-expanded", "false");
+      setActive(-1);
+      if (returnFocus) trigger.focus();
     }
 
     function open() {
+      if (trigger.disabled || isOpen()) return;
       menu.classList.add("is-open");
+      dd.classList.add("is-open");
       trigger.setAttribute("aria-expanded", "true");
+      const selected = options.findIndex(function (o) {
+        return o.getAttribute("aria-selected") === "true";
+      });
+      setActive(selected >= 0 ? selected : firstEnabled(false));
+      menu.focus({ preventScroll: true });
+    }
+
+    function select(index) {
+      const opt = options[index];
+      if (!opt || !isEnabled(opt)) return;
+      options.forEach(function (o) {
+        o.setAttribute("aria-selected", "false");
+      });
+      opt.setAttribute("aria-selected", "true");
+      if (valueEl) {
+        valueEl.textContent = opt.getAttribute("data-dropdown-option");
+        valueEl.classList.remove("is-placeholder");
+      }
+      close(true);
     }
 
     trigger.addEventListener("click", function () {
-      if (menu.classList.contains("is-open")) close();
+      if (isOpen()) close(false);
       else open();
     });
 
-    options.forEach(function (opt) {
+    trigger.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === " " || e.key === "Enter") {
+        e.preventDefault();
+        open();
+      }
+    });
+
+    menu.addEventListener("keydown", function (e) {
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          moveActive(1);
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          moveActive(-1);
+          break;
+        case "Home":
+          e.preventDefault();
+          setActive(firstEnabled(false));
+          break;
+        case "End":
+          e.preventDefault();
+          setActive(firstEnabled(true));
+          break;
+        case "Enter":
+        case " ":
+          e.preventDefault();
+          select(activeIndex);
+          break;
+        case "Escape":
+          e.preventDefault();
+          close(true);
+          break;
+        case "Tab":
+          close(false);
+          break;
+        default:
+          break;
+      }
+    });
+
+    options.forEach(function (opt, i) {
+      opt.addEventListener("mousemove", function () {
+        if (isEnabled(opt) && activeIndex !== i) setActive(i);
+      });
       opt.addEventListener("click", function () {
-        const val = opt.getAttribute("data-dropdown-option");
-        options.forEach(function (o) {
-          o.setAttribute("aria-selected", "false");
-        });
-        opt.setAttribute("aria-selected", "true");
-        if (valueEl) {
-          valueEl.textContent = val;
-          valueEl.classList.remove("is-placeholder");
-        }
-        close();
-        trigger.focus();
+        select(i);
       });
     });
 
-    document.addEventListener("click", function (e) {
-      if (!dd.contains(e.target)) close();
+    menu.addEventListener("focusout", function (e) {
+      if (!dd.contains(e.relatedTarget)) close(false);
     });
 
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && menu.classList.contains("is-open")) {
-        close();
-        trigger.focus();
-      }
+    document.addEventListener("pointerdown", function (e) {
+      if (!dd.contains(e.target)) close(false);
     });
   });
 
