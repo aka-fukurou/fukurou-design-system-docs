@@ -247,7 +247,9 @@
   /* Docs chrome */
   --color-topbar-bg: rgba(250, 250, 249, 0.92);
   --color-heading: #231f20;
+  --color-badge-ok-bg: rgba(47, 158, 96, 0.12);
   --color-badge-ok-fg: #145331;
+  --color-badge-warn-bg: rgba(217, 119, 6, 0.12);
   --color-badge-warn-fg: #683903;
   --color-error-text: #8d1818;
   --color-alert-info-bg: #eef4fd;
@@ -531,7 +533,9 @@
 
   --color-topbar-bg: rgba(0, 0, 0, 0.88);
   --color-heading: #ffffff;
+  --color-badge-ok-bg: rgba(134, 239, 172, 0.14);
   --color-badge-ok-fg: #86efac;
+  --color-badge-warn-bg: rgba(252, 211, 77, 0.14);
   --color-badge-warn-fg: #fcd34d;
   --color-error-text: #fca5a5;
   --color-alert-info-bg: rgba(214, 230, 251, 0.16);
@@ -984,12 +988,12 @@ li {
 }
 
 .badge--ok {
-  background: rgba(47, 158, 96, 0.12);
+  background: var(--color-badge-ok-bg);
   color: var(--color-badge-ok-fg);
 }
 
 .badge--warn {
-  background: rgba(217, 119, 6, 0.12);
+  background: var(--color-badge-warn-bg);
   color: var(--color-badge-warn-fg);
 }
 

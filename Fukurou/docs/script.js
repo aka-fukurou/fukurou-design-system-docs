@@ -825,4 +825,20 @@
     range.addEventListener("input", sync);
     sync();
   });
+
+  /* —— Component doc review badges (source of truth: article data-doc-review) —— */
+  var DOC_REVIEW_BADGE = {
+    reviewed: { modifier: "badge--ok", label: "Reviewed" },
+    "needed-review": { modifier: "badge--warn", label: "Needed Review" },
+  };
+
+  document.querySelectorAll("article.component[data-doc-review]").forEach(function (article) {
+    var status = article.getAttribute("data-doc-review");
+    var cfg = DOC_REVIEW_BADGE[status];
+    var badge = article.querySelector(".component-header .badge");
+    if (!cfg || !badge) return;
+    badge.className = "badge " + cfg.modifier;
+    badge.setAttribute("data-doc-review-status", status);
+    badge.textContent = cfg.label;
+  });
 })();

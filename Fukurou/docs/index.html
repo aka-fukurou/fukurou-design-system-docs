@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=35" />
+  <link rel="stylesheet" href="styles.css?v=36" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -1521,7 +1521,7 @@
         <!-- COMPONENTS -->
         <section id="components" aria-labelledby="components-title">
           <h2 id="components-title">Components</h2>
-          <p>Public components from the live Fukurou library. Previews below are sized and styled from live Figma measurements and Theme tokens, with simple interactions for docs exploration. Product implementations should still ship from Figma + tokens.</p>
+          <p>Public components from the live Fukurou library. Previews below are sized and styled from live Figma measurements and Theme tokens, with simple interactions for docs exploration. Product implementations should still ship from Figma + tokens. Section headers show <strong>documentation review</strong> status — green <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span> through Radio Selector, amber <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span> from Checkbox onward (see each article’s <code>data-doc-review</code> attribute; this is not Figma publish status).</p>
 
           <div class="comp-index" aria-label="Component index">
             <a href="#button"><strong>Button</strong><span>Action · Secondary · Ghost</span></a>
@@ -1550,10 +1550,10 @@
           </div>
 
           <!-- Button -->
-          <article class="component" id="button">
+          <article class="component" id="button" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Button</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p>Triggers important actions. Types: Action · Secondary · Ghost. Sizes: Small (32) · Medium (40) · Large (48). Pill radius; Poppins SemiBold 14.</p>
             <h4>Variants &amp; states</h4>
@@ -1604,10 +1604,10 @@
             </section>
           </article>
 
-          <article class="component" id="text-button">
+          <article class="component" id="text-button" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Text Button</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p>Separate from Button — text-only action with no container. Sizes: Small (14/20) · Medium (16/20) · Large (18/28). Underline appears on hover only. Do not model as a Button type.</p>
             <h4>Variants &amp; states</h4>
@@ -1656,10 +1656,10 @@
             </section>
           </article>
 
-          <article class="component" id="icon-button">
+          <article class="component" id="icon-button" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Icon Button</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p>Generic circular icon-only control — Small (32×32) only, 16px icon or 12px number. Content: Icon or Number. Always provide an accessible name.</p>
             <h4>Variants &amp; states</h4>
@@ -1717,10 +1717,10 @@
             </section>
           </article>
 
-          <article class="component" id="notification-button">
+          <article class="component" id="notification-button" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Notification Button</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p>Specialized Icon Button for notifications — same 32px circle, states and focus ring, with a fixed 20px filled bell. Badge: None · Dot · Count (99+). Badge must not be the only signal of critical information.</p>
             <h4>Variants &amp; states</h4>
@@ -1820,10 +1820,10 @@
             </section>
           </article>
 
-          <article class="component" id="card">
+          <article class="component" id="card" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Card</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p>Flexible container for grouped content and actions. 340 wide, radius 12, 1px border, padding 0 on the root; content area padding 24, gap 16. Title <code>heading/sm</code> (Lora SemiBold 20/28), body <code>body/md</code> (Poppins Regular 16/24), footer holds a Small Text Button.</p>
             <h4>Variants &amp; states</h4>
@@ -1923,10 +1923,10 @@
             </section>
           </article>
 
-          <article class="component" id="text-field">
+          <article class="component" id="text-field" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Text Field</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p>Single-line form input. Medium input 48 / padding 16, Small 40 / padding 12, radius 8, 1px inside stroke. Label Poppins Regular 14/20, value 16/24 (Medium) or 14/20 (Small), helper and error <code>caption/md</code> 12/16. Outer stack gap <code>spacing/4</code>; icon-to-text gap 8.</p>
             <h4>Variants &amp; states</h4>
@@ -2182,10 +2182,10 @@
             </section>
           </article>
 
-          <article class="component" id="search-field">
+          <article class="component" id="search-field" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Search Field</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p>Search-specific input aligned with Text Field’s Active + Focus Ring model. Medium input 48 / padding 16, Small 40 / padding 12, radius 8. Always shows a 24px search icon; clear appears when a query is entered (Filled / Active / Error Active in Figma).</p>
             <h4>Variants &amp; states</h4>
@@ -2333,10 +2333,10 @@
             </section>
           </article>
 
-          <article class="component" id="date-picker">
+          <article class="component" id="date-picker" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Date Picker</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p><code>Date Picker</code> is a single-date form control that shares Text Field’s label, border, focus-ring, and support-text model. Medium trigger 48 / padding 16, Small 40 / padding 12, radius 8, 1px stroke, 24px <code>calendar_today</code> icon on the right. The <code>Calendar Popover</code> opens 2px below the trigger: 308px wide, 16px padding, radius 12, 1px border, <code>elevation/Popover</code>, 32px month navigation, 12px weekday labels, and 36px circular day cells with 4px gaps. Date Range Picker is <strong>not</strong> a current component.</p>
             <h4>Variants &amp; states</h4>
@@ -2635,10 +2635,10 @@
             </section>
           </article>
 
-          <article class="component" id="dropdown">
+          <article class="component" id="dropdown" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Dropdown</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p><code>Selector / Dropdown</code> is a single-select form control that shares Text Field’s borders, focus ring, and support-text patterns. Medium trigger 48 / padding 16, Small 40 / padding 12, radius 8, 1px stroke, 24px chevron. Menu sits 2px below the trigger with 4px inner padding, 1px border, radius 8, and <code>elevation/Floating</code>; options are 40px tall with a 24px checkmark on the selected row. Multi-Select Dropdown is <strong>not</strong> a current component.</p>
             <h4>Variants &amp; states</h4>
@@ -2904,10 +2904,10 @@
             </section>
           </article>
 
-          <article class="component" id="radio">
+          <article class="component" id="radio" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Radio Selector</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p><code>Radio Selector</code> presents mutually exclusive choices when every option should stay visible. Each option is a 20px circular control with a 1px stroke, an 8px selected dot, a 12px gap to the content, a body/md label and an optional body/sm description in a 48px row. Selection is shown by the inner dot plus the <code>border/selected</code> stroke — never by colour alone. Use Dropdown for long lists and Checkbox for multi-select.</p>
             <h4>Variants &amp; states</h4>
@@ -3160,10 +3160,10 @@
             </section>
           </article>
 
-          <article class="component" id="checkbox">
+          <article class="component" id="checkbox" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Checkbox</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p>Independent on/off selection with optional indeterminate. Indicator 20×20, radius 4.</p>
             <div class="preview-panel">
@@ -3200,10 +3200,10 @@
             </div>
           </article>
 
-          <article class="component" id="switch">
+          <article class="component" id="switch" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Toggle / Switch</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p>Binary settings control. Track 44×24; thumb 20. On-track uses primary action color.</p>
             <div class="preview-panel">
@@ -3230,10 +3230,10 @@
             </div>
           </article>
 
-          <article class="component" id="jumbo-select">
+          <article class="component" id="jumbo-select" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Jumbo Select Button</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p>Large selectable option card. Selected styling uses success green indicator/border (<code>#2F9E60</code>) in live Figma.</p>
             <ul>
@@ -3280,10 +3280,10 @@
             </section>
           </article>
 
-          <article class="component" id="snackbar">
+          <article class="component" id="snackbar" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Snackbar</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p>Short temporary feedback. Tones: Neutral · Success · Warning · Danger · Info. Padding 12×16, radius 12.</p>
             <div class="preview-panel" data-snackbar-demo>
@@ -3306,10 +3306,10 @@
             <p>Not for persistent or critical alerts — use Alert / Banner.</p>
           </article>
 
-          <article class="component" id="alert">
+          <article class="component" id="alert" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Alert / Banner</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p>Persistent system messages. Meaning via text + icons (not color alone).</p>
             <div class="preview-panel">
@@ -3332,10 +3332,10 @@
             </div>
           </article>
 
-          <article class="component" id="tooltip">
+          <article class="component" id="tooltip" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Tooltip</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p>Short contextual help. Placement Top/Right/Bottom/Left with optional arrow. Keep copy short.</p>
             <div class="preview-panel">
@@ -3354,10 +3354,10 @@
             </section>
           </article>
 
-          <article class="component" id="modal">
+          <article class="component" id="modal" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Modal / Dialog</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p>Blocking focused tasks. Medium default ~480 wide, padding 24, gap 16, radius 12. Escape and overlay click close in this demo.</p>
             <div class="preview-panel">
@@ -3365,10 +3365,10 @@
             </div>
           </article>
 
-          <article class="component" id="pagination">
+          <article class="component" id="pagination" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Pagination</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p><code>Pagination Desktop</code> with Size and optional jumper. Page items are 40×40 circles; prev/next use 32 Icon Buttons.</p>
             <div class="preview-panel">
@@ -3385,10 +3385,10 @@
             </div>
           </article>
 
-          <article class="component" id="progress-bar">
+          <article class="component" id="progress-bar" data-doc-review="needed-review">
             <div class="component-header">
               <h3>Progress Bar</h3>
-              <span class="badge badge--ok">Public</span>
+              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
             <p>Completion across a known process. Always pair the bar with text such as <code>Step 1 of 5</code> or <code>20% complete</code>. Fill uses brand primary <code>#D33F55</code>.</p>
             <ul>
@@ -3576,6 +3576,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=35"></script>
+  <script src="script.js?v=36"></script>
 </body>
 </html>
