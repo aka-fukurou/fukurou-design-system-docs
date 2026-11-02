@@ -527,6 +527,8 @@
       const today = parseISO(root.dataset.datepickerToday) || realToday;
       const disabledDates = parseList(root.dataset.datepickerDisabled);
       const unavailableDates = parseList(root.dataset.datepickerUnavailable);
+      const minDate = parseISO(root.dataset.datepickerMin);
+      const maxDate = parseISO(root.dataset.datepickerMax);
 
       let selected = parseISO(root.dataset.datepickerSelected);
       let view = parseISO(root.dataset.datepickerView) || startOfMonth(selected || today);
@@ -557,8 +559,14 @@
       const todayBtn = calendar.querySelector("[data-datepicker-today]");
       const clearBtn = calendar.querySelector("[data-datepicker-clear]");
 
+      /* Unavailable (Figma: struck through) = outside the min/max range or explicitly listed. */
+      function isUnavailableDate(d) {
+        return (minDate && d < minDate) || (maxDate && d > maxDate) || inList(unavailableDates, d);
+      }
+
+      /* Disabled (Figma: muted, no strike) = individually blocked. Neither is selectable. */
       function isDisabledDate(d) {
-        return inList(disabledDates, d) || inList(unavailableDates, d);
+        return inList(disabledDates, d) || isUnavailableDate(d);
       }
 
       function isOpen() {
@@ -597,8 +605,10 @@
             grid.appendChild(row);
           }
           const cellDate = new Date(year, month, i - startPad + 1);
+          // Leading / trailing days of adjacent months render as Unavailable (Figma Calendar Popover).
           const outside = cellDate.getMonth() !== month;
-          const disabled = isDisabledDate(cellDate);
+          const unavailable = outside || isUnavailableDate(cellDate);
+          const disabled = unavailable || isDisabledDate(cellDate);
           const td = document.createElement("td");
           td.className = "fk-calendar__day";
           td.setAttribute("role", "gridcell");
@@ -608,7 +618,7 @@
           td.setAttribute("aria-selected", sameDay(cellDate, selected) ? "true" : "false");
           td.setAttribute("tabindex", sameDay(cellDate, focusDate) ? "0" : "-1");
           if (outside) td.classList.add("is-outside");
-          if (inList(unavailableDates, cellDate)) td.classList.add("is-unavailable");
+          if (unavailable) td.classList.add("is-unavailable");
           if (disabled) td.setAttribute("aria-disabled", "true");
           if (sameDay(cellDate, today)) {
             td.classList.add("is-today");

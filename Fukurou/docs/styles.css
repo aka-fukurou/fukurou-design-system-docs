@@ -212,8 +212,7 @@
   --color-calendar-day-text: #231f20;
   --color-calendar-day-text-selected: #ffffff;
   --color-calendar-day-text-today: #231f20;
-  --color-calendar-day-text-outside: #57534e;
-  --color-calendar-day-text-disabled: #78716c;
+  --color-calendar-day-text-disabled: #78716c; /* also Unavailable (struck through) */
   --color-calendar-day-border-today: #000000;
   --color-calendar-day-focus-ring: #d33f55;
   --color-calendar-nav-icon: #57534e;
@@ -478,8 +477,7 @@
   --color-calendar-day-text: #ffffff;
   --color-calendar-day-text-selected: #231f20;
   --color-calendar-day-text-today: #ffffff;
-  --color-calendar-day-text-outside: #d6d3d1;
-  --color-calendar-day-text-disabled: #a8a29e;
+  --color-calendar-day-text-disabled: #a8a29e; /* also Unavailable (struck through) */
   --color-calendar-day-border-today: #ffffff;
   --color-calendar-day-focus-ring: #ffffff;
   --color-calendar-nav-icon: #d6d3d1;
@@ -2607,18 +2605,18 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   border-color: var(--color-calendar-day-focus-ring);
 }
 
-.fk-calendar__day.is-outside {
-  color: var(--color-calendar-day-text-outside);
-}
-
-.fk-calendar__day.is-unavailable {
-  text-decoration: line-through;
-}
-
+/* Disabled = individually blocked date (muted). Unavailable = out of range or outside the
+   displayed month (muted + body/sm-slash strike-through). Figma Day Cell: Disabled / Unavailable. */
 .fk-calendar__day[aria-disabled="true"] {
   background: var(--color-calendar-day-bg-disabled);
   color: var(--color-calendar-day-text-disabled);
   cursor: not-allowed;
+}
+
+.fk-calendar__day.is-unavailable {
+  color: var(--color-calendar-day-text-disabled);
+  text-decoration: line-through;
+  text-decoration-skip-ink: none;
 }
 
 .fk-calendar__footer {

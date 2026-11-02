@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=33" />
+  <link rel="stylesheet" href="styles.css?v=34" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -2343,7 +2343,7 @@
             <ul>
               <li><strong>Field state:</strong> Default · Hover (1px <code>border/hover</code>) · Active / open (2px <code>border/active</code>, icon switches to <code>icon/active</code>) · Filled · Error (1px <code>border/error</code>, red label + message) · Error Active · Disabled (disabled background, border, text, and icon tokens)</li>
               <li><strong>Focus Visible:</strong> <code>Focus Ring</code> boolean — 2px <code>color/date-picker/focus/ring</code> outside a 2px page-coloured gap, radius 10. Keyboard only (<code>:focus-visible</code>).</li>
-              <li><strong>Calendar day state:</strong> Default · Hover · Focus · Selected · Today · Disabled · Outside month (unavailable days are struck through)</li>
+              <li><strong>Calendar day state:</strong> Default · Hover · Focus · Selected · Today · Disabled (blocked date, muted) · Unavailable (out of range or outside the displayed month, muted and struck through)</li>
               <li><strong>Size:</strong> Small (40) · Medium (48)</li>
               <li><strong>Booleans:</strong> Show label · Required · Helper Text · Error Text · Show calendar icon · Focus Ring</li>
             </ul>
@@ -2395,10 +2395,10 @@
                 <div class="tf-state-row" role="listitem">
                   <div class="tf-state-row__desc">
                     <p class="tf-state-row__name">Calendar open</p>
-                    <p class="tf-state-row__note">Active trigger with the Calendar Popover kept open and fully interactive. Mirrors the Figma example: July 2026, Selected 15, Today 26, Disabled 28, unavailable Jun 30. The popover is rendered in flow here so it does not cover the rows below.</p>
+                    <p class="tf-state-row__note">Active trigger with the Calendar Popover kept open and fully interactive. Mirrors the Figma example: July 2026, earliest date Jul 14 (days before it and the adjacent-month days are Unavailable — struck through), Selected 15, Today 26, Disabled 28. The popover is rendered in flow here so it does not cover the rows below.</p>
                   </div>
                   <div class="tf-state-row__component">
-                    <div class="fk-field fk-dp" data-datepicker data-datepicker-static data-datepicker-view="2026-07" data-datepicker-selected="2026-07-15" data-datepicker-today="2026-07-26" data-datepicker-disabled="2026-07-28" data-datepicker-unavailable="2026-06-30">
+                    <div class="fk-field fk-dp" data-datepicker data-datepicker-static data-datepicker-view="2026-07" data-datepicker-min="2026-07-14" data-datepicker-selected="2026-07-15" data-datepicker-today="2026-07-26" data-datepicker-disabled="2026-07-28">
                       <div class="fk-field__label-row">
                         <label id="demo-dp-open-label" for="demo-dp-open-trigger">Date</label>
                       </div>
@@ -2519,7 +2519,7 @@
                 <div class="tf-state-row" role="listitem">
                   <div class="tf-state-row__desc">
                     <p class="tf-state-row__name">Calendar day states</p>
-                    <p class="tf-state-row__note">Static reference for <code>.Base / Calendar / Day Cell</code>: 36px circles, body/sm text. Hover and Focus are shown here for comparison only — in the live calendar they come from the pointer and keyboard.</p>
+                    <p class="tf-state-row__note">Static reference for <code>.Base / Calendar / Day Cell</code>: 36px circles, body/sm text (Unavailable uses body/sm-slash). Hover and Focus are shown here for comparison only — in the live calendar they come from the pointer and keyboard.</p>
                   </div>
                   <div class="tf-state-row__component">
                     <ul class="fk-cal-states" aria-label="Calendar day cell states">
@@ -2529,7 +2529,7 @@
                       <li><span class="fk-calendar__day is-selected" aria-hidden="true">15</span><span class="fk-cal-states__label">Selected</span></li>
                       <li><span class="fk-calendar__day is-today" aria-hidden="true">26</span><span class="fk-cal-states__label">Today</span></li>
                       <li><span class="fk-calendar__day" aria-disabled="true" aria-hidden="true">15</span><span class="fk-cal-states__label">Disabled</span></li>
-                      <li><span class="fk-calendar__day is-outside is-unavailable" aria-hidden="true">30</span><span class="fk-cal-states__label">Outside</span></li>
+                      <li><span class="fk-calendar__day is-unavailable" aria-hidden="true">30</span><span class="fk-cal-states__label">Unavailable</span></li>
                     </ul>
                   </div>
                 </div>
@@ -2557,16 +2557,16 @@
                   <li><strong>7 Calendar Popover</strong> — 308 × 344 surface, 16px padding, 12px vertical gap, radius 12, 1px <code>calendar/border/default</code>, <code>elevation/Popover</code>, 2px below the trigger.</li>
                   <li><strong>8 Month / year header</strong> — 32px row: body/md centred title between <strong>9 Previous / Next</strong> <code>.Base / Calendar / Nav Button</code> controls (32px, radius 4, 16px <code>arrow_back_ios_new</code> / <code>arrow_forward_ios</code>).</li>
                   <li><strong>10 Weekday headers</strong> — 24px row of caption/md labels (Su … Sa) in <code>calendar/week/text/default</code>.</li>
-                  <li><strong>11 Day cells</strong> — 7-column grid of 36px circles with 4px gaps, body/sm numerals; Today = 2px <code>day/border/today</code> outline, Selected = <code>day/background/selected</code> fill + inverse text.</li>
+                  <li><strong>11 Day cells</strong> — 7-column grid of 36px circles with 4px gaps, body/sm numerals; Today = 2px <code>day/border/today</code> outline, Selected = <code>day/background/selected</code> fill + inverse text, Disabled = muted, Unavailable = muted + strike-through.</li>
                   <li><strong>12 Footer</strong> — 24px row with <strong>Today</strong> and <strong>Clear</strong> text actions in <code>calendar/footer/text/default</code>.</li>
                 </ul>
               </div>
               <div class="doc-note__group">
                 <h4 class="doc-note__title">Tokens</h4>
                 <ul class="doc-note__list">
-                  <li><strong>Typography:</strong> label body/sm (Poppins 14/20) · value and placeholder body/md 16/24 (Small: body/sm) · helper and error caption/md 12/16 · month/year body/md · weekday caption/md · day numerals and footer actions body/sm.</li>
+                  <li><strong>Typography:</strong> label body/sm (Poppins 14/20) · value and placeholder body/md 16/24 (Small: body/sm) · helper and error caption/md 12/16 · month/year body/md · weekday caption/md · day numerals and footer actions body/sm · Unavailable days body/sm-slash (body/sm with a strike-through).</li>
                   <li><strong>Trigger colour:</strong> <code>color/date-picker/background/{default,hover,active,filled,error,disabled}</code>, <code>border/{default #78716c, hover #57534e, active #000, error #dc2626, disabled #d6d3d1}</code>, <code>text/{value, placeholder, disabled}</code>, <code>label/{default, error, disabled}</code>, <code>helper/{default, disabled}</code>, <code>error/default</code>, <code>icon/{default, active, error, disabled}</code>, <code>focus/ring #d33f55</code> — resolved for Light and Dark as <code>--color-date-picker-*</code>.</li>
-                  <li><strong>Calendar colour:</strong> <code>color/calendar/background/default</code>, <code>border/default</code>, <code>header/text/default</code>, <code>week/text/default</code>, <code>day/background/{default, hover #fafaf9, selected #d33f55, today, disabled}</code>, <code>day/text/{default, selected #fff, today, outside #57534e, disabled #78716c}</code>, <code>day/border/today #000</code>, <code>day/focus/ring #d33f55</code>, <code>nav/icon/{default, hover, disabled}</code>, <code>footer/text/default</code> — resolved as <code>--color-calendar-*</code>. Dark: surface <code>#1c1917</code>, Selected <code>#fff</code> with <code>#231f20</code> text, Hover <code>#000</code>, Today and focus rings <code>#fff</code>.</li>
+                  <li><strong>Calendar colour:</strong> <code>color/calendar/background/default</code>, <code>border/default</code>, <code>header/text/default</code>, <code>week/text/default</code>, <code>day/background/{default, hover #fafaf9, selected #d33f55, today, disabled}</code>, <code>day/text/{default, selected #fff, today, disabled #78716c}</code> (Unavailable reuses <code>day/text/disabled</code>; there is no separate outside-month token), <code>day/border/today #000</code>, <code>day/focus/ring #d33f55</code>, <code>nav/icon/{default, hover, disabled}</code>, <code>footer/text/default</code> — resolved as <code>--color-calendar-*</code>. Dark: surface <code>#1c1917</code>, Selected <code>#fff</code> with <code>#231f20</code> text, Hover <code>#000</code>, Today and focus rings <code>#fff</code>.</li>
                   <li><strong>Layout:</strong> trigger 48 / 40 high, padding 16 / 12 (<code>density/text-field/*/padding-x</code>), gap 8, radius 8 (<code>radius/8</code>), focus ring radius 10 · popover width 308, padding 16, gap 12, radius 12 (<code>radius/12</code>), offset <code>spacing/2</code> (2px) · header 32 · weekday row 24 · day cell 36 (<code>density/calendar/day-size</code>), gap 4 (<code>density/calendar/gap</code>), <code>radius/full</code> · footer 24.</li>
                   <li><strong>Elevation:</strong> <code>elevation/Popover</code> — 0 8 16 rgba(35,31,32,.10) + 0 4 8 rgba(35,31,32,.06) (<code>--elevation-popover</code>); identical in Dark, paired with the Dark surface and border.</li>
                   <li><strong>Needs verification:</strong> Dark <code>icon/error</code> (docs use the Dark <code>status/danger</code> value) and the Error Active composite in Figma, where the popover overlaps the error message.</li>
@@ -2590,8 +2590,8 @@
                   <li><strong>Selected:</strong> circular <code>day/background/selected</code> fill with inverse text and <code>aria-selected="true"</code> — fill plus focus ring, never colour alone.</li>
                   <li><strong>Hover:</strong> circular <code>day/background/hover</code> fill on enabled, unselected days.</li>
                   <li><strong>Keyboard Focus Visible:</strong> 2px <code>day/focus/ring</code> circle on the focused day; roving <code>tabindex</code> keeps one day in the tab order.</li>
-                  <li><strong>Disabled:</strong> <code>day/text/disabled</code>, <code>aria-disabled="true"</code>, not selectable by pointer or keyboard; arrow keys still pass over it.</li>
-                  <li><strong>Outside month:</strong> leading and trailing days in <code>day/text/outside</code>; selecting one moves the view to that month. Unavailable days add a strike-through.</li>
+                  <li><strong>Disabled:</strong> an individually blocked date — <code>day/text/disabled</code> on <code>day/background/disabled</code>, no strike-through, <code>aria-disabled="true"</code>, not selectable by pointer or keyboard; arrow keys still pass over it.</li>
+                  <li><strong>Unavailable:</strong> a date outside the selectable range (before the earliest or after the latest date) or belonging to the previous / next month — <code>day/text/disabled</code> plus a body/sm-slash strike-through, <code>aria-disabled="true"</code>, not selectable. Use Previous / Next or the arrow keys to reach adjacent months.</li>
                 </ul>
               </div>
               <div class="doc-note__group">
@@ -2609,7 +2609,7 @@
                   <li>Trigger is a <code>&lt;button aria-haspopup="dialog" aria-expanded aria-controls&gt;</code> named by label + current value (<code>aria-labelledby</code>); helper and error text are linked with <code>aria-describedby</code>, errors add <code>aria-invalid</code>, required adds <code>aria-required</code>.</li>
                   <li>Calendar is <code>role="dialog" aria-modal="true" aria-label="Choose date"</code>; the month heading is <code>aria-live="polite"</code> so Previous / Next announce the new month; nav buttons are labelled “Previous month” / “Next month”.</li>
                   <li>Days are a <code>&lt;table role="grid"&gt;</code> with <code>columnheader</code> weekday cells (full names via <code>aria-label</code>) and <code>gridcell</code> days whose <code>aria-label</code> is the full date, plus <code>aria-selected</code>, <code>aria-disabled</code>, and <code>aria-current="date"</code>.</li>
-                  <li>Contrast (WCAG 2.2 AA): value, placeholder, label, helper, error, month, weekday, day, outside-day, Selected (white on <code>#d33f55</code>), Today border, and focus rings pass in both themes; Disabled text and days are <strong>Exempt / Disabled state</strong>.</li>
+                  <li>Contrast (WCAG 2.2 AA): value, placeholder, label, helper, error, month, weekday, day, Selected (white on <code>#d33f55</code>), Today border, and focus rings pass in both themes; Disabled and Unavailable days are <strong>Exempt / Disabled state</strong> and are also marked with <code>aria-disabled</code> (Unavailable adds the strike-through, so range limits are not conveyed by colour alone).</li>
                   <li>Decorative icons (<code>calendar_today</code>, arrows) are <code>aria-hidden</code>. Manual typing is not part of the Figma component, so the trigger is a button rather than a text input.</li>
                 </ul>
               </div>
@@ -2626,9 +2626,9 @@
                 <ul class="doc-note__list">
                   <li><strong>Value:</strong> hold a single local <code>Date</code> (or ISO <code>YYYY-MM-DD</code>); build dates with <code>new Date(y, m, d)</code> and compare by year / month / day so UTC conversion never shifts a day. The docs display <code>Mon D, YYYY</code>.</li>
                   <li><strong>Markup:</strong> <code>.fk-field.fk-dp[data-datepicker]</code> → label row → <code>.fk-datepicker</code> with <code>button.fk-datepicker__trigger[data-datepicker-trigger]</code> (value span + icon) and an empty <code>.fk-calendar[data-datepicker-calendar]</code> that the script fills → <code>.fk-helper</code> or <code>.fk-error</code>. Add <code>.fk-datepicker--sm</code> for Small; <code>.is-error</code> / <code>.is-disabled</code> on the field recolour label and helper.</li>
-                  <li><strong>Options (data attributes on the field):</strong> <code>data-datepicker-selected</code>, <code>data-datepicker-view</code> (<code>YYYY-MM</code>), <code>data-datepicker-today</code>, <code>data-datepicker-disabled</code> and <code>data-datepicker-unavailable</code> (comma-separated ISO dates), <code>data-datepicker-static</code> (always-open in-flow calendar for documentation).</li>
+                  <li><strong>Options (data attributes on the field):</strong> <code>data-datepicker-selected</code>, <code>data-datepicker-view</code> (<code>YYYY-MM</code>), <code>data-datepicker-today</code>, <code>data-datepicker-min</code> / <code>data-datepicker-max</code> (earliest / latest selectable date — everything outside renders Unavailable), <code>data-datepicker-disabled</code> (blocked dates, muted) and <code>data-datepicker-unavailable</code> (extra struck-through dates), both comma-separated ISO dates, <code>data-datepicker-static</code> (always-open in-flow calendar for documentation).</li>
                   <li><strong>Open / close:</strong> the script toggles <code>aria-expanded</code>, <code>.is-open</code>, and <code>hidden</code>; the popover is absolutely positioned 2px below the trigger and flips above (<code>.is-above</code>) when the viewport has no room below. The container that holds it must allow <code>overflow: visible</code>.</li>
-                  <li><strong>Validation:</strong> disabled days carry <code>aria-disabled</code> and ignore selection; show errors by adding <code>.is-error</code>, <code>aria-invalid="true"</code>, and an <code>.fk-error</code> message referenced by <code>aria-describedby</code>.</li>
+                  <li><strong>Validation:</strong> Disabled and Unavailable days carry <code>aria-disabled</code> and ignore selection (Today is also ignored when it falls outside the range); show errors by adding <code>.is-error</code>, <code>aria-invalid="true"</code>, and an <code>.fk-error</code> message referenced by <code>aria-describedby</code>.</li>
                   <li><strong>Theming:</strong> every colour reads <code>--color-date-picker-*</code> / <code>--color-calendar-*</code>, which switch with <code>[data-theme="dark"]</code>; no component-level overrides are needed.</li>
                 </ul>
               </div>
@@ -3348,6 +3348,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=33"></script>
+  <script src="script.js?v=34"></script>
 </body>
 </html>
