@@ -1001,9 +1001,14 @@ tr:last-child td {
 #button .preview-panel > .preview-row,
 #text-button .preview-panel > .preview-row,
 #icon-button .preview-panel > .preview-row,
-#card .preview-panel > .preview-row {
+#card .preview-panel > .preview-row,
+#text-field .preview-panel > .preview-row {
   column-gap: var(--space-16);
   row-gap: var(--space-4);
+}
+
+#text-field .preview-panel > .preview-row {
+  row-gap: var(--space-16);
 }
 
 @media (max-width: 768px) {
@@ -1011,9 +1016,21 @@ tr:last-child td {
   #button .preview-panel > .preview-row,
   #text-button .preview-panel > .preview-row,
   #icon-button .preview-panel > .preview-row,
-  #card .preview-panel > .preview-row {
+  #card .preview-panel > .preview-row,
+  #text-field .preview-panel > .preview-row {
     column-gap: var(--space-8);
     row-gap: var(--space-4);
+  }
+
+  #text-field .preview-panel > .preview-row {
+    row-gap: var(--space-8);
+  }
+}
+
+@media (max-width: 480px) {
+  #text-field .preview-panel > .preview-row {
+    column-gap: var(--space-6);
+    row-gap: var(--space-6);
   }
 }
 
@@ -1065,9 +1082,31 @@ tr:last-child td {
   align-items: flex-start;
 }
 
+/* Wide form-control specimens (Text Field): left-align captions under the field */
+.preview-specimen--field {
+  align-items: stretch;
+  flex: 1 1 280px;
+  max-width: 320px;
+  width: min(100%, 320px);
+}
+
+.preview-specimen--field .preview-specimen__label {
+  text-align: left;
+  white-space: normal;
+}
+
+.preview-specimen--field .fk-field {
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .preview-specimen__label {
     white-space: normal;
+  }
+
+  .preview-specimen--field {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 }
 
@@ -1787,6 +1826,26 @@ tr:last-child td {
 
 #text-field .preview-panel {
   overflow: visible;
+}
+
+#text-field .preview-panel > .preview-row {
+  margin-bottom: 0;
+}
+
+#text-field .preview-panel > .preview-row + .preview-row {
+  margin-top: var(--space-16);
+}
+
+@media (max-width: 768px) {
+  #text-field .preview-panel > .preview-row + .preview-row {
+    margin-top: var(--space-8);
+  }
+}
+
+@media (max-width: 480px) {
+  #text-field .preview-panel > .preview-row + .preview-row {
+    margin-top: var(--space-6);
+  }
 }
 
 /* Search */
