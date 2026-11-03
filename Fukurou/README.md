@@ -752,13 +752,15 @@ Component tokens: `color/icon-button/background/*`, `color/icon-button/content/*
 
 **Tokens:** `color/checkbox/*` · `density/checkbox/*` · focus ring via `color/checkbox/focus/*`
 
-**Checked / indeterminate state:** Brand fill + visible mark (checkmark or center bar) — not color alone
+**Checked / indeterminate state:** `color/checkbox/background/checked` fill (resolves to `#000` Light / `#fff` Dark in the live file — verified 2026-11-03, not brand red) + visible mark (12px checkmark or 10×2 center bar in `mark/checked`) — not color alone
 
 **When to use:** Independent / multiple selections · confirmations · on/off toggles in a visible list
 
 **Accessibility:** Native `<input type="checkbox">` with associated label (set `indeterminate` via JS); group in `<fieldset>`/`<legend>`; strong 2px offset focus ring; group errors as text; disabled exempt from full contrast
 
 **Examples:** `Checkbox Examples` on **Form** page (includes **Income sources** checkbox group, Light + Dark)
+
+**HTML docs reconciliation (2026-11-03):** `docs/index.html#checkbox` was rebuilt against `Component/Checkbox` (`365:907`) and the `Selector / Checkbox` set (State × Checked × Indeterminate). Verified values implemented as `--color-checkbox-*` (Light + Dark) scoped to `.fk-check`: 20px box, radius 4, 1px stroke, 12px gap, 2px indicator offset, 48px row; checked / indeterminate fill `background/checked` + `border/checked`, 12px filled checkmark, 10×2 bar (radius 1); hover only changes the unchecked box (`background/hover`, `border/hover`); keyboard-only focus ring (2px gap + 2px ring, unchecked stroke → `border/focus`); disabled tokens + 60% row opacity; error `border/error` + `label/error` with fill unchanged. Preview is the two-column `.tf-state-list`: Unchecked · Checked · Indeterminate (native `indeterminate` property, parent/child sync) · Without description · Checkbox group ("Income sources": checked, default, default, disabled) · Disabled / Unchecked · Disabled / Checked · Disabled / Indeterminate · Error + message (clears when checked). Playwright 68/68 (Light, Dark, tablet, mobile; Radio 70/70 regression). Docs review badge stays **Needed Review**. **Needs verification:** group-level error / helper message, group card frame, legend text style, Figma group's leaf "Self-employment" shown Indeterminate, Pressed state, focus-ring radius (Figma wrapper radius 4 vs CSS box-shadow).
 
 **Scripts:** `scripts/figma-checkbox-tokens.js` · `figma-checkbox.js` · `figma-checkbox-examples.js` · `figma-checkbox-docs.js`
 

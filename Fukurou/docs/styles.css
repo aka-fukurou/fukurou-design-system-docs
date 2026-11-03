@@ -244,6 +244,32 @@
   --color-radio-focus-ring: #d33f55;
   --color-radio-focus-gap: #fafaf9;
 
+  /* Checkbox (color/checkbox/* from live Figma 365:1031) */
+  --color-checkbox-bg: #ffffff;
+  --color-checkbox-bg-hover: #fafaf9;
+  --color-checkbox-bg-checked: #000000;
+  --color-checkbox-bg-indeterminate: #000000;
+  --color-checkbox-bg-disabled: #f5f5f4;
+  --color-checkbox-bg-error: #ffffff;
+  --color-checkbox-border: #78716c;
+  --color-checkbox-border-hover: #57534e;
+  --color-checkbox-border-checked: #000000;
+  --color-checkbox-border-indeterminate: #000000;
+  --color-checkbox-border-focus: #d33f55;
+  --color-checkbox-border-disabled: #d6d3d1;
+  --color-checkbox-border-error: #dc2626;
+  --color-checkbox-mark-checked: #ffffff;
+  --color-checkbox-mark-indeterminate: #ffffff;
+  --color-checkbox-mark-disabled: #78716c;
+  --color-checkbox-label: #231f20;
+  --color-checkbox-label-disabled: #78716c;
+  --color-checkbox-label-error: #8d1818;
+  --color-checkbox-desc: #57534e;
+  --color-checkbox-desc-disabled: #78716c;
+  --color-checkbox-desc-error: #57534e;
+  --color-checkbox-focus-ring: #d33f55;
+  --color-checkbox-focus-gap: #fafaf9;
+
   /* Docs chrome */
   --color-topbar-bg: rgba(250, 250, 249, 0.92);
   --color-heading: #231f20;
@@ -530,6 +556,31 @@
   --color-radio-desc-error: #d6d3d1;
   --color-radio-focus-ring: #ffffff;
   --color-radio-focus-gap: #000000;
+
+  --color-checkbox-bg: #1c1917;
+  --color-checkbox-bg-hover: #1c1917;
+  --color-checkbox-bg-checked: #ffffff;
+  --color-checkbox-bg-indeterminate: #ffffff;
+  --color-checkbox-bg-disabled: #292524;
+  --color-checkbox-bg-error: #1c1917;
+  --color-checkbox-border: #a8a29e;
+  --color-checkbox-border-hover: #78716c;
+  --color-checkbox-border-checked: #ffffff;
+  --color-checkbox-border-indeterminate: #ffffff;
+  --color-checkbox-border-focus: #ffffff;
+  --color-checkbox-border-disabled: #44403c;
+  --color-checkbox-border-error: #fae1e1;
+  --color-checkbox-mark-checked: #231f20;
+  --color-checkbox-mark-indeterminate: #231f20;
+  --color-checkbox-mark-disabled: #a8a29e;
+  --color-checkbox-label: #ffffff;
+  --color-checkbox-label-disabled: #a8a29e;
+  --color-checkbox-label-error: #f4bebe;
+  --color-checkbox-desc: #d6d3d1;
+  --color-checkbox-desc-disabled: #a8a29e;
+  --color-checkbox-desc-error: #d6d3d1;
+  --color-checkbox-focus-ring: #ffffff;
+  --color-checkbox-focus-gap: #000000;
 
   --color-topbar-bg: rgba(0, 0, 0, 0.88);
   --color-heading: #ffffff;
@@ -2807,6 +2858,176 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
 
 .fk-control input:disabled ~ .fk-control__content .fk-control__label {
   cursor: not-allowed;
+}
+
+/* Checkbox — Figma `Selector / Checkbox` (365:1031): 20px square, radius 4, 1px stroke, 12px
+   filled Material check or 10×2 indeterminate bar, 12px gap, label body/md + description body/sm,
+   48px row. Colours = color/checkbox/*. Scoped to .fk-check so Radio Selector is unaffected. */
+#checkbox .fk-check,
+#checkbox .fk-check-group {
+  width: min(100%, 360px);
+}
+
+.fk-check {
+  min-height: 48px;
+  cursor: pointer;
+}
+
+.fk-check .fk-control__indicator {
+  border-radius: 4px;
+  border-color: var(--color-checkbox-border);
+  background: var(--color-checkbox-bg);
+}
+
+.fk-check .fk-control__mark {
+  color: var(--color-checkbox-mark-checked);
+}
+
+/* Indeterminate bar: 10×2, radius 1 (density/checkbox/indeterminate-width). */
+.fk-check .fk-control__bar {
+  display: none;
+  width: 10px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--color-checkbox-mark-indeterminate);
+}
+
+.fk-check .fk-control__label {
+  color: var(--color-checkbox-label);
+}
+
+.fk-check .fk-control__desc {
+  color: var(--color-checkbox-desc);
+}
+
+/* Hover: unchecked only — background/hover + border/hover. Checked / indeterminate are unchanged. */
+.fk-check:hover input:not(:disabled):not(:checked):not(:indeterminate) + .fk-control__indicator {
+  background: var(--color-checkbox-bg-hover);
+  border-color: var(--color-checkbox-border-hover);
+}
+
+/* Checked: background/checked + border/checked + mark/checked. */
+.fk-check input:checked + .fk-control__indicator {
+  background: var(--color-checkbox-bg-checked);
+  border-color: var(--color-checkbox-border-checked);
+}
+
+/* Indeterminate wins visually over checked (native `indeterminate` property set by script). */
+.fk-check input:indeterminate + .fk-control__indicator {
+  background: var(--color-checkbox-bg-indeterminate);
+  border-color: var(--color-checkbox-border-indeterminate);
+}
+
+.fk-check input:indeterminate + .fk-control__indicator .fk-control__mark {
+  display: none;
+}
+
+.fk-check input:indeterminate + .fk-control__indicator .fk-control__bar {
+  display: block;
+}
+
+/* Focus Visible: keyboard only — 2px focus/gap + 2px focus/ring outside the box;
+   unchecked border switches to border/focus (Figma Focus, Checked=False). */
+.fk-check input:focus-visible + .fk-control__indicator {
+  box-shadow: 0 0 0 2px var(--color-checkbox-focus-gap), 0 0 0 4px var(--color-checkbox-focus-ring);
+}
+
+.fk-check input:focus-visible:not(:checked):not(:indeterminate) + .fk-control__indicator {
+  border-color: var(--color-checkbox-border-focus);
+}
+
+/* Error: border/error in every selection state; fill and mark unchanged; label/error text. */
+.fk-check.is-error input:not(:disabled) + .fk-control__indicator,
+.fk-check-group.is-error .fk-check input:not(:disabled) + .fk-control__indicator {
+  border-color: var(--color-checkbox-border-error);
+}
+
+.fk-check.is-error input:not(:disabled):not(:checked):not(:indeterminate) + .fk-control__indicator,
+.fk-check-group.is-error .fk-check input:not(:disabled):not(:checked):not(:indeterminate) + .fk-control__indicator {
+  background: var(--color-checkbox-bg-error);
+}
+
+.fk-check.is-error .fk-control__label,
+.fk-check-group.is-error .fk-check .fk-control__label {
+  color: var(--color-checkbox-label-error);
+}
+
+.fk-check.is-error .fk-control__desc,
+.fk-check-group.is-error .fk-check .fk-control__desc {
+  color: var(--color-checkbox-desc-error);
+}
+
+/* Disabled: whole row at 60% opacity plus disabled background, border, mark, label, description. */
+.fk-check:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fk-check input:disabled + .fk-control__indicator {
+  background: var(--color-checkbox-bg-disabled);
+  border-color: var(--color-checkbox-border-disabled);
+}
+
+.fk-check input:disabled + .fk-control__indicator .fk-control__mark {
+  color: var(--color-checkbox-mark-disabled);
+}
+
+.fk-check input:disabled + .fk-control__indicator .fk-control__bar {
+  background: var(--color-checkbox-mark-disabled);
+}
+
+.fk-check input:disabled ~ .fk-control__content .fk-control__label {
+  color: var(--color-checkbox-label-disabled);
+}
+
+.fk-check input:disabled ~ .fk-control__content .fk-control__desc {
+  color: var(--color-checkbox-desc-disabled);
+}
+
+/* Checkbox group: fieldset + legend (Poppins SemiBold 16), 16px between legend, options, message. */
+.fk-check-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fk-check-group__legend {
+  padding: 0;
+  margin: 0 0 16px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--color-checkbox-label);
+}
+
+.fk-check-group.is-error .fk-check-group__legend {
+  color: var(--color-checkbox-label-error);
+}
+
+.fk-check-group__options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Parent / child indeterminate demo: children indented by control + gap (20 + 12). */
+.fk-check-group__options--nested {
+  margin-left: 32px;
+  margin-top: 16px;
+}
+
+.fk-check-group > .fk-error,
+.fk-check-group > .fk-helper,
+.fk-check-field > .fk-error,
+.fk-check-field > .fk-helper {
+  margin-top: 8px;
+}
+
+.fk-check-group > .fk-error[hidden],
+.fk-check-field > .fk-error[hidden] {
+  display: none;
 }
 
 /* Radio Selector — Figma `Selector / Radio Button` (313:796): 20px circle, 1px inside stroke,

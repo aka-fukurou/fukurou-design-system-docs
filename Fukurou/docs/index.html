@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=36" />
+  <link rel="stylesheet" href="styles.css?v=37" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -3165,39 +3165,340 @@
               <h3>Checkbox</h3>
               <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
-            <p>Independent on/off selection with optional indeterminate. Indicator 20×20, radius 4.</p>
+            <p><code>Checkbox</code> is an independent on/off selection — any number of options in a group can be selected. The control is a 20px square with radius 4 and a 1px stroke, a 12px gap to the content, a body/md label and an optional body/sm description in a 48px row. Checked shows a <code>background/checked</code> fill with a 12px checkmark; Indeterminate shows the same fill with a 10 × 2 centre bar — selection is never shown by colour alone. Use Radio Selector for exactly one choice and Switch for an immediately applied setting.</p>
+            <h4>Variants &amp; states</h4>
+            <ul>
+              <li><strong>Selection:</strong> Unchecked (1px <code>border/default</code>, <code>background/default</code>) · Checked (<code>background/checked</code> + <code>border/checked</code> + 12px <code>mark/checked</code>) · Indeterminate (<code>background/indeterminate</code> + 10 × 2 <code>mark/indeterminate</code> bar)</li>
+              <li><strong>State:</strong> Default · Hover (unchecked only: <code>background/hover</code> + <code>border/hover</code>) · Focus (focus-ring wrapper; unchecked border → <code>border/focus</code>) · Disabled (60% opacity + disabled background, border, mark, label, and description tokens — Unchecked, Checked, and Indeterminate) · Error (<code>border/error</code> on every selection state, <code>label/error</code>)</li>
+              <li><strong>Focus Visible:</strong> 2px <code>color/checkbox/focus/ring</code> outside a 2px <code>focus/gap</code>, radius 4. Keyboard only (<code>:focus-visible</code>).</li>
+              <li><strong>Booleans:</strong> Checked · Indeterminate · Show content · Show description. Single size; vertical groups only.</li>
+            </ul>
             <div class="preview-panel">
-              <div class="preview-stack">
-                <label class="fk-control fk-check">
-                  <input type="checkbox" checked />
-                  <span class="fk-control__indicator" aria-hidden="true">
-                    <svg class="fk-control__mark" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  <span class="fk-control__content">
-                    <span class="fk-control__label">I agree to the terms</span>
-                    <span class="fk-control__desc">You can update your preferences later.</span>
-                  </span>
-                </label>
-                <label class="fk-control fk-check">
-                  <input type="checkbox" />
-                  <span class="fk-control__indicator" aria-hidden="true">
-                    <svg class="fk-control__mark" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  <span class="fk-control__content">
-                    <span class="fk-control__label">Send me product updates</span>
-                  </span>
-                </label>
-                <label class="fk-control fk-check">
-                  <input type="checkbox" disabled checked />
-                  <span class="fk-control__indicator" aria-hidden="true">
-                    <svg class="fk-control__mark" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  <span class="fk-control__content">
-                    <span class="fk-control__label">Disabled checked</span>
-                  </span>
-                </label>
+              <div class="preview-label">Interactive preview</div>
+              <div class="tf-state-list" role="list" aria-label="Checkbox examples">
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Unchecked</p>
+                    <p class="tf-state-row__note">Empty box with <code>border/default</code>. Hover darkens the stroke on a subtle fill; Tab shows the focus ring; Space or a click on the label toggles it.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-check">
+                      <input type="checkbox" name="demo-check-default" />
+                      <span class="fk-control__indicator" aria-hidden="true">
+                        <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                        <span class="fk-control__bar"></span>
+                      </span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">I agree to the terms</span>
+                        <span class="fk-control__desc">You can update your preferences later.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Checked</p>
+                    <p class="tf-state-row__note"><code>background/checked</code> fill, <code>border/checked</code>, and the 12px <code>mark/checked</code> checkmark. Hover leaves a checked box unchanged; clicking again unchecks it.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-check">
+                      <input type="checkbox" name="demo-check-checked" checked />
+                      <span class="fk-control__indicator" aria-hidden="true">
+                        <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                        <span class="fk-control__bar"></span>
+                      </span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">I agree to the terms</span>
+                        <span class="fk-control__desc">You can update your preferences later.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Indeterminate</p>
+                    <p class="tf-state-row__note">A parent whose children are partially selected: same fill as Checked with a 10 × 2 centre bar, set through the native <code>indeterminate</code> property. Clicking the parent selects every child; clearing or selecting all children updates the parent.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <fieldset class="fk-check-group" data-check-tree>
+                      <legend class="fk-check-group__legend">Income sources</legend>
+                      <label class="fk-control fk-check">
+                        <input type="checkbox" name="demo-check-parent" data-check-parent data-indeterminate aria-controls="demo-check-children" />
+                        <span class="fk-control__indicator" aria-hidden="true">
+                          <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                          <span class="fk-control__bar"></span>
+                        </span>
+                        <span class="fk-control__content">
+                          <span class="fk-control__label">Select all income sources</span>
+                        </span>
+                      </label>
+                      <div class="fk-check-group__options fk-check-group__options--nested" id="demo-check-children" data-check-children>
+                        <label class="fk-control fk-check">
+                          <input type="checkbox" name="demo-check-child" value="w2" checked />
+                          <span class="fk-control__indicator" aria-hidden="true">
+                            <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                            <span class="fk-control__bar"></span>
+                          </span>
+                          <span class="fk-control__content"><span class="fk-control__label">W-2 income</span></span>
+                        </label>
+                        <label class="fk-control fk-check">
+                          <input type="checkbox" name="demo-check-child" value="1099" />
+                          <span class="fk-control__indicator" aria-hidden="true">
+                            <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                            <span class="fk-control__bar"></span>
+                          </span>
+                          <span class="fk-control__content"><span class="fk-control__label">1099 income</span></span>
+                        </label>
+                        <label class="fk-control fk-check">
+                          <input type="checkbox" name="demo-check-child" value="self" />
+                          <span class="fk-control__indicator" aria-hidden="true">
+                            <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                            <span class="fk-control__bar"></span>
+                          </span>
+                          <span class="fk-control__content"><span class="fk-control__label">Self-employment</span></span>
+                        </label>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Without description</p>
+                    <p class="tf-state-row__note"><code>Show description = false</code>: label only, same 20px control, 12px gap, and 2px indicator offset so the box stays aligned with the first line.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-check">
+                      <input type="checkbox" name="demo-check-nodesc" />
+                      <span class="fk-control__indicator" aria-hidden="true">
+                        <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                        <span class="fk-control__bar"></span>
+                      </span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">Send me product updates</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Checkbox group</p>
+                    <p class="tf-state-row__note">Mirrors the Figma “Income sources” group: SemiBold legend, 16px between options, each option independent. Tab visits every enabled box; the disabled option is skipped.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <fieldset class="fk-check-group">
+                      <legend class="fk-check-group__legend">Income sources</legend>
+                      <div class="fk-check-group__options">
+                        <label class="fk-control fk-check">
+                          <input type="checkbox" name="demo-check-income" value="w2" checked />
+                          <span class="fk-control__indicator" aria-hidden="true">
+                            <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                            <span class="fk-control__bar"></span>
+                          </span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">W-2 income</span>
+                            <span class="fk-control__desc">Select this if you received wages from an employer.</span>
+                          </span>
+                        </label>
+                        <label class="fk-control fk-check">
+                          <input type="checkbox" name="demo-check-income" value="1099" />
+                          <span class="fk-control__indicator" aria-hidden="true">
+                            <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                            <span class="fk-control__bar"></span>
+                          </span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">1099 income</span>
+                            <span class="fk-control__desc">Select this if you received freelance or contract income.</span>
+                          </span>
+                        </label>
+                        <label class="fk-control fk-check">
+                          <input type="checkbox" name="demo-check-income" value="self" />
+                          <span class="fk-control__indicator" aria-hidden="true">
+                            <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                            <span class="fk-control__bar"></span>
+                          </span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">Self-employment</span>
+                            <span class="fk-control__desc">Select this if you operate your own business.</span>
+                          </span>
+                        </label>
+                        <label class="fk-control fk-check">
+                          <input type="checkbox" name="demo-check-income" value="rental" disabled />
+                          <span class="fk-control__indicator" aria-hidden="true">
+                            <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                            <span class="fk-control__bar"></span>
+                          </span>
+                          <span class="fk-control__content">
+                            <span class="fk-control__label">Rental income</span>
+                            <span class="fk-control__desc">Select this if you earned income from rental property.</span>
+                          </span>
+                        </label>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled / Unchecked</p>
+                    <p class="tf-state-row__note">Native <code>disabled</code>: whole row at 60% opacity, <code>background/disabled</code> and <code>border/disabled</code> on the box, label and description in the disabled tokens. Not focusable, not toggleable.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-check">
+                      <input type="checkbox" name="demo-check-disabled" disabled />
+                      <span class="fk-control__indicator" aria-hidden="true">
+                        <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                        <span class="fk-control__bar"></span>
+                      </span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">I agree to the terms</span>
+                        <span class="fk-control__desc">You can update your preferences later.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled / Checked</p>
+                    <p class="tf-state-row__note">A selection that can no longer be changed. The box keeps the disabled background and border and the checkmark switches to <code>mark/disabled</code> so the state stays readable at 60% opacity.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-check">
+                      <input type="checkbox" name="demo-check-disabled-checked" disabled checked />
+                      <span class="fk-control__indicator" aria-hidden="true">
+                        <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                        <span class="fk-control__bar"></span>
+                      </span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">I agree to the terms</span>
+                        <span class="fk-control__desc">You can update your preferences later.</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled / Indeterminate</p>
+                    <p class="tf-state-row__note">A partially selected parent that is locked — the bar takes <code>mark/disabled</code>. Included because Figma defines the variant; use it only when a whole parent/child group is read-only.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-control fk-check">
+                      <input type="checkbox" name="demo-check-disabled-indeterminate" disabled data-indeterminate />
+                      <span class="fk-control__indicator" aria-hidden="true">
+                        <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                        <span class="fk-control__bar"></span>
+                      </span>
+                      <span class="fk-control__content">
+                        <span class="fk-control__label">Select all income sources</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Error + message</p>
+                    <p class="tf-state-row__note">A required acknowledgement that has not been checked: <code>border/error</code> on the box, <code>label/error</code> text, and a caption message linked with <code>aria-describedby</code>. Checking the box clears the error.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-check-field" data-check-error>
+                      <label class="fk-control fk-check is-error">
+                        <input type="checkbox" name="demo-check-error" aria-required="true" aria-invalid="true" aria-describedby="demo-check-error-msg" />
+                        <span class="fk-control__indicator" aria-hidden="true">
+                          <svg class="fk-control__mark" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M12 2.71 10.59 1.29 4 7.88 1.42 5.31 0 6.72l4 3.99 8-8Z"/></svg>
+                          <span class="fk-control__bar"></span>
+                        </span>
+                        <span class="fk-control__content">
+                          <span class="fk-control__label">I agree to the terms</span>
+                          <span class="fk-control__desc">You can update your preferences later.</span>
+                        </span>
+                      </label>
+                      <p class="fk-error" id="demo-check-error-msg" role="alert">You must accept the terms to continue.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="do-dont">
+              <article class="do">
+                <h4>Do</h4>
+                <p>Use Checkbox for independent yes/no choices, multi-select lists, preferences, terms acknowledgements, and parent/child “select all” groups. Keep labels short, make the whole label clickable, and add a description only when a choice needs context.</p>
+              </article>
+              <article class="dont">
+                <h4>Don’t</h4>
+                <p>Don’t use it for exactly one choice (Radio Selector) or an immediately applied on/off setting (Switch). Don’t offer Indeterminate as a third value users pick, don’t disable options without saying why, and don’t show selection through colour alone.</p>
+              </article>
+            </div>
+            <section class="doc-note" aria-label="Checkbox implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Anatomy</h4>
+                <ul class="doc-note__list">
+                  <li><strong>1 Checkbox indicator</strong> — <code>checkbox-indicator</code>: 20 × 20 (<code>density/checkbox/control-size</code>), <code>radius/4</code>, 1px stroke (<code>border-width/sm</code>), <code>color/checkbox/background/*</code> fill. Offset 2px from the top of the row so it centres on the label’s first line.</li>
+                  <li><strong>2 Checkmark</strong> — <code>checkmark</code>: 12 × 12 (<code>density/checkbox/mark-size</code>) filled Material <code>check</code> glyph in <code>mark/checked</code>; present only when <code>Checked = true</code>.</li>
+                  <li><strong>3 Indeterminate indicator</strong> — <code>indeterminate-mark</code>: 10 × 2 bar (<code>density/checkbox/indeterminate-width</code>), radius 1, <code>mark/indeterminate</code>; present only when <code>Indeterminate = true</code> and replaces the checkmark.</li>
+                  <li><strong>4 Checkbox label</strong> — body/md (Poppins 16 / 24) in <code>label/default</code>; the whole label is the click target.</li>
+                  <li><strong>5 Supporting description</strong> — optional body/sm (14 / 20) in <code>description/default</code>, 4px below the label (<code>Show description</code> boolean).</li>
+                  <li><strong>6 Checkbox group</strong> — <code>fieldset</code> with a Poppins SemiBold 16 <code>legend</code>, 16px between legend and options and between options. Needs verification: the Figma example frames the group in a bordered card — treated here as documentation framing, not part of the component.</li>
+                  <li><strong>7 Helper / error message</strong> — caption/md below the control or group, 8px gap; error text uses the shared error caption and is linked with <code>aria-describedby</code>. Needs verification: Figma defines Error per option and has no dedicated message layer.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Typography:</strong> label body/md (Poppins 400 16/24) · description body/sm (14/20) · group legend Poppins SemiBold 16 (no bound text style — Needs verification) · helper / error caption/md 12/16.</li>
+                  <li><strong>Colour:</strong> <code>color/checkbox/background/{default #fff, hover #fafaf9, checked #000, indeterminate #000, disabled #f5f5f4, error #fff}</code>, <code>border/{default #78716c, hover #57534e, checked #000, indeterminate #000, focus #d33f55, disabled #d6d3d1, error #dc2626}</code>, <code>mark/{checked #fff, indeterminate #fff, disabled #78716c}</code>, <code>label/{default #231f20, disabled #78716c, error #8d1818}</code>, <code>description/{default #57534e, disabled #78716c, error #57534e}</code>, <code>focus/{ring #d33f55, gap #fafaf9}</code> — resolved for Light and Dark as <code>--color-checkbox-*</code>. Dark: background <code>#1c1917</code> (disabled <code>#292524</code>), checked / indeterminate fill and border <code>#fff</code> with <code>#231f20</code> marks, border <code>#a8a29e</code> / hover <code>#78716c</code> / disabled <code>#44403c</code> / error <code>#fae1e1</code>, label <code>#fff</code>, description <code>#d6d3d1</code>, label/error <code>#f4bebe</code>, focus ring <code>#fff</code> on a <code>#000</code> gap.</li>
+                  <li><strong>Dimensions &amp; spacing:</strong> control 20 (<code>density/checkbox/control-size</code>) · radius 4 (<code>radius/4</code>) · stroke 1 (<code>border-width/sm</code>) · checkmark 12 (<code>density/checkbox/mark-size</code>) · indeterminate bar 10 × 2 (<code>density/checkbox/indeterminate-width</code>) · control → content 12 (<code>density/checkbox/gap</code>) · label → description 4 · indicator top offset 2 (<code>spacing/2</code>) · row 48 · option → option 16 · legend → options 16 · focus ring 2 + gap 2 (<code>border-width/md</code>, <code>spacing/2</code>).</li>
+                  <li><strong>Disabled:</strong> 60% opacity on the whole option in addition to the disabled colour tokens.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Unchecked:</strong> empty box, <code>border/default</code>. The option is not selected.</li>
+                  <li><strong>Checked:</strong> <code>background/checked</code> + <code>border/checked</code> + checkmark. Toggles independently of every other checkbox; persists until clicked again.</li>
+                  <li><strong>Indeterminate:</strong> <code>background/indeterminate</code> + centre bar. Shown on a parent when some, but not all, children are checked; set with the native <code>indeterminate</code> property (never a CSS class alone). Clicking an indeterminate parent checks it and selects every child; checking or clearing all children makes the parent Checked or Unchecked.</li>
+                  <li><strong>Hover:</strong> pointer over an unchecked, enabled option — <code>background/hover</code> + <code>border/hover</code>. Checked and Indeterminate boxes do not change on hover. Not a separate gallery row.</li>
+                  <li><strong>Pressed:</strong> no dedicated Figma variant — the native control toggles on pointer-up; the docs show the Hover treatment while pressed (Needs verification).</li>
+                  <li><strong>Focus Visible:</strong> keyboard-only ring (2px <code>focus/ring</code> outside a 2px <code>focus/gap</code>); an unchecked box also switches its stroke to <code>border/focus</code>, checked and indeterminate keep their fill. Checked and focused are independent — a checked box shows the ring only while it has keyboard focus.</li>
+                  <li><strong>Disabled (Unchecked · Checked · Indeterminate):</strong> native <code>disabled</code>; 60% opacity and disabled background, border, mark, label, description. Skipped by Tab, not toggleable by pointer or label click.</li>
+                  <li><strong>Error:</strong> <code>border/error</code> stroke (fill and mark unchanged) and <code>label/error</code> text plus a linked message; cleared as soon as the requirement is satisfied.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Keyboard &amp; focus</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Tab / Shift + Tab:</strong> every enabled checkbox is its own tab stop, in document order; disabled boxes are skipped.</li>
+                  <li><strong>Space:</strong> toggles the focused checkbox (Checked ↔ Unchecked; Indeterminate → Checked). Enter does not toggle a native checkbox.</li>
+                  <li><strong>Pattern:</strong> native <code>&lt;input type="checkbox"&gt;</code> wrapped in <code>&lt;label&gt;</code>, grouped by <code>&lt;fieldset&gt;</code> / <code>&lt;legend&gt;</code> — the browser provides focus, toggling, and announcements; script is only needed for the <code>indeterminate</code> property.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Native semantics: each option is a real checkbox inside its <code>&lt;label&gt;</code>, so label and description are part of the click target and screen readers announce “checked”, “not checked”, or “mixed” (indeterminate) with the label text.</li>
+                  <li>Grouping: <code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> expose the group name; a parent “select all” checkbox points at its children with <code>aria-controls</code>.</li>
+                  <li>Error: <code>aria-invalid="true"</code> (and <code>aria-required</code> where applicable) on the input with the message id in <code>aria-describedby</code>; the message is caption-sized text, not colour alone.</li>
+                  <li>Disabled options keep their label visible (60% opacity, disabled tokens) and are removed from the tab order by the browser.</li>
+                  <li>Contrast (WCAG 2.2 AA, both themes): label, description, legend, and error text pass as text; the 1px <code>border/default</code> stroke (<code>#78716c</code> on white 4.80:1 · <code>#a8a29e</code> on <code>#1c1917</code> 6.93:1), <code>border/hover</code> (7.63 / 3.65:1), <code>border/error</code> (4.83 / 14.09:1), the checked fill against the surface (21 / 17.49:1) and the mark against the fill (21 / 16.30:1) pass the 3:1 non-text requirement; the focus ring passes against its gap (4.36 / 21:1). Disabled rows are <strong>Exempt / Disabled state</strong>.</li>
+                  <li>The visible indicator, checkmark, and bar are <code>aria-hidden</code> decorations; the input is visually hidden (1 × 1, opacity 0) but stays in the accessibility tree.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Usage guidelines</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Use for:</strong> independent yes/no selections, choosing several options from a group, preferences and settings, agreeing to terms or acknowledgements, and selecting all or some items in a parent/child list.</li>
+                  <li><strong>Don’t use for:</strong> exactly one option from a mutually exclusive set (Radio Selector), an immediately applied on/off setting (Switch), or Indeterminate as a standalone value a user picks.</li>
+                  <li><strong>Best practices:</strong> write clear, concise labels; keep the entire label clickable; add a description only for complex choices; reserve Indeterminate for partial selection in parent/child groups; show selection with the mark and fill, not colour alone; explain disabled options; place validation feedback next to the checkbox or group it concerns.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Implementation</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Markup:</strong> <code>label.fk-control.fk-check</code> → <code>input[type="checkbox"]</code> → <code>.fk-control__indicator</code> (with <code>svg.fk-control__mark</code> and <code>span.fk-control__bar</code>) → <code>.fk-control__content</code> (<code>.fk-control__label</code>, optional <code>.fk-control__desc</code>). Groups: <code>fieldset.fk-check-group</code> → <code>legend.fk-check-group__legend</code> → <code>.fk-check-group__options</code>.</li>
+                  <li><strong>Indeterminate:</strong> add <code>data-indeterminate</code> to have the docs script set <code>input.indeterminate = true</code> on load; CSS reads <code>:indeterminate</code>. For a parent/child tree use <code>[data-check-tree]</code> with <code>[data-check-parent]</code> and a <code>[data-check-children]</code> container — the script keeps the parent Checked / Indeterminate / Unchecked in sync and propagates parent clicks to every enabled child.</li>
+                  <li><strong>States:</strong> <code>checked</code> and <code>disabled</code> are native; add <code>.is-error</code> on the label (or on a <code>.fk-check-group</code>) plus <code>aria-invalid</code> and <code>aria-describedby</code>. Inside <code>[data-check-error]</code> the docs clear the error once the box is checked.</li>
+                  <li><strong>Styling:</strong> the input is visually hidden and the indicator is styled through sibling selectors (<code>:checked</code>, <code>:indeterminate</code>, <code>:disabled</code>, <code>:focus-visible</code>), so keyboard and assistive-technology behaviour stay native.</li>
+                  <li><strong>Theming:</strong> every colour reads <code>--color-checkbox-*</code>, which switches with <code>[data-theme="dark"]</code>; selections persist across theme changes because state lives in the input.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="switch" data-doc-review="needed-review">
@@ -3576,6 +3877,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=36"></script>
+  <script src="script.js?v=37"></script>
 </body>
 </html>

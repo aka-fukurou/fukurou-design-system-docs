@@ -176,6 +176,45 @@
     });
   });
 
+  /* —— Checkbox: native indeterminate, parent/child sync, error clearing —— */
+  document.querySelectorAll('input[type="checkbox"][data-indeterminate]').forEach(function (input) {
+    input.indeterminate = true;
+  });
+
+  document.querySelectorAll("[data-check-tree]").forEach(function (tree) {
+    const parent = tree.querySelector("[data-check-parent]");
+    const childrenWrap = tree.querySelector("[data-check-children]");
+    if (!parent || !childrenWrap) return;
+    const children = Array.from(childrenWrap.querySelectorAll('input[type="checkbox"]'));
+
+    function syncParent() {
+      const enabled = children.filter(function (c) { return !c.disabled; });
+      const checkedCount = enabled.filter(function (c) { return c.checked; }).length;
+      parent.checked = enabled.length > 0 && checkedCount === enabled.length;
+      parent.indeterminate = checkedCount > 0 && checkedCount < enabled.length;
+    }
+
+    parent.addEventListener("change", function () {
+      // Clicking an indeterminate parent yields checked=true: select every enabled child.
+      children.forEach(function (c) { if (!c.disabled) c.checked = parent.checked; });
+      parent.indeterminate = false;
+    });
+    children.forEach(function (c) { c.addEventListener("change", syncParent); });
+    syncParent();
+  });
+
+  document.querySelectorAll("[data-check-error]").forEach(function (field) {
+    field.addEventListener("change", function (e) {
+      if (!(e.target instanceof HTMLInputElement) || e.target.type !== "checkbox" || !e.target.checked) return;
+      field.classList.remove("is-error");
+      field.querySelectorAll(".fk-check.is-error").forEach(function (l) { l.classList.remove("is-error"); });
+      e.target.removeAttribute("aria-invalid");
+      e.target.removeAttribute("aria-describedby");
+      const msg = field.querySelector(".fk-error");
+      if (msg) msg.hidden = true;
+    });
+  });
+
   /* —— Jumbo select (radio group) —— */
   document.querySelectorAll("[data-jumbo-group]").forEach(function (group) {
     const items = Array.from(group.querySelectorAll("[data-jumbo]"));
