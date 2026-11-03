@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=38" />
+  <link rel="stylesheet" href="styles.css?v=39" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -1521,7 +1521,7 @@
         <!-- COMPONENTS -->
         <section id="components" aria-labelledby="components-title">
           <h2 id="components-title">Components</h2>
-          <p>Public components from the live Fukurou library. Previews below are sized and styled from live Figma measurements and Theme tokens, with simple interactions for docs exploration. Product implementations should still ship from Figma + tokens. Section headers show <strong>documentation review</strong> status — green <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span> through Radio Selector, amber <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span> from Checkbox onward (see each article’s <code>data-doc-review</code> attribute; this is not Figma publish status).</p>
+          <p>Public components from the live Fukurou library. Previews below are sized and styled from live Figma measurements and Theme tokens, with simple interactions for docs exploration. Product implementations should still ship from Figma + tokens. Section headers show <strong>documentation review</strong> status — green <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span> through Checkbox, amber <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span> from Switch onward (see each article’s <code>data-doc-review</code> attribute; this is not Figma publish status).</p>
 
           <div class="comp-index" aria-label="Component index">
             <a href="#button"><strong>Button</strong><span>Action · Secondary · Ghost</span></a>
@@ -3160,10 +3160,10 @@
             </section>
           </article>
 
-          <article class="component" id="checkbox" data-doc-review="needed-review">
+          <article class="component" id="checkbox" data-doc-review="reviewed">
             <div class="component-header">
               <h3>Checkbox</h3>
-              <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
+              <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span>
             </div>
             <p><code>Checkbox</code> is an independent on/off selection — any number of options in a group can be selected. The control is a 20px square with radius 4 and a 1px stroke, a 12px gap to the content, a body/md label and an optional body/sm description in a 48px row. Checked shows a <code>background/checked</code> fill with a 12px checkmark; Indeterminate shows the same fill with a 10 × 2 centre bar — selection is never shown by colour alone. Use Radio Selector for exactly one choice and Switch for an immediately applied setting.</p>
             <h4>Variants &amp; states</h4>
@@ -3877,6 +3877,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=38"></script>
+  <script src="script.js?v=39"></script>
 </body>
 </html>
