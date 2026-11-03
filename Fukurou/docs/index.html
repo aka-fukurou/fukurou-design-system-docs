@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=39" />
+  <link rel="stylesheet" href="styles.css?v=40" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -1521,7 +1521,7 @@
         <!-- COMPONENTS -->
         <section id="components" aria-labelledby="components-title">
           <h2 id="components-title">Components</h2>
-          <p>Public components from the live Fukurou library. Previews below are sized and styled from live Figma measurements and Theme tokens, with simple interactions for docs exploration. Product implementations should still ship from Figma + tokens. Section headers show <strong>documentation review</strong> status — green <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span> through Checkbox, amber <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span> from Switch onward (see each article’s <code>data-doc-review</code> attribute; this is not Figma publish status).</p>
+          <p>Public components from the live Fukurou library. Previews below are sized and styled from live Figma measurements and Theme tokens, with simple interactions for docs exploration. Product implementations should still ship from Figma + tokens. Reusable React components live in <code>@fukurou/react</code> (see each article’s React implementation note where the package already exports that component). Section headers show <strong>documentation review</strong> status — green <span class="badge badge--ok" data-doc-review-status="reviewed">Reviewed</span> through Checkbox, amber <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span> from Switch onward (see each article’s <code>data-doc-review</code> attribute; this is not Figma publish status).</p>
 
           <div class="comp-index" aria-label="Component index">
             <a href="#button"><strong>Button</strong><span>Action · Secondary · Ghost</span></a>
@@ -1599,6 +1599,19 @@
                 <ul class="doc-note__list">
                   <li><strong>Focus Visible:</strong> Keyboard focus (<code>:focus-visible</code>) shows the Figma focus-ring wrapper — 2px gap (<code>color/button/focus/gap</code> = <code>surface/page</code>) plus a 2px ring (<code>color/button/focus/ring</code> = <code>border/focus</code>) outside the body. Tab any button to see it live; the “Focus (static)” examples pin it for reference.</li>
                   <li><strong>Disabled:</strong> Native <code>disabled</code> attribute and 60% opacity per Figma. Exempt from contrast.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">React implementation</h4>
+                <ul class="doc-note__list">
+                  <li>Package: <code>@fukurou/react</code> in the private <a href="https://github.com/aka-fukurou/fukurou-design-system">aka-fukurou/fukurou-design-system</a> repo (not published to npm).</li>
+                  <li><pre><code>import { Button } from '@fukurou/react';
+import '@fukurou/react/styles.css';
+
+export function Example() {
+  return &lt;Button variant="action" size="medium"&gt;Continue&lt;/Button&gt;;
+}</code></pre></li>
+                  <li>Props: <code>variant</code> <code>"action"</code> · <code>"secondary"</code> · <code>"ghost"</code>; <code>size</code> <code>"small"</code> · <code>"medium"</code> · <code>"large"</code>; native button attributes; forwarded ref.</li>
                 </ul>
               </div>
             </section>
@@ -2177,6 +2190,18 @@
                   <li>The no-label example uses <code>aria-label</code>.</li>
                   <li>Helper and error text use <code>aria-describedby</code>.</li>
                   <li>The required asterisk is visual only (<code>aria-hidden</code>); the input uses the native <code>required</code> attribute.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">React implementation</h4>
+                <ul class="doc-note__list">
+                  <li>Package: <code>@fukurou/react</code> (<a href="https://github.com/aka-fukurou/fukurou-design-system">aka-fukurou/fukurou-design-system</a>, not on npm).</li>
+                  <li><pre><code>import { TextField } from '@fukurou/react';
+
+export function Example() {
+  return &lt;TextField label="Email address" helperText="We'll never share your email." /&gt;;
+}</code></pre></li>
+                  <li>Props: <code>label</code>, <code>helperText</code>, <code>errorMessage</code>, <code>size</code> <code>"small"</code> · <code>"medium"</code>, <code>leadingIcon</code>, <code>trailingIcon</code>, <code>clearable</code>, plus native input attributes. Search Field is <code>SearchField</code>.</li>
                 </ul>
               </div>
             </section>
@@ -3155,6 +3180,7 @@
                   <li><strong>States:</strong> <code>checked</code> and <code>disabled</code> are native; add <code>.is-error</code> on the group (or on a single <code>.fk-radio</code>) plus <code>aria-invalid</code> and <code>aria-describedby</code> for validation. The docs clear <code>.is-error</code> on <code>change</code> inside <code>[data-radio-group-error]</code>.</li>
                   <li><strong>Styling:</strong> the input is visually hidden (1 × 1, opacity 0) and the indicator is styled through sibling selectors (<code>:checked</code>, <code>:disabled</code>, <code>:focus-visible</code>), so keyboard and assistive-technology behaviour stay native.</li>
                   <li><strong>Theming:</strong> every colour reads <code>--color-radio-*</code>, which switches with <code>[data-theme="dark"]</code>; selections persist across theme changes because state lives in the input.</li>
+                  <li><strong>React:</strong> <code>import { Radio, RadioGroup } from '@fukurou/react'</code> — <code>&lt;RadioGroup legend="Filing type" defaultValue="individual"&gt;&lt;Radio value="individual" label="Individual" /&gt;&lt;/RadioGroup&gt;</code>.</li>
                 </ul>
               </div>
             </section>
@@ -3496,6 +3522,7 @@
                   <li><strong>States:</strong> <code>checked</code> and <code>disabled</code> are native; add <code>.is-error</code> on the label (or on a <code>.fk-check-group</code>) plus <code>aria-invalid</code> and <code>aria-describedby</code>. Inside <code>[data-check-error]</code> the docs clear the error once the box is checked.</li>
                   <li><strong>Styling:</strong> the input is visually hidden and the indicator is styled through sibling selectors (<code>:checked</code>, <code>:indeterminate</code>, <code>:disabled</code>, <code>:focus-visible</code>), so keyboard and assistive-technology behaviour stay native.</li>
                   <li><strong>Theming:</strong> every colour reads <code>--color-checkbox-*</code>, which switches with <code>[data-theme="dark"]</code>; selections persist across theme changes because state lives in the input.</li>
+                  <li><strong>React:</strong> <code>import { Checkbox, CheckboxGroup } from '@fukurou/react'</code> — <code>&lt;Checkbox label="I agree to the terms" checked={checked} onChange={handleChange} /&gt;</code>. Set <code>indeterminate</code> as a prop (native property, not an HTML attribute).</li>
                 </ul>
               </div>
             </section>
@@ -3877,6 +3904,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=39"></script>
+  <script src="script.js?v=40"></script>
 </body>
 </html>

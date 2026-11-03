@@ -7,6 +7,8 @@ Local workspace for the **Fukurou Design System** Figma library notes, tokens, a
 - **Project notes:** [`Fukurou/README.md`](./Fukurou/README.md)
 - **Live docs URL:** [https://aka-fukurou.github.io/fukurou-design-system-docs/](https://aka-fukurou.github.io/fukurou-design-system-docs/)
 
+Reusable React components are **not** in this repository. They live in the private [`aka-fukurou/fukurou-design-system`](https://github.com/aka-fukurou/fukurou-design-system) monorepo as `@fukurou/react`. This docs site remains the HTML reference and GitHub Pages host.
+
 The local server at `http://localhost:4175` is optional. The published GitHub Pages site stays available without it.
 
 ## Run locally
