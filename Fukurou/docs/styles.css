@@ -111,10 +111,20 @@
   --color-progress-fill: #d33f55;
   --color-progress-track: #f5f5f4;
 
-  /* Control */
+  /* Switch — color/switch/* (Figma Selector/Toggle/Switch; on-fill is black/white, not brand) */
   --color-switch-track-on: #000000;
   --color-switch-track-off: #78716c;
+  --color-switch-track-on-hover: #57534e;
+  --color-switch-track-off-hover: #57534e;
+  --color-switch-track-disabled: #d6d3d1;
   --color-switch-thumb: #ffffff;
+  --color-switch-thumb-disabled: #f5f5f4;
+  --color-switch-label: #231f20;
+  --color-switch-label-disabled: #78716c;
+  --color-switch-desc: #57534e;
+  --color-switch-desc-disabled: #78716c;
+  --color-switch-focus-ring: #d33f55;
+  --color-switch-focus-gap: #fafaf9;
   --color-field-bg: #ffffff;
   --color-field-border: #78716c;
   --color-jumbo-selected-border: #2f9e60;
@@ -441,7 +451,17 @@
 
   --color-switch-track-on: #ffffff;
   --color-switch-track-off: #a8a29e;
+  --color-switch-track-on-hover: #d6d3d1;
+  --color-switch-track-off-hover: #78716c;
+  --color-switch-track-disabled: #44403c;
   --color-switch-thumb: #1c1917;
+  --color-switch-thumb-disabled: #292524;
+  --color-switch-label: #ffffff;
+  --color-switch-label-disabled: #a8a29e;
+  --color-switch-desc: #d6d3d1;
+  --color-switch-desc-disabled: #a8a29e;
+  --color-switch-focus-ring: #ffffff;
+  --color-switch-focus-gap: #000000;
   --color-field-bg: #1c1917;
   --color-field-border: #a8a29e;
   --color-jumbo-selected-border: #2f9e60;
@@ -3168,12 +3188,16 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   display: none;
 }
 
-/* Switch — track 44×24, thumb 20 */
+/* Switch — Figma Selector/Toggle/Switch: track 44×24, thumb 20, gap 12 */
 .fk-switch {
   display: flex;
   gap: 12px;
   align-items: flex-start;
   max-width: 400px;
+}
+
+.fk-switch:has(.fk-switch__btn:disabled) {
+  opacity: 0.6;
 }
 
 .fk-switch__btn {
@@ -3190,8 +3214,16 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   transition: background-color 0.15s ease;
 }
 
+.fk-switch__btn:hover:not(:disabled) {
+  background: var(--color-switch-track-off-hover);
+}
+
 .fk-switch__btn[aria-checked="true"] {
   background: var(--color-switch-track-on);
+}
+
+.fk-switch__btn[aria-checked="true"]:hover:not(:disabled) {
+  background: var(--color-switch-track-on-hover);
 }
 
 .fk-switch__thumb {
@@ -3203,37 +3235,72 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   border-radius: 50%;
   background: var(--color-switch-thumb);
   transition: transform 0.15s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
 }
 
 .fk-switch__btn[aria-checked="true"] .fk-switch__thumb {
   transform: translateX(20px);
 }
 
+.fk-switch__btn:focus {
+  outline: none;
+}
+
 .fk-switch__btn:focus-visible {
-  box-shadow: var(--focus-ring);
+  box-shadow:
+    0 0 0 2px var(--color-switch-focus-gap),
+    0 0 0 4px var(--color-switch-focus-ring);
 }
 
 .fk-switch__btn:disabled {
-  opacity: 0.5;
+  background: var(--color-switch-track-disabled);
   cursor: not-allowed;
+}
+
+.fk-switch__btn:disabled .fk-switch__thumb {
+  background: var(--color-switch-thumb-disabled);
 }
 
 .fk-switch__content {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .fk-switch__label {
+  margin: 0;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 24px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-switch-label);
+  cursor: pointer;
 }
 
 .fk-switch__desc {
+  margin: 0;
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 20px;
-  color: var(--color-text-subtle);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-switch-desc);
+}
+
+.fk-switch:has(.fk-switch__btn:disabled) .fk-switch__label {
+  color: var(--color-switch-label-disabled);
+  cursor: not-allowed;
+}
+
+.fk-switch:has(.fk-switch__btn:disabled) .fk-switch__desc {
+  color: var(--color-switch-desc-disabled);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fk-switch__btn,
+  .fk-switch__thumb {
+    transition: none;
+  }
 }
 
 /* Jumbo Select */

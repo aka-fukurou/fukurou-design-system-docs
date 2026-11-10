@@ -1175,7 +1175,7 @@ Progress Bar (vertical auto-layout, FILL width)
 
 ---
 
-### Toggle / Switch → **Selector / Toggle / Switch** (`433:1330`)
+### Toggle / Switch → **Selector / Toggle / Switch** (`433:1330` · docs node `433:1167`)
 
 **Location:** **`Form`** page · **`Component/Toggle Switch`** · example frame named **`Toggle Switch`** (`417:6170`) — *not `Toggle Switch Examples`*
 
@@ -1183,12 +1183,13 @@ Progress Bar (vertical auto-layout, FILL width)
 |----------|--------|
 | **State** (VARIANT) | Default, Hover, Focus, Disabled |
 | **Checked** (VARIANT) | True, False |
+| **Show content** (BOOLEAN) | default true |
 | **Show description** (BOOLEAN) | default true |
 | **Label / Description** (TEXT) | editable |
 
-**Visual:** Off = neutral track · On = `color/action/primary` track · Focus = 2px brand ring + 2px gap
+**Visual (verified 2026-11-10):** Track 44×24 · thumb Ø20 (2px inset) · Off track `#78716c` (Dark `#a8a29e`) · On track `#000` / `#fff` (**not** brand red — bound variables match Checkbox checked fill) · Hover darkens Off and On tracks · Disabled track `#d6d3d1` / `#44403c` + thumb `#f5f5f4` / `#292524` + **60%** row opacity · Focus = 2px gap + 2px ring (`#d33f55`/`#fff`). No Pressed or Error variant.
 
-**Tokens:** `color/switch/*` · `density/switch/*`
+**Tokens:** `color/switch/*` · `density/switch/*` — HTML docs + `@fukurou/tokens` / `@fukurou/react` `Switch` aligned 2026-11-10. Docs review badge remains **Needed Review**.
 
 **Scripts:** `figma-switch.js` · `figma-switch-examples.js` · `figma-overlay-tokens.js`
 

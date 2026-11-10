@@ -922,20 +922,20 @@ Short **contextual help** for icons and controls — not for critical informatio
 
 ### Toggle / Switch
 
-**Binary on/off** settings and preferences — not for form submission or single-choice lists (use Checkbox or Radio Selector).
+**Binary on/off** settings that apply immediately — not for form multi-select or single-choice lists (use Checkbox or Radio Selector). Figma name: **`Selector / Toggle / Switch`**. React export: **`Switch`** (`role="switch"`), not a Toggle Button.
 
 | Property | Values |
 |----------|--------|
 | **State** (VARIANT) | Default · Hover · Focus · Disabled |
 | **Checked** (VARIANT) | True · False |
-| **Show description** (BOOLEAN) | Optional helper text |
+| **Show content / Show description** (BOOLEAN) | Optional label block / helper text |
 | **Label / Description** (TEXT) | Editable |
 
-**Visual:** Off = neutral track · On = primary brand track · Focus = 2px brand ring + 2px gap (not clipped).
+**Visual (verified 2026-11-10):** Off = neutral track · On = black (Light) / white (Dark) track — **not** brand red · Hover track tokens · Disabled track/thumb tokens + 60% opacity · Focus = 2px gap + 2px ring (not clipped). Track 44×24 · thumb 20.
 
 **Tokens:** `color/switch/*` · `density/switch/*`
 
-**Accessibility:** Visible label required; state not by color alone (thumb position + label); native switch semantics in code. Label/description **pass**. Off-state thumb vs track **passes** non-text 3:1 (Light **4.80:1** · Dark **6.93:1** — audit 2026-06-19).
+**Accessibility:** Visible label required; state not by color alone (thumb position + label); `role="switch"` + `aria-checked` in code. Label/description **pass**. Off-state thumb vs track **passes** non-text 3:1 (Light **4.80:1** · Dark **6.93:1** — audit 2026-06-19).
 
 **Examples:** `Toggle Switch` frame on **Form** page (Light + Dark)
 

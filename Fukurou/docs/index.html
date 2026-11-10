@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=40" />
+  <link rel="stylesheet" href="styles.css?v=41" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -3533,29 +3533,195 @@ export function Example() {
               <h3>Toggle / Switch</h3>
               <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
-            <p>Binary settings control. Track 44×24; thumb 20. On-track uses primary action color.</p>
+            <p>Binary on/off setting that takes effect immediately. Figma component <code>Selector / Toggle / Switch</code> — a <strong>Switch</strong> (<code>role="switch"</code>), not a pressable Toggle Button. Track 44×24 with a 20px thumb; on-fill is black (Light) / white (Dark), not brand red.</p>
             <div class="preview-panel">
-              <div class="preview-stack">
-                <div class="fk-switch">
-                  <button type="button" class="fk-switch__btn" data-switch role="switch" aria-checked="true" aria-labelledby="sw-label-1">
-                    <span class="fk-switch__thumb"></span>
-                  </button>
-                  <div class="fk-switch__content">
-                    <div class="fk-switch__label" id="sw-label-1">Email notifications</div>
-                    <div class="fk-switch__desc">Receive updates about account activity.</div>
+              <div class="tf-state-list" role="list" aria-label="Toggle Switch states">
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Off / Default</p>
+                    <p class="tf-state-row__note">Unselected setting. Track uses <code>track/off/default</code>; thumb sits on the left. Click or press Space / Enter to turn on.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-switch">
+                      <button type="button" id="sw-off" class="fk-switch__btn" data-switch role="switch" aria-checked="false" aria-labelledby="sw-off-label" aria-describedby="sw-off-desc">
+                        <span class="fk-switch__thumb" aria-hidden="true"></span>
+                      </button>
+                      <span class="fk-switch__content">
+                        <label class="fk-switch__label" id="sw-off-label" for="sw-off">Email notifications</label>
+                        <span class="fk-switch__desc" id="sw-off-desc">Receive updates about account activity.</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div class="fk-switch">
-                  <button type="button" class="fk-switch__btn" data-switch role="switch" aria-checked="false" aria-labelledby="sw-label-2">
-                    <span class="fk-switch__thumb"></span>
-                  </button>
-                  <div class="fk-switch__content">
-                    <div class="fk-switch__label" id="sw-label-2">SMS alerts</div>
-                    <div class="fk-switch__desc">Optional mobile notifications.</div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">On / Selected</p>
+                    <p class="tf-state-row__note">Active setting. Track uses <code>track/on/default</code>; thumb slides to the right. State persists until toggled again.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-switch">
+                      <button type="button" id="sw-on" class="fk-switch__btn" data-switch role="switch" aria-checked="true" aria-labelledby="sw-on-label" aria-describedby="sw-on-desc">
+                        <span class="fk-switch__thumb" aria-hidden="true"></span>
+                      </button>
+                      <span class="fk-switch__content">
+                        <label class="fk-switch__label" id="sw-on-label" for="sw-on">Email notifications</label>
+                        <span class="fk-switch__desc" id="sw-on-desc">Receive updates about account activity.</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">With label only</p>
+                    <p class="tf-state-row__note">When <code>Show description</code> is off, the row height collapses to the track (24px) with the label alone. Prefer a short, outcome-oriented label.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-switch">
+                      <button type="button" id="sw-label-only" class="fk-switch__btn" data-switch role="switch" aria-checked="false" aria-labelledby="sw-label-only-label">
+                        <span class="fk-switch__thumb" aria-hidden="true"></span>
+                      </button>
+                      <span class="fk-switch__content">
+                        <label class="fk-switch__label" id="sw-label-only-label" for="sw-label-only">Email notifications</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled / Off</p>
+                    <p class="tf-state-row__note">Unavailable setting left off. Disabled track and thumb tokens apply, plus 60% opacity on the whole row. Not in the tab order and not toggleable.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-switch">
+                      <button type="button" id="sw-dis-off" class="fk-switch__btn" data-switch role="switch" aria-checked="false" aria-labelledby="sw-dis-off-label" aria-describedby="sw-dis-off-desc" disabled>
+                        <span class="fk-switch__thumb" aria-hidden="true"></span>
+                      </button>
+                      <span class="fk-switch__content">
+                        <label class="fk-switch__label" id="sw-dis-off-label" for="sw-dis-off">Email notifications</label>
+                        <span class="fk-switch__desc" id="sw-dis-off-desc">Receive updates about account activity.</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled / On</p>
+                    <p class="tf-state-row__note">Unavailable setting left on. Thumb stays on the right with disabled colours so the previous choice remains readable.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-switch">
+                      <button type="button" id="sw-dis-on" class="fk-switch__btn" data-switch role="switch" aria-checked="true" aria-labelledby="sw-dis-on-label" aria-describedby="sw-dis-on-desc" disabled>
+                        <span class="fk-switch__thumb" aria-hidden="true"></span>
+                      </button>
+                      <span class="fk-switch__content">
+                        <label class="fk-switch__label" id="sw-dis-on-label" for="sw-dis-on">Email notifications</label>
+                        <span class="fk-switch__desc" id="sw-dis-on-desc">Receive updates about account activity.</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">With supporting description</p>
+                    <p class="tf-state-row__note">Label plus body/sm description (<code>Show description</code>). Linked with <code>aria-describedby</code>. Hover and Focus Visible are interactive — try Tab and pointer over enabled examples.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <div class="fk-switch">
+                      <button type="button" id="sw-desc" class="fk-switch__btn" data-switch role="switch" aria-checked="true" aria-labelledby="sw-desc-label" aria-describedby="sw-desc-desc">
+                        <span class="fk-switch__thumb" aria-hidden="true"></span>
+                      </button>
+                      <span class="fk-switch__content">
+                        <label class="fk-switch__label" id="sw-desc-label" for="sw-desc">SMS alerts</label>
+                        <span class="fk-switch__desc" id="sw-desc-desc">Optional mobile notifications for security events.</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="do-dont">
+              <article class="do">
+                <h4>Do</h4>
+                <p>Use Switch for an immediately applied on/off setting (notifications, dark mode, feature flags). Pair every switch with a visible label; show state with thumb position and track colour, not colour alone.</p>
+              </article>
+              <article class="dont">
+                <h4>Don’t</h4>
+                <p>Don’t use Switch for multi-select lists (Checkbox), mutually exclusive options (Radio Selector), or actions that need a separate Confirm step. Don’t rely on brand red for the on-fill — Figma binds black/white.</p>
+              </article>
+            </div>
+            <section class="doc-note" aria-label="Toggle Switch implementation notes">
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Anatomy</h4>
+                <ul class="doc-note__list">
+                  <li><strong>1 Track</strong> — pill container 44 × 24 (<code>density/switch/track-width</code> × <code>track-height</code>), full radius, filled with <code>color/switch/track/*</code>. Offset 2px from the top of the row so it centres on the label’s first line.</li>
+                  <li><strong>2 Thumb</strong> — 20 × 20 circle (<code>density/switch/thumb-size</code>), 2px inset; left when Off, translated 20px right when On. No drop shadow in Figma.</li>
+                  <li><strong>3 Label</strong> — body/md (Poppins 16 / 24) in <code>label/default</code>; associated with the control via <code>&lt;label for&gt;</code> / <code>aria-labelledby</code>.</li>
+                  <li><strong>4 Supporting description</strong> — optional body/sm (14 / 20) in <code>description/default</code>, 4px below the label (<code>Show description</code> boolean); linked with <code>aria-describedby</code>.</li>
+                  <li><strong>5 Focus indicator</strong> — 2px <code>focus/gap</code> outside the track plus 2px <code>focus/ring</code>; keyboard-only via <code>:focus-visible</code>.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Typography:</strong> label body/md (Poppins 400 16/24) · description body/sm (14/20).</li>
+                  <li><strong>Colour (Light):</strong> <code>track/off/default #78716c</code>, <code>track/off/hover #57534e</code>, <code>track/on/default #000000</code>, <code>track/on/hover #57534e</code>, <code>track/disabled #d6d3d1</code>, <code>thumb/default #ffffff</code>, <code>thumb/disabled #f5f5f4</code>, <code>label/{default #231f20, disabled #78716c}</code>, <code>description/{default #57534e, disabled #78716c}</code>, <code>focus/{ring #d33f55, gap #fafaf9}</code> — resolved as <code>--color-switch-*</code>.</li>
+                  <li><strong>Colour (Dark):</strong> off <code>#a8a29e</code> / hover <code>#78716c</code>; on <code>#ffffff</code> / hover <code>#d6d3d1</code>; disabled track <code>#44403c</code>, thumb <code>#292524</code>; label <code>#fff</code> / disabled <code>#a8a29e</code>; description <code>#d6d3d1</code>; focus ring <code>#fff</code> on gap <code>#000</code>.</li>
+                  <li><strong>Dimensions &amp; spacing:</strong> track 44 × 24 · thumb 20 · inset 2 · control → content 12 (<code>density/switch/gap</code>) · label → description 4 · row 48 with description / 24 without · focus ring 2 + gap 2.</li>
+                  <li><strong>Disabled:</strong> 60% opacity on the whole row in addition to the disabled colour tokens.</li>
+                  <li><strong>Needs verification:</strong> some Figma prose mentions brand-on fill; bound variables resolve to black/white (same pattern as Checkbox checked fill). No Pressed or Error variant in the component set.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Off:</strong> <code>track/off/default</code>, thumb left. Setting is inactive.</li>
+                  <li><strong>On:</strong> <code>track/on/default</code>, thumb right. Setting is active and applies immediately.</li>
+                  <li><strong>Hover:</strong> pointer over an enabled switch — Off uses <code>track/off/hover</code>, On uses <code>track/on/hover</code>. Demonstrated by interaction, not a separate gallery row.</li>
+                  <li><strong>Pressed:</strong> no dedicated Figma variant — the control toggles on activation; Hover treatment may show while the pointer is down (Needs verification).</li>
+                  <li><strong>Focus Visible:</strong> keyboard-only ring (2px gap + 2px ring). On/Off fill is independent of focus — a focused On switch still shows the on-fill plus the ring.</li>
+                  <li><strong>Disabled (Off · On):</strong> native <code>disabled</code>; disabled track/thumb/label/description tokens and 60% opacity. Skipped by Tab; label click does not toggle.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Keyboard &amp; focus</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Tab / Shift + Tab:</strong> every enabled switch is its own tab stop; disabled switches are skipped.</li>
+                  <li><strong>Space / Enter:</strong> toggles the focused switch (native <code>&lt;button role="switch"&gt;</code> activation).</li>
+                  <li><strong>Pattern:</strong> <code>role="switch"</code> with <code>aria-checked</code>, not <code>aria-pressed</code>. Do not implement as a generic clickable <code>div</code>.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Accessibility</h4>
+                <ul class="doc-note__list">
+                  <li>Native-ish semantics: a real <code>&lt;button type="button" role="switch"&gt;</code> exposes name, checked state (“on” / “off”), and disabled. The thumb is <code>aria-hidden</code> decoration.</li>
+                  <li>Name: visible label via <code>&lt;label for&gt;</code> + <code>aria-labelledby</code>. Description via <code>aria-describedby</code>.</li>
+                  <li>Focus Visible uses <code>:focus-visible</code> so pointer activation does not leave a permanent keyboard ring; selected (On) and focused remain independently visible.</li>
+                  <li>Thumb motion respects <code>prefers-reduced-motion: reduce</code> (instant snap, fully functional).</li>
+                  <li>Contrast (WCAG 2.2 AA targets, both themes): label and description as text; Off track vs page and On track vs page meet the 3:1 non-text target for the control; focus ring vs gap (4.36 / 21:1). Disabled rows are <strong>Exempt / Disabled state</strong>. Do not claim full WCAG compliance without product-level validation.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Usage guidelines</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Use Switch for:</strong> settings that take effect immediately (notifications, theme, feature toggles).</li>
+                  <li><strong>Use Checkbox instead</strong> for independent yes/no choices that are submitted with a form, multi-select lists, or terms acknowledgements.</li>
+                  <li><strong>Use Radio Selector instead</strong> when the user must pick exactly one option from a set.</li>
+                  <li><strong>Labels:</strong> describe the setting that will be on, not “Enable/Disable …”. Keep descriptions for context only.</li>
+                  <li><strong>Disabled:</strong> explain why when possible; keep the prior On/Off state visible.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">React</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Import:</strong> <code>import { Switch } from '@fukurou/react'</code></li>
+                  <li><strong>Basic:</strong> <code>&lt;Switch label="Email notifications" description="Receive updates about account activity." /&gt;</code></li>
+                  <li><strong>Controlled:</strong> <code>&lt;Switch label="…" checked={enabled} onCheckedChange={setEnabled} /&gt;</code></li>
+                  <li><strong>Uncontrolled:</strong> <code>defaultChecked</code> for an initial On state.</li>
+                  <li><strong>Disabled:</strong> <code>disabled</code> — supports both Off and On (<code>defaultChecked</code> / <code>checked</code>).</li>
+                  <li><strong>API:</strong> <code>label?</code>, <code>description?</code>, <code>checked?</code>, <code>defaultChecked?</code>, <code>onCheckedChange?(checked)</code>, plus native button attributes (ref forwarded to the switch button). Public name is <code>Switch</code> — matches Figma Switch semantics, not a Toggle Button.</li>
+                </ul>
+              </div>
+            </section>
           </article>
 
           <article class="component" id="jumbo-select" data-doc-review="needed-review">
@@ -3904,6 +4070,6 @@ export function Example() {
     </div>
   </div>
 
-  <script src="script.js?v=40"></script>
+  <script src="script.js?v=41"></script>
 </body>
 </html>
