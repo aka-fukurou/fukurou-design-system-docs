@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=41" />
+  <link rel="stylesheet" href="styles.css?v=42" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -3729,46 +3729,200 @@ export function Example() {
               <h3>Jumbo Select Button</h3>
               <span class="badge badge--warn" data-doc-review-status="needed-review">Needed Review</span>
             </div>
-            <p>Large selectable option card. Selected styling uses success green indicator/border (<code>#2F9E60</code>) in live Figma.</p>
-            <ul>
-              <li>States: Default · Hover · Pressed · Focus Visible · Selected · Disabled</li>
-              <li>Sizes: Small · Medium · Large</li>
-            </ul>
+            <p>Large selectable option card for one choice in a small set (plan, account type, payment method, filing type). It is a <strong>selection</strong>, not an action. Live Figma uses a success-green selected border and check (<code>#2f9e60</code>), not brand red. Horizontal layout; width hugs content.</p>
             <div class="preview-panel">
-              <div class="preview-label">Select one</div>
-              <div class="fk-jumbo-group" data-jumbo-group role="radiogroup" aria-label="Filing option">
-                <button type="button" class="fk-jumbo" data-jumbo role="radio" aria-checked="true">
-                  <span class="fk-jumbo__inner">
-                    <span class="fk-jumbo__icon" aria-hidden="true">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="5" r="2.5"/><path d="M3 13c0-2.5 2.2-4 5-4s5 1.5 5 4"/></svg>
-                    </span>
-                    <span class="fk-jumbo__text">
-                      <span class="fk-jumbo__label">Individual</span>
-                      <span class="fk-jumbo__sub">Best for filing your own return.</span>
-                    </span>
-                    <span class="fk-jumbo__check" aria-hidden="true">✓</span>
-                  </span>
-                </button>
-                <button type="button" class="fk-jumbo" data-jumbo role="radio" aria-checked="false">
-                  <span class="fk-jumbo__inner">
-                    <span class="fk-jumbo__icon" aria-hidden="true">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="4" width="10" height="8" rx="1.5"/></svg>
-                    </span>
-                    <span class="fk-jumbo__text">
-                      <span class="fk-jumbo__label">Business</span>
-                      <span class="fk-jumbo__sub">Best for filing as a business.</span>
-                    </span>
-                    <span class="fk-jumbo__check" aria-hidden="true">✓</span>
-                  </span>
-                </button>
+              <div class="tf-state-list" role="list" aria-label="Jumbo Select Button examples">
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Single-select group</p>
+                    <p class="tf-state-row__note">One option stays selected. Native radios share a name inside a <code>fieldset</code>. Arrow keys move the selection; the check appears only on the selected card.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <fieldset class="fk-jumbo-group">
+                      <legend class="fk-jumbo-group__legend">Filing type</legend>
+                      <label class="fk-jumbo fk-jumbo--md">
+                        <input type="radio" name="demo-jumbo-filing" value="individual" checked />
+                        <span class="fk-jumbo__inner">
+                          <span class="fk-jumbo__icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 18.125C10.9167 18.125 11.6667 17.375 11.6667 16.4583H8.33333C8.33333 17.375 9.08333 18.125 10 18.125ZM15 13.125V8.95833C15 6.4 13.6417 4.25833 11.25 3.69167V3.125C11.25 2.43333 10.6917 1.875 10 1.875C9.30833 1.875 8.75 2.43333 8.75 3.125V3.69167C6.36667 4.25833 5 6.39167 5 8.95833V13.125L3.33333 14.7917V15.625H16.6667V14.7917L15 13.125ZM13.3333 13.9583H6.66667V8.95833C6.66667 6.89167 7.925 5.20833 10 5.20833C12.075 5.20833 13.3333 6.89167 13.3333 8.95833V13.9583Z"/></svg></span>
+                          <span class="fk-jumbo__text">
+                            <span class="fk-jumbo__label">Individual</span>
+                            <span class="fk-jumbo__sub">Best for filing your own return.</span>
+                          </span>
+                          <svg class="fk-jumbo__check" viewBox="0 0 18 18" aria-hidden="true"><rect width="18" height="18" rx="9" fill="currentColor"/><path d="M5.67 9.08 8 11.42 12.33 6.58" fill="none" stroke="var(--color-jumbo-indicator-icon)" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </label>
+                      <label class="fk-jumbo fk-jumbo--md">
+                        <input type="radio" name="demo-jumbo-filing" value="business" />
+                        <span class="fk-jumbo__inner">
+                          <span class="fk-jumbo__icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 18.125C10.9167 18.125 11.6667 17.375 11.6667 16.4583H8.33333C8.33333 17.375 9.08333 18.125 10 18.125ZM15 13.125V8.95833C15 6.4 13.6417 4.25833 11.25 3.69167V3.125C11.25 2.43333 10.6917 1.875 10 1.875C9.30833 1.875 8.75 2.43333 8.75 3.125V3.69167C6.36667 4.25833 5 6.39167 5 8.95833V13.125L3.33333 14.7917V15.625H16.6667V14.7917L15 13.125ZM13.3333 13.9583H6.66667V8.95833C6.66667 6.89167 7.925 5.20833 10 5.20833C12.075 5.20833 13.3333 6.89167 13.3333 8.95833V13.9583Z"/></svg></span>
+                          <span class="fk-jumbo__text">
+                            <span class="fk-jumbo__label">Business</span>
+                            <span class="fk-jumbo__sub">Best for filing as a business.</span>
+                          </span>
+                          <svg class="fk-jumbo__check" viewBox="0 0 18 18" aria-hidden="true"><rect width="18" height="18" rx="9" fill="currentColor"/><path d="M5.67 9.08 8 11.42 12.33 6.58" fill="none" stroke="var(--color-jumbo-indicator-icon)" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </label>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Sizes</p>
+                    <p class="tf-state-row__note">Small 56 · Medium 72 (default) · Large 96. Large puts the 32px icon in a 64px circular chip. Same content so the scale is comparable. One size can be selected at a time.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <fieldset class="fk-jumbo-group">
+                      <legend class="fk-jumbo-group__legend">Size</legend>
+                      <label class="fk-jumbo fk-jumbo--sm">
+                        <input type="radio" name="demo-jumbo-size" value="small" />
+                        <span class="fk-jumbo__inner">
+                          <span class="fk-jumbo__icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 18.125C10.9167 18.125 11.6667 17.375 11.6667 16.4583H8.33333C8.33333 17.375 9.08333 18.125 10 18.125ZM15 13.125V8.95833C15 6.4 13.6417 4.25833 11.25 3.69167V3.125C11.25 2.43333 10.6917 1.875 10 1.875C9.30833 1.875 8.75 2.43333 8.75 3.125V3.69167C6.36667 4.25833 5 6.39167 5 8.95833V13.125L3.33333 14.7917V15.625H16.6667V14.7917L15 13.125ZM13.3333 13.9583H6.66667V8.95833C6.66667 6.89167 7.925 5.20833 10 5.20833C12.075 5.20833 13.3333 6.89167 13.3333 8.95833V13.9583Z"/></svg></span>
+                          <span class="fk-jumbo__text"><span class="fk-jumbo__label">Individual</span><span class="fk-jumbo__sub">Best for filing your own return.</span></span>
+                          <svg class="fk-jumbo__check" viewBox="0 0 18 18" aria-hidden="true"><rect width="18" height="18" rx="9" fill="currentColor"/><path d="M5.67 9.08 8 11.42 12.33 6.58" fill="none" stroke="var(--color-jumbo-indicator-icon)" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </label>
+                      <label class="fk-jumbo fk-jumbo--md">
+                        <input type="radio" name="demo-jumbo-size" value="medium" checked />
+                        <span class="fk-jumbo__inner">
+                          <span class="fk-jumbo__icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 18.125C10.9167 18.125 11.6667 17.375 11.6667 16.4583H8.33333C8.33333 17.375 9.08333 18.125 10 18.125ZM15 13.125V8.95833C15 6.4 13.6417 4.25833 11.25 3.69167V3.125C11.25 2.43333 10.6917 1.875 10 1.875C9.30833 1.875 8.75 2.43333 8.75 3.125V3.69167C6.36667 4.25833 5 6.39167 5 8.95833V13.125L3.33333 14.7917V15.625H16.6667V14.7917L15 13.125ZM13.3333 13.9583H6.66667V8.95833C6.66667 6.89167 7.925 5.20833 10 5.20833C12.075 5.20833 13.3333 6.89167 13.3333 8.95833V13.9583Z"/></svg></span>
+                          <span class="fk-jumbo__text"><span class="fk-jumbo__label">Individual</span><span class="fk-jumbo__sub">Best for filing your own return.</span></span>
+                          <svg class="fk-jumbo__check" viewBox="0 0 18 18" aria-hidden="true"><rect width="18" height="18" rx="9" fill="currentColor"/><path d="M5.67 9.08 8 11.42 12.33 6.58" fill="none" stroke="var(--color-jumbo-indicator-icon)" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </label>
+                      <label class="fk-jumbo fk-jumbo--lg">
+                        <input type="radio" name="demo-jumbo-size" value="large" />
+                        <span class="fk-jumbo__inner">
+                          <span class="fk-jumbo__icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 18.125C10.9167 18.125 11.6667 17.375 11.6667 16.4583H8.33333C8.33333 17.375 9.08333 18.125 10 18.125ZM15 13.125V8.95833C15 6.4 13.6417 4.25833 11.25 3.69167V3.125C11.25 2.43333 10.6917 1.875 10 1.875C9.30833 1.875 8.75 2.43333 8.75 3.125V3.69167C6.36667 4.25833 5 6.39167 5 8.95833V13.125L3.33333 14.7917V15.625H16.6667V14.7917L15 13.125ZM13.3333 13.9583H6.66667V8.95833C6.66667 6.89167 7.925 5.20833 10 5.20833C12.075 5.20833 13.3333 6.89167 13.3333 8.95833V13.9583Z"/></svg></span>
+                          <span class="fk-jumbo__text"><span class="fk-jumbo__label">Individual</span><span class="fk-jumbo__sub">Best for filing your own return.</span></span>
+                          <svg class="fk-jumbo__check" viewBox="0 0 18 18" aria-hidden="true"><rect width="18" height="18" rx="9" fill="currentColor"/><path d="M5.67 9.08 8 11.42 12.33 6.58" fill="none" stroke="var(--color-jumbo-indicator-icon)" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                      </label>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Without icon</p>
+                    <p class="tf-state-row__note"><code>Show icon</code> off. The icon slot collapses; label and sub-label stay.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-jumbo fk-jumbo--md">
+                      <input type="radio" name="demo-jumbo-no-icon" />
+                      <span class="fk-jumbo__inner">
+                        <span class="fk-jumbo__text"><span class="fk-jumbo__label">Individual</span><span class="fk-jumbo__sub">Best for filing your own return.</span></span>
+                        <svg class="fk-jumbo__check" viewBox="0 0 18 18" aria-hidden="true"><rect width="18" height="18" rx="9" fill="currentColor"/><path d="M5.67 9.08 8 11.42 12.33 6.58" fill="none" stroke="var(--color-jumbo-indicator-icon)" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Without sub-label</p>
+                    <p class="tf-state-row__note"><code>Show sub label</code> off. The card keeps the size min-height and shows the label only.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-jumbo fk-jumbo--sm">
+                      <input type="radio" name="demo-jumbo-no-sub" checked />
+                      <span class="fk-jumbo__inner">
+                        <span class="fk-jumbo__icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 18.125C10.9167 18.125 11.6667 17.375 11.6667 16.4583H8.33333C8.33333 17.375 9.08333 18.125 10 18.125ZM15 13.125V8.95833C15 6.4 13.6417 4.25833 11.25 3.69167V3.125C11.25 2.43333 10.6917 1.875 10 1.875C9.30833 1.875 8.75 2.43333 8.75 3.125V3.69167C6.36667 4.25833 5 6.39167 5 8.95833V13.125L3.33333 14.7917V15.625H16.6667V14.7917L15 13.125ZM13.3333 13.9583H6.66667V8.95833C6.66667 6.89167 7.925 5.20833 10 5.20833C12.075 5.20833 13.3333 6.89167 13.3333 8.95833V13.9583Z"/></svg></span>
+                        <span class="fk-jumbo__text"><span class="fk-jumbo__label">Individual</span></span>
+                        <svg class="fk-jumbo__check" viewBox="0 0 18 18" aria-hidden="true"><rect width="18" height="18" rx="9" fill="currentColor"/><path d="M5.67 9.08 8 11.42 12.33 6.58" fill="none" stroke="var(--color-jumbo-indicator-icon)" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="tf-state-row" role="listitem">
+                  <div class="tf-state-row__desc">
+                    <p class="tf-state-row__name">Disabled</p>
+                    <p class="tf-state-row__note">Unavailable option. Disabled fill, border, and text tokens. Not keyboard-focusable and not selectable. Figma has no Disabled + Selected variant.</p>
+                  </div>
+                  <div class="tf-state-row__component">
+                    <label class="fk-jumbo fk-jumbo--md">
+                      <input type="radio" name="demo-jumbo-disabled" disabled />
+                      <span class="fk-jumbo__inner">
+                        <span class="fk-jumbo__icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 18.125C10.9167 18.125 11.6667 17.375 11.6667 16.4583H8.33333C8.33333 17.375 9.08333 18.125 10 18.125ZM15 13.125V8.95833C15 6.4 13.6417 4.25833 11.25 3.69167V3.125C11.25 2.43333 10.6917 1.875 10 1.875C9.30833 1.875 8.75 2.43333 8.75 3.125V3.69167C6.36667 4.25833 5 6.39167 5 8.95833V13.125L3.33333 14.7917V15.625H16.6667V14.7917L15 13.125ZM13.3333 13.9583H6.66667V8.95833C6.66667 6.89167 7.925 5.20833 10 5.20833C12.075 5.20833 13.3333 6.89167 13.3333 8.95833V13.9583Z"/></svg></span>
+                        <span class="fk-jumbo__text"><span class="fk-jumbo__label">Individual</span><span class="fk-jumbo__sub">Best for filing your own return.</span></span>
+                        <svg class="fk-jumbo__check" viewBox="0 0 18 18" aria-hidden="true"><rect width="18" height="18" rx="9" fill="currentColor"/><path d="M5.67 9.08 8 11.42 12.33 6.58" fill="none" stroke="var(--color-jumbo-indicator-icon)" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="do-dont">
+              <article class="do">
+                <h4>Do</h4>
+                <p>Use Jumbo Select Button when a short list of options benefits from an icon and a supporting line. Keep one option selected in the group. Write a short label; use the sub-label only for extra context.</p>
+              </article>
+              <article class="dont">
+                <h4>Don’t</h4>
+                <p>Don’t use it for an immediate action (Button), a plain mutually exclusive list (Radio Selector), or independent multi-select (Checkbox). Don’t rely on the green border alone — the check is part of Selected.</p>
+              </article>
             </div>
             <section class="doc-note" aria-label="Jumbo Select Button implementation notes">
               <div class="doc-note__group">
+                <h4 class="doc-note__title">Anatomy</h4>
+                <ul class="doc-note__list">
+                  <li><strong>1 Focus host</strong> — 2px padding around the card so the focus ring sits outside the container and is not clipped. Radius 14 on the host, 12 on the card.</li>
+                  <li><strong>2 Container</strong> — horizontal row, vertically centered. Min-height 56 / 72 / 96. 1px border (2px when selected or pressed). Hug width.</li>
+                  <li><strong>3 Icon</strong> — optional. Small 20, Medium 24, Large 32 inside a 64px circular <code>icon/background</code> chip. Default glyph is the notifications bell (instance swap).</li>
+                  <li><strong>4 Label</strong> — primary text. Small SemiBold 16/20, Medium Regular 16/24, Large SemiBold 18/28.</li>
+                  <li><strong>5 Sub-label</strong> — optional, 2px under the label. Small caption 12/16, Medium body/sm 14/20, Large body/md 16/24.</li>
+                  <li><strong>6 Selection indicator</strong> — 18px circle + check, shown only when selected (<code>Show selected indicator</code>). Success green fill, inverse check stroke.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Tokens</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Light:</strong> background default <code>#fff</code> / hover <code>#f5f5f4</code> / pressed <code>#f4f4f4</code> / selected <code>#fff</code> / selected-hover <code>#f1f8f4</code> / disabled <code>#f5f5f4</code>. Border default <code>#78716c</code> / hover+pressed <code>#57534e</code> / selected <code>#2f9e60</code> / disabled <code>#d6d3d1</code>. Label <code>#231f20</code>, sub-label <code>#57534e</code>, icon default <code>#57534e</code> / hover <code>#231f20</code> / selected <code>#000</code>. Indicator <code>#2f9e60</code> + <code>#fff</code> check. Focus ring <code>#d33f55</code>, gap <code>#fafaf9</code>. Icon chip <code>#f5f5f4</code>.</li>
+                  <li><strong>Dark:</strong> background <code>#1c1917</code> / hover <code>#292524</code> / pressed <code>#0c0b0b</code> / selected <code>#1c1917</code> / disabled <code>#292524</code>. Border <code>#a8a29e</code> / hover <code>#78716c</code> / selected <code>#2f9e60</code> / disabled <code>#44403c</code>. Label <code>#fff</code>, sub-label <code>#d6d3d1</code>, icon <code>#d6d3d1</code> / selected <code>#fff</code>. Indicator check <code>#231f20</code>. Focus ring <code>#fff</code> on gap <code>#000</code>. Icon chip <code>#292524</code>.</li>
+                  <li><strong>Spacing:</strong> Small padding 16×8, gap 12. Medium 20×12, gap 16. Large 24×20, gap 20. Label-to-sub-label 2.</li>
+                  <li><strong>Needs verification:</strong> Dark <code>background/selected-hover</code> is not on the examples frame (implemented as the selected fill). <code>tokens.json</code> still aliases selected colors to brand red — live variables are green. Default Small in the component set draws the sub-label twice; the docs show it once. Component description says “subtle brand background”; the bound selected fill is white / <code>#1c1917</code>, with the green tint only on selected-hover in Light.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">State behavior</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Unselected:</strong> 1px <code>border/default</code>, no check.</li>
+                  <li><strong>Selected:</strong> 2px <code>border/selected</code>, selected fill, green check. Padding shrinks 1px so the card’s outer size stays stable. Width grows by the indicator — that matches Figma.</li>
+                  <li><strong>Hover / Pressed / Focus Visible:</strong> interaction-only. Hover recolors an unselected card; selected hover uses <code>background/selected-hover</code>. Pressed uses the pressed fill and a 2px border. Focus Visible is a 2px ring outside a 2px gap (<code>:focus-visible</code> only).</li>
+                  <li><strong>Disabled:</strong> disabled color tokens. No Disabled + Selected variant in the set.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Keyboard &amp; focus</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Tab:</strong> enters the radio group. <strong>Arrow keys:</strong> move between options that share a name. <strong>Space:</strong> selects the focused option.</li>
+                  <li>Disabled options are skipped.</li>
+                  <li>Pointer clicks do not leave the red ring; keyboard focus does.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
                 <h4 class="doc-note__title">Accessibility</h4>
                 <ul class="doc-note__list">
-                  <li>Use a radio pattern for single-select.</li>
-                  <li>Selected must not rely on color alone — the check indicator is present.</li>
+                  <li>Semantics: native <code>&lt;input type="radio"&gt;</code> inside <code>&lt;label&gt;</code>, grouped by <code>&lt;fieldset&gt;</code> / <code>&lt;legend&gt;</code>. One option selected per name. The icon and check are <code>aria-hidden</code>.</li>
+                  <li>Figma’s component description also mentions a checkbox pattern for multi-select. The examples frame says only one option is active. This implementation follows the examples (radio). Multi-select is <strong>Needs verification</strong> and is not a second mode.</li>
+                  <li>Contrast: label and sub-label are text colors on the card fill; the 1px default border and 2px green selected border are the non-text boundaries; the check is green on white / dark with an inverse stroke. Disabled is <strong>Exempt / Disabled state</strong>. Do not claim WCAG 2.2 AA without a product pass.</li>
+                  <li>Motion is limited to color/border transitions and is removed under <code>prefers-reduced-motion</code>.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">Usage guidelines</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Use for</strong> a small set of visually rich, mutually exclusive choices.</li>
+                  <li><strong>Use Button</strong> when the control performs an action. <strong>Use Radio Selector</strong> for a simple list without icons or cards. <strong>Use Checkbox</strong> for independent selections.</li>
+                  <li>Keep labels short. Add a sub-label only when the label is not enough. Hide the icon when it does not distinguish the option.</li>
+                </ul>
+              </div>
+              <div class="doc-note__group">
+                <h4 class="doc-note__title">React</h4>
+                <ul class="doc-note__list">
+                  <li><strong>Import:</strong> <code>import { JumboSelectButton, JumboSelectGroup } from '@fukurou/react'</code></li>
+                  <li><strong>Group:</strong> <code>&lt;JumboSelectGroup legend="Filing type" value={value} onValueChange={setValue}&gt;&lt;JumboSelectButton value="individual" label="Individual" description="Best for filing your own return." icon={&lt;BellIcon /&gt;} /&gt;&lt;/JumboSelectGroup&gt;</code></li>
+                  <li><strong>Sizes:</strong> <code>size="small" | "medium" | "large"</code> (default <code>medium</code>).</li>
+                  <li><strong>Content:</strong> omit <code>icon</code> or <code>description</code> to match Show icon / Show sub label. <code>showIndicator={false}</code> hides the check.</li>
+                  <li><strong>Disabled:</strong> <code>disabled</code> on an option or the group.</li>
+                  <li>Uncontrolled groups use <code>defaultValue</code>. Options are radios; a selected option stays selected until another option in the group is chosen.</li>
                 </ul>
               </div>
             </section>
@@ -4070,6 +4224,6 @@ export function Example() {
     </div>
   </div>
 
-  <script src="script.js?v=41"></script>
+  <script src="script.js?v=42"></script>
 </body>
 </html>

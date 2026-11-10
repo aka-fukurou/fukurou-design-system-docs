@@ -766,19 +766,19 @@ Component tokens: `color/icon-button/background/*`, `color/icon-button/content/*
 
 ### Jumbo Select Button
 
-**Jumbo Select Button** is a **large selectable option card** — for choosing a plan, account type, payment method, workflow option, or filing type from a small set of visually important options. It **represents a selectable option, not an action** — that is what distinguishes it from Button.
+**Jumbo Select Button** is a **large selectable option card** — for choosing a plan, account type, payment method, workflow option, or filing type from a small set of visually important options. It **represents a selectable option, not an action** — that is what distinguishes it from Button. React: `JumboSelectButton` inside `JumboSelectGroup` (native radio).
 
 | Property | Values |
 |----------|--------|
 | **State** | Default · Hover · Pressed · **Focus Visible** · **Selected** · **Selected Hover** · Disabled |
-| **Size** | Small (56px) · Medium (72px, default) · Large (**104px** live) |
+| **Size** | Small (56px) · Medium (72px, default) · Large (**96px** min-height; 64px icon chip) |
 | **Show icon** · **Show sub label** · **Show selected indicator** | boolean (hidden layers collapse) |
 | **Label** / **Sub label** | text — defaults `Individual` / `Best for filing your own return.` |
 | **Icon** | instance swap — verify default in live file |
 
 **Anatomy:** outer focus-ring host (2px padding, not clipped) → `container` (card-style, `radius/12`) → `icon-container` (20/24/32px; **Large:** optional `icon/background` subtle chip) → `text-container` → `indicator` (check circle on Selected).
 
-**Focus Visible vs Selected:** **Focus Visible** = keyboard `:focus-visible` offset ring outside container. **Selected** = choice state — border + background + **check indicator** (not color alone; live styling may use success-green indicator — verify in Figma).
+**Focus Visible vs Selected:** **Focus Visible** = keyboard `:focus-visible` offset ring outside container. **Selected** = 2px `#2f9e60` border + check indicator (verified 2026-11-10; not brand red). Selected fill stays the default surface; Light selected-hover is `#f1f8f4`.
 
 **Tokens:** **27** `color/jumbo-select-button/*` in live file (export may lag).
 

@@ -823,13 +823,15 @@ Detected in current live file; previous value not confirmed unless noted.
 
 **Anatomy:** outer component (2px padding, `clipsContent: false`, focus ring host) → `container` (horizontal auto layout, min-height per size, `radius/12`, fill + stroke tokens) → `icon-container` (fixed 20/24/32; **Large only:** optional subtle fill via **`color/jumbo-select-button/icon/background`**) → `text-container` (vertical, FILL width: `label` + `sub-label`) → `indicator` (circle + check vector; visible on Selected/Selected Hover).
 
-**Sizes:**
+**Sizes (re-verified 2026-11-10 against live variants):**
 
-| Size | Height (live) | Icon | Padding x / y | Gap | Label | Sub label |
-|------|---------------|------|----------------|-----|-------|-----------|
-| Small | 56px | 20px | `spacing/16` / `spacing/8` | `spacing/12` | Poppins Medium 14 | Poppins Regular 12 |
-| Medium | 72px | 24px | `spacing/20` / `spacing/12` | `spacing/16` | Poppins Medium 16 | Poppins Regular 14 |
-| Large | **104px** | 32px | `spacing/24` / `spacing/20` | `spacing/20` | Poppins SemiBold 18 | Poppins Regular 16 |
+| Size | Min-height | Icon | Padding x / y | Gap | Label | Sub label |
+|------|------------|------|----------------|-----|-------|-----------|
+| Small | 56px | 20px | 16 / 8 | 12 | Poppins SemiBold 16/20 | Poppins Regular 12/16 |
+| Medium | 72px | 24px | 20 / 12 | 16 | Poppins Regular 16/24 | Poppins Regular 14/20 |
+| Large | **96px** | 32px in a **64px** circle | 24 / 20 | 20 | Poppins SemiBold 18/28 | Poppins Regular 16/24 |
+
+Selected border and indicator resolve to **`#2f9e60`**, not brand red. Selected fill is white / `#1c1917`; Light selected-hover is `#f1f8f4`. HTML docs + `@fukurou/react` `JumboSelectButton` aligned 2026-11-10. Docs badge remains **Needed Review**. Default Small draws the sub-label twice in the component set (treated as a defect; docs show it once). Dark selected-hover fill **needs verification**.
 
 **Focus Visible:** explicit **State variant** — outer frame carries 2px `color/jumbo-select-button/focus/ring` stroke (OUTSIDE) + `focus/gap` fill in the 2px padding; ring is outside the container and not clipped.
 

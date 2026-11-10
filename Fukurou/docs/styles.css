@@ -127,8 +127,32 @@
   --color-switch-focus-gap: #fafaf9;
   --color-field-bg: #ffffff;
   --color-field-border: #78716c;
-  --color-jumbo-selected-border: #2f9e60;
+  /* Jumbo Select Button — color/jumbo-select-button/* (live Figma 653:1899, Light) */
+  --color-jumbo-bg: #ffffff;
+  --color-jumbo-bg-hover: #f5f5f4;
+  --color-jumbo-bg-pressed: #f4f4f4;
+  --color-jumbo-bg-selected: #ffffff;
+  --color-jumbo-bg-selected-hover: #f1f8f4;
+  --color-jumbo-bg-disabled: #f5f5f4;
+  --color-jumbo-border: #78716c;
+  --color-jumbo-border-hover: #57534e;
+  --color-jumbo-border-pressed: #57534e;
+  --color-jumbo-border-selected: #2f9e60;
+  --color-jumbo-border-disabled: #d6d3d1;
+  --color-jumbo-label: #231f20;
+  --color-jumbo-label-disabled: #78716c;
+  --color-jumbo-sub: #57534e;
+  --color-jumbo-sub-disabled: #78716c;
+  --color-jumbo-icon: #57534e;
+  --color-jumbo-icon-hover: #231f20;
+  --color-jumbo-icon-selected: #000000;
+  --color-jumbo-icon-disabled: #78716c;
+  --color-jumbo-icon-bg: #f5f5f4;
   --color-jumbo-indicator: #2f9e60;
+  --color-jumbo-indicator-icon: #ffffff;
+  --color-jumbo-focus-ring: #d33f55;
+  --color-jumbo-focus-gap: #fafaf9;
+  --color-jumbo-selected-border: var(--color-jumbo-border-selected);
   --color-snackbar-bg: #ffffff;
 
   /* Button (color/button/* from live Figma; focus gap/ring reuse --color-focus-*) */
@@ -464,8 +488,31 @@
   --color-switch-focus-gap: #000000;
   --color-field-bg: #1c1917;
   --color-field-border: #a8a29e;
-  --color-jumbo-selected-border: #2f9e60;
+  --color-jumbo-bg: #1c1917;
+  --color-jumbo-bg-hover: #292524;
+  --color-jumbo-bg-pressed: #0c0b0b;
+  --color-jumbo-bg-selected: #1c1917;
+  --color-jumbo-bg-selected-hover: #1c1917;
+  --color-jumbo-bg-disabled: #292524;
+  --color-jumbo-border: #a8a29e;
+  --color-jumbo-border-hover: #78716c;
+  --color-jumbo-border-pressed: #78716c;
+  --color-jumbo-border-selected: #2f9e60;
+  --color-jumbo-border-disabled: #44403c;
+  --color-jumbo-label: #ffffff;
+  --color-jumbo-label-disabled: #a8a29e;
+  --color-jumbo-sub: #d6d3d1;
+  --color-jumbo-sub-disabled: #a8a29e;
+  --color-jumbo-icon: #d6d3d1;
+  --color-jumbo-icon-hover: #ffffff;
+  --color-jumbo-icon-selected: #ffffff;
+  --color-jumbo-icon-disabled: #a8a29e;
+  --color-jumbo-icon-bg: #292524;
   --color-jumbo-indicator: #2f9e60;
+  --color-jumbo-indicator-icon: #231f20;
+  --color-jumbo-focus-ring: #ffffff;
+  --color-jumbo-focus-gap: #000000;
+  --color-jumbo-selected-border: var(--color-jumbo-border-selected);
   --color-snackbar-bg: #292524;
 
   --color-button-secondary-bg-hover: #e7e5e4;
@@ -3303,104 +3350,241 @@ html:not([data-focus-modality="pointer"]) .fk-input-shell:has(> input:focus-visi
   }
 }
 
-/* Jumbo Select */
+/* Jumbo Select Button — Figma 653:1899. Hug width. Radio semantics. */
 .fk-jumbo-group {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 12px;
-  width: min(100%, 340px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.fk-jumbo-group__legend {
+  padding: 0;
+  margin: 0 0 4px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-jumbo-label);
 }
 
 .fk-jumbo {
-  display: flex;
-  width: 100%;
+  --jumbo-min-h: 72px;
+  --jumbo-px: 20px;
+  --jumbo-py: 12px;
+  --jumbo-gap: 16px;
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
   padding: 2px;
-  border: 0;
   border-radius: 14px;
   background: transparent;
   cursor: pointer;
   text-align: left;
-  font: inherit;
   color: inherit;
+}
+
+.fk-jumbo--sm {
+  --jumbo-min-h: 56px;
+  --jumbo-px: 16px;
+  --jumbo-py: 8px;
+  --jumbo-gap: 12px;
+}
+
+.fk-jumbo--lg {
+  --jumbo-min-h: 96px;
+  --jumbo-px: 24px;
+  --jumbo-py: 20px;
+  --jumbo-gap: 20px;
+}
+
+.fk-jumbo input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .fk-jumbo__inner {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  width: 100%;
-  padding: 12px 20px;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-card);
-  transition: border-color 0.12s ease, background-color 0.12s ease, border-width 0.12s ease, padding 0.12s ease;
+  align-items: center;
+  gap: var(--jumbo-gap);
+  box-sizing: border-box;
+  min-height: var(--jumbo-min-h);
+  max-width: 100%;
+  padding: var(--jumbo-py) var(--jumbo-px);
+  border: 1px solid var(--color-jumbo-border);
+  border-radius: 12px;
+  background: var(--color-jumbo-bg);
+  transition: border-color 0.12s ease, background-color 0.12s ease, padding 0.12s ease;
 }
 
-.fk-jumbo:hover .fk-jumbo__inner {
-  border-color: var(--color-border-default);
-  background: var(--color-surface-subtle);
+.fk-jumbo:hover:not(:has(input:disabled)):not(:has(input:checked)) .fk-jumbo__inner {
+  background: var(--color-jumbo-bg-hover);
+  border-color: var(--color-jumbo-border-hover);
 }
 
-.fk-jumbo:focus-visible {
-  box-shadow: var(--focus-ring);
-  border-radius: 14px;
-}
-
-.fk-jumbo[aria-checked="true"] .fk-jumbo__inner {
+.fk-jumbo:has(input:active:not(:disabled)):not(:has(input:checked)) .fk-jumbo__inner,
+.fk-jumbo:has(input:checked) .fk-jumbo__inner {
   border-width: 2px;
-  border-color: var(--color-jumbo-selected-border);
-  background: rgba(47, 158, 96, 0.06);
-  padding: 11px 19px;
+  padding: calc(var(--jumbo-py) - 1px) calc(var(--jumbo-px) - 1px);
+}
+
+.fk-jumbo:has(input:active:not(:disabled)):not(:has(input:checked)) .fk-jumbo__inner {
+  background: var(--color-jumbo-bg-pressed);
+  border-color: var(--color-jumbo-border-pressed);
+}
+
+.fk-jumbo:has(input:checked) .fk-jumbo__inner {
+  background: var(--color-jumbo-bg-selected);
+  border-color: var(--color-jumbo-border-selected);
+}
+
+.fk-jumbo:hover:not(:has(input:disabled)):has(input:checked) .fk-jumbo__inner {
+  background: var(--color-jumbo-bg-selected-hover);
+  border-color: var(--color-jumbo-border-selected);
+}
+
+.fk-jumbo:has(input:focus-visible) {
+  background: var(--color-jumbo-focus-gap);
+  box-shadow: 0 0 0 2px var(--color-jumbo-focus-ring);
+}
+
+.fk-jumbo:has(input:disabled) {
+  cursor: not-allowed;
+}
+
+.fk-jumbo:has(input:disabled) .fk-jumbo__inner {
+  background: var(--color-jumbo-bg-disabled);
+  border-color: var(--color-jumbo-border-disabled);
 }
 
 .fk-jumbo__icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  background: var(--color-surface-subtle);
-  flex-shrink: 0;
   display: grid;
   place-items: center;
-  color: var(--color-text-subtle);
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--color-jumbo-icon);
+}
+
+.fk-jumbo--sm .fk-jumbo__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.fk-jumbo--lg .fk-jumbo__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: var(--color-jumbo-icon-bg);
+}
+
+.fk-jumbo__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fk-jumbo--lg .fk-jumbo__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.fk-jumbo:hover:not(:has(input:disabled)):not(:has(input:checked)) .fk-jumbo__icon {
+  color: var(--color-jumbo-icon-hover);
+}
+
+.fk-jumbo:has(input:checked) .fk-jumbo__icon {
+  color: var(--color-jumbo-icon-selected);
+}
+
+.fk-jumbo:has(input:disabled) .fk-jumbo__icon {
+  color: var(--color-jumbo-icon-disabled);
 }
 
 .fk-jumbo__text {
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .fk-jumbo__label {
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 24px;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-jumbo-label);
+}
+
+.fk-jumbo--sm .fk-jumbo__label {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.fk-jumbo--lg .fk-jumbo__label {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: var(--font-weight-semibold);
 }
 
 .fk-jumbo__sub {
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 20px;
-  color: var(--color-text-subtle);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-jumbo-sub);
+}
+
+.fk-jumbo--sm .fk-jumbo__sub {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.fk-jumbo--lg .fk-jumbo__sub {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.fk-jumbo:has(input:disabled) .fk-jumbo__label {
+  color: var(--color-jumbo-label-disabled);
+}
+
+.fk-jumbo:has(input:disabled) .fk-jumbo__sub {
+  color: var(--color-jumbo-sub-disabled);
 }
 
 .fk-jumbo__check {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  background: transparent;
-  border: 1px solid var(--color-border-subtle);
+  display: none;
   flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-size: 10px;
-  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-jumbo-indicator);
 }
 
-.fk-jumbo[aria-checked="true"] .fk-jumbo__check {
-  background: var(--color-jumbo-indicator);
-  border-color: var(--color-jumbo-indicator);
+.fk-jumbo:has(input:checked) .fk-jumbo__check {
+  display: block;
+}
+
+.fk-jumbo--no-indicator .fk-jumbo__check {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fk-jumbo__inner {
+    transition: none;
+  }
 }
 
 /* Snackbar */
